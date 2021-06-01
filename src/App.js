@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Login from './components/Auth/Login/Login';
+
 const App = () => {
     return(
-        <h1>VidVaSo</h1>
+        <section>
+            <Login />
+        </section>
     );
 };
 
