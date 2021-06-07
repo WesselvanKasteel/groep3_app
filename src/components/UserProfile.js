@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './UserProfile.scss';
+import {Link} from 'react-router-dom'
 
 class UserProfile extends React.Component {
 
@@ -18,7 +19,7 @@ class UserProfile extends React.Component {
                     </section>
 
                     <section className="userprofile-content__edit userprofile-content__card">
-                        <h2>Edit profiel</h2>
+                        <Link className="userprofile-content__edit__link" to="/profile-edit"><h2>Profiel bewerken</h2></Link>
                     </section>
 
                     <section className="userprofile-content__video userprofile-content__card">

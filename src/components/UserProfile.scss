@@ -44,18 +44,23 @@
     background-color: #fff;
 
     h2{
-
         span{
             cursor: pointer;
         }
     }
 }
 
+
+
 .userprofile-content__edit{
     cursor: pointer;
     h2{
         text-align: center;
     }
+}
+
+.userprofile-content__edit__link{
+    text-decoration: none;
 }
 
 .userprofileedit{
