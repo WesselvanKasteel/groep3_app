@@ -7,6 +7,8 @@ import UserProfileEdit from './components/UserProfileEdit';
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
+import Record from './components/Record/Record';
+
 const App = () => {
     return(
         <Router>
