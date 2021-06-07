@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
 import axios from 'axios';
-
+import {Link} from 'react-router-dom';
 import './Login.scss';
 
 const Login = () => {
@@ -18,7 +17,7 @@ const Login = () => {
 
     const loginHandler = async (event) => {
         event.preventDefault();
-    
+
         const loginData = {
             email: email,
             password: password,
@@ -34,9 +33,9 @@ const Login = () => {
             <form method="post" onSubmit={loginHandler}>
                 <div>
                     <label htmlFor="email">E-mail:</label>
-                    <input 
-                        type="email" 
-                        name="email" 
+                    <input
+                        type="email"
+                        name="email"
                         id="email"
                         value={email}
                         onChange={emailChangeHandler}
@@ -44,16 +43,16 @@ const Login = () => {
                 </div>
                 <div>
                     <label htmlFor="password">Wachtwoord:</label>
-                    <input 
-                        type="password" 
-                        name="password" 
+                    <input
+                        type="password"
+                        name="password"
                         id="password"
                         value={password}
                         onChange={passwordChangeHandler}
                     />
                 </div>
                 <a href="#">Wachtwoord vergeten?</a>
-                <p>Nog geen account? <a href="#">Registreer hier.</a></p>
+                <p>Nog geen account? <Link to="/register">Registreer hier.</Link></p>
                 <button>Login</button>
             </form>
         </section>

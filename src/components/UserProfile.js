@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './UserProfile.scss';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 class UserProfile extends React.Component {
 

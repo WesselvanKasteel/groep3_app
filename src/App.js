@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Login from './components/Auth/Login/Login';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 import UserProfile from './components/UserProfile';
 import UserProfileEdit from './components/UserProfileEdit';
 
@@ -11,6 +12,7 @@ const App = () => {
         <Router>
             <section>
                 <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
                 <Route path="/profile" component={UserProfile} />
                 <Route path="/profile-edit" component={UserProfileEdit} />
             </section>
