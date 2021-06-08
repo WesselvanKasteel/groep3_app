@@ -95,15 +95,6 @@ const UserProfileEdit = () => {
                     id="profilePicture"
                     onChange={(e) => setProfilePicture(e.target.files)}
                 />
-                <button>Upload image</button>
-                <label htmlFor="age">Leeftijd:</label>
-                <input
-                    type="number"
-                    name="age"
-                    id="age"
-                    value={age}
-                    onChange={ageChangeHandler}
-                />
                 <label htmlFor="city">Plaats:</label>
                 <input
                     type="text"
