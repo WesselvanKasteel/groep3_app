@@ -2,23 +2,13 @@ import React, { useState, Fragment } from 'react';
 import axios from 'axios';
 import './UserProfile.scss';
 
-const UserProfileEdit = () => {
-    const [profilePicture, setProfilePicture] = useState();
-    const [age, setAge] = useState('');
+const UserProfileEdit = (props) => {
+    const [profilePicture, setProfilePicture] = useState(null);
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    // const [job, setJob] = useState('');
     const [jobFields, setJobFields] = useState([
       { job: '', JobFields: '' }
     ]);
-
-    const profilePictureData = {
-        profilePicture: profilePicture,
-    }
-
-    const ageChangeHandler = (event) => {
-        setAge(event.target.value);
-    }
 
     const cityChangeHandler = (event) => {
         setCity(event.target.value);
@@ -52,32 +42,34 @@ const UserProfileEdit = () => {
     };
 
     const handleSubmit = async (event) => {
-        console.log("profilePicture: " + profilePicture);
-        console.log("age: " + age);
-        console.log("city: " + city);
-        console.log("province: " + province);
         event.preventDefault();
-        const profileData = {
-            profilePicture: profilePicture,
-            age: age,
-            city: city,
-            province: province
 
-        }
+        // const profileData = {
+        //     profilePicture: profilePicture,
+        //     city: city,
+        //     province: province
+        // }
+        const data = new FormData();
+            data.append('file', profilePicture);
+            data.append('province', province);
+            data.append('city', city);
+
+    //    console.log("profiledata: " + profileData.profilePicture.name);
 
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.put('http://127.0.0.1:8000/api/update-user', profileData, config);
+        const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
         console.log(res.data);
+
+        props.history.push("/profile");
     }
 
 
-    console.log(profilePicture);
-    console.log("age: " + age);
-    console.log("city: " + city);
-    console.log("province: " + province);
+    // console.log(profilePicture);
+    // console.log("city: " + city);
+    // console.log("province: " + province);
     // for (var i = 0; i < jobFields.length; i++) {
     //     console.log(jobFields[i]);
     // }
@@ -93,7 +85,7 @@ const UserProfileEdit = () => {
                     type="file"
                     name="profilePicture"
                     id="profilePicture"
-                    onChange={(e) => setProfilePicture(e.target.files)}
+                    onChange={(e) => setProfilePicture(e.target.files[0])}
                 />
                 <label htmlFor="city">Plaats:</label>
                 <input
