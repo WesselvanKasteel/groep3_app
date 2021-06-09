@@ -69,7 +69,7 @@ const UserProfileEdit = (props) => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.put('http://127.0.0.1:8000/api/update-user', data, config);
+        const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
         console.log(res.data);
 
         props.history.push("/profile");
