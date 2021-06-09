@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+
 import './Register.scss';
-
-
 
 const Register = () => {
     //onChange={(e) => setProfilePicture(e.target.files)}

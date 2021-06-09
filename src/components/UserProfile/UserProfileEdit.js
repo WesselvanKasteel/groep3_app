@@ -35,20 +35,20 @@ const UserProfileEdit = () => {
     };
 
     const handleRemoveFields = index => {
-      const values = [...jobFields];
-      values.splice(index, 1);
-      setJobFields(values);
+        const values = [...jobFields];
+        values.splice(index, 1);
+        setJobFields(values);
     };
 
     const handleInputChange = (index, event) => {
-      const values = [...jobFields];
-      if (event.target.name === "job") {
-        values[index].job = event.target.value;
-      }
-      else {
-        values[index].JobFields = event.target.value;
-      }
-      setJobFields(values);
+        const values = [...jobFields];
+        if (event.target.name === "job") {
+            values[index].job = event.target.value;
+        }
+        else {
+            values[index].JobFields = event.target.value;
+        }
+        setJobFields(values);
     };
 
     const handleSubmit = async (event) => {
@@ -62,7 +62,6 @@ const UserProfileEdit = () => {
             age: age,
             city: city,
             province: province
-
         }
 
         const config = {
