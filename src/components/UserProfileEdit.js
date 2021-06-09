@@ -85,7 +85,7 @@ const UserProfileEdit = (props) => {
 
     return(
         <section className ="userprofileedit">
-            <form className="userprofileedit__form" onSubmit={handleSubmit}>
+            <form className="userprofileedit__form" onSubmit={handleSubmit} method="POST">
 
                 <h2>Algemene informatie</h2>
                 <label htmlFor="profilePicture">Afbeelding:</label>

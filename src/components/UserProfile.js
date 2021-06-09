@@ -115,6 +115,17 @@ class UserProfile extends React.Component {
         });
         // setCity(res.data.user.city);
         // setProvince(res.data.user.province);
+        
+        // if(res.data.user.prefix) {
+        //     setPrefix(res.data.user.prefix);
+        // }
+
+        // setFirstName(res.data.user.first_name);
+        // setLastName(res.data.user.last_name);
+        // setAge(res.data.age);
+        // setImage(window.location.hostname + ":8000/" + res.data.user.picture_path);
+        // setCity(res.data.user.city);
+        // setProvince(res.data.user.province);
         // console.log(window.location.hostname + ":8000/" + res.data.user[0].picture_path);
         console.log(res.data);
     }
