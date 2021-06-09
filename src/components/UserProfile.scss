@@ -50,8 +50,6 @@
     }
 }
 
-
-
 .userprofile-content__edit{
     cursor: pointer;
     h2{
@@ -70,4 +68,12 @@
 
 .userprofileedit__form{
     grid-column: 2;
+
+    label{
+        display: block;
+    }
+
+    h2{
+        margin-top: 2rem;
+    }
 }

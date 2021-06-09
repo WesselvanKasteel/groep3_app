@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 
 const UserProfile = () => {
     const [firstName, setFirstName] = useState('');
+    const [prefix, setPrefix] = useState('');
     const [lastName, setLastName] = useState('');
     const [age, setAge] = useState('');
     const [image, setImage] = useState('');
@@ -22,6 +23,7 @@ const UserProfile = () => {
 
         const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         setFirstName(res.data.user.first_name);
+        setPrefix(res.data.user.prefix);
         setLastName(res.data.user.last_name);
         setAge(res.data.age);
         setImage(window.location.hostname + ":8000/" + res.data.user.picture_path);
@@ -39,7 +41,7 @@ const UserProfile = () => {
                     <img src={ image } alt="Profile" />
                     }
                     <div className="userprofile-content__info__textdiv">
-                        <p className="userprofile-content__info__textdiv1">{ firstName + " " + lastName}</p>
+                        <p className="userprofile-content__info__textdiv1">{ firstName + " " + prefix + " " + lastName}</p>
                         <p className="userprofile-content__info__textdiv2">{ age + " jaar"}<br/>
                         { city + ", " + province }</p>
                     </div>

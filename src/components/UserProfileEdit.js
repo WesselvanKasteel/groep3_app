@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import axios from 'axios';
 import './UserProfile.scss';
 
@@ -9,6 +9,23 @@ const UserProfileEdit = (props) => {
     const [jobFields, setJobFields] = useState([
       { job: '', JobFields: '' }
     ]);
+
+    useEffect(() => {
+        getUserData();
+    }, []);
+
+    const getUserData = async () => {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+
+        const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
+        // setFirstName(res.data.user.first_name);
+        // setPrefix(res.data.user.prefix);
+        // setLastName(res.data.user.last_name);
+        setCity(res.data.user.city);
+        setProvince(res.data.user.province);
+    }
 
     const cityChangeHandler = (event) => {
         setCity(event.target.value);
@@ -43,29 +60,20 @@ const UserProfileEdit = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // const profileData = {
-        //     profilePicture: profilePicture,
-        //     city: city,
-        //     province: province
-        // }
         const data = new FormData();
             data.append('file', profilePicture);
             data.append('province', province);
             data.append('city', city);
 
-    //    console.log("profiledata: " + profileData.profilePicture.name);
-
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
+        const res = await axios.put('http://127.0.0.1:8000/api/update-user', data, config);
         console.log(res.data);
 
         props.history.push("/profile");
     }
-
 
     // console.log(profilePicture);
     // console.log("city: " + city);
@@ -77,7 +85,7 @@ const UserProfileEdit = (props) => {
 
     return(
         <section className ="userprofileedit">
-            <form className="userprofileedit__form" method="PUT" onSubmit={handleSubmit}>
+            <form className="userprofileedit__form" onSubmit={handleSubmit}>
 
                 <h2>Algemene informatie</h2>
                 <label htmlFor="profilePicture">Afbeelding:</label>
@@ -105,12 +113,11 @@ const UserProfileEdit = (props) => {
                 />
 
                 <h2>Kennismaking video</h2>
-                <p>Huidige video: <i>Pjeenter.mp4</i></p>
+                <p>Huidige video: <i>Profiel.mp4</i></p>
 
                 <h2>Eerdere banen</h2>
                 {jobFields.map((inputField, index) => (
                   <Fragment key={`${inputField}~${index}`}>
-                    <div className="input1">
                       <label htmlFor="job">Baan/functie</label>
                       <input
                         type="text"
@@ -120,8 +127,6 @@ const UserProfileEdit = (props) => {
                         value={inputField.job}
                         onChange={event => handleInputChange(index, event)}
                       />
-                    </div>
-                    <div className="input2">
                       <label htmlFor="period">Periode</label>
                       <input
                         type="text"
@@ -131,7 +136,6 @@ const UserProfileEdit = (props) => {
                         value={inputField.JobFields}
                         onChange={event => handleInputChange(index, event)}
                       />
-                    </div>
                     <div className="btn">
                       <button
                         className="btn btn-link"
