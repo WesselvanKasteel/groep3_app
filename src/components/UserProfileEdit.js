@@ -7,7 +7,7 @@ const UserProfileEdit = (props) => {
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
     const [jobFields, setJobFields] = useState([
-      { job: '', JobFields: '' }
+        { job: '', JobFields: '' }
     ]);
 
     useEffect(() => {
@@ -19,12 +19,12 @@ const UserProfileEdit = (props) => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
-        // setFirstName(res.data.user.first_name);
-        // setPrefix(res.data.user.prefix);
-        // setLastName(res.data.user.last_name);
+        // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
+        const res = await axios.get('http://127.0.0.1:8000/api/user', config);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
+        
+        console.log(res.data);
     }
 
     const cityChangeHandler = (event) => {
@@ -36,41 +36,49 @@ const UserProfileEdit = (props) => {
     }
 
     const handleAddFields = () => {
-      const values = [...jobFields];
-      values.push({ job: '', JobFields: '' });
-      setJobFields(values);
+        const values = [...jobFields];
+        values.push({ job: '', JobFields: '' });
+        setJobFields(values);
     };
 
     const handleRemoveFields = index => {
-      const values = [...jobFields];
-      values.splice(index, 1);
-      setJobFields(values);
+        const values = [...jobFields];
+        values.splice(index, 1);
+        setJobFields(values);
     };
 
     const handleInputChange = (index, event) => {
-      const values = [...jobFields];
-      if (event.target.name === "job") {
-        values[index].job = event.target.value;
-      }
-      else {
-        values[index].JobFields = event.target.value;
-      }
-      setJobFields(values);
+        const values = [...jobFields];
+        if (event.target.name === "job") {
+            values[index].job = event.target.value;
+        }
+        else {
+            values[index].JobFields = event.target.value;
+        }
+        setJobFields(values);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData();
-            data.append('file', profilePicture);
-            data.append('province', province);
-            data.append('city', city);
+        // const data = new FormData();
+        // data.append('file', profilePicture);
+        // data.append('province', province);
+        // data.append('city', city);
+        
+        const formData = {
+            file: profilePicture,
+            city: city,
+        }
 
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
-        console.log(res.data);
+        // const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
+        const res = await axios.put('http://127.0.0.1:8000/api/user/update', formData, config);
+        // console.log(res.data);
+        console.log(formData);
+        console.log(res);
 
         props.history.push("/profile");
     }
