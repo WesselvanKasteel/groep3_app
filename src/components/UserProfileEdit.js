@@ -4,11 +4,12 @@ import './UserProfile.scss';
 
 const UserProfileEdit = (props) => {
     const [profilePicture, setProfilePicture] = useState(null);
+    const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobFields, setJobFields] = useState([
-        { job: '', JobFields: '' }
-    ]);
+    const [country, setCountry] = useState('');
+    const [externalcv, setExternalcv] = useState('');
+    const [jobs, setJobs] = useState([{ jobs: ''}]);
 
     useEffect(() => {
         getUserData();
@@ -21,10 +22,16 @@ const UserProfileEdit = (props) => {
 
         // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
-        
+        setCountry(res.data.user.country);
+
         console.log(res.data);
+    }
+
+    const addressChangeHandler = (event) => {
+        setAddress(event.target.value);
     }
 
     const cityChangeHandler = (event) => {
@@ -35,27 +42,30 @@ const UserProfileEdit = (props) => {
         setProvince(event.target.value);
     }
 
-    const handleAddFields = () => {
-        const values = [...jobFields];
-        values.push({ job: '', JobFields: '' });
-        setJobFields(values);
+    const countryChangeHandler = (event) => {
+        setCountry(event.target.value);
+    }
+
+    const externalcvChangeHandler = (event) => {
+        setExternalcv(event.target.value);
+    }
+
+    const handleJobsAddFields = () => {
+      const values = [...jobs];
+      values.push({ jobs: '' });
+      setJobs(values);
     };
 
-    const handleRemoveFields = index => {
-        const values = [...jobFields];
+    const handleJobsRemoveFields = index => {
+        const values = [...jobs];
         values.splice(index, 1);
-        setJobFields(values);
+        setJobs(values);
     };
 
-    const handleInputChange = (index, event) => {
-        const values = [...jobFields];
-        if (event.target.name === "job") {
-            values[index].job = event.target.value;
-        }
-        else {
-            values[index].JobFields = event.target.value;
-        }
-        setJobFields(values);
+    const handleJobsInputChange = (index, event) => {
+      const values = [...jobs];
+       values[index].jobs = event.target.value;
+      setJobs(values);
     };
 
     const handleSubmit = async (event) => {
@@ -64,10 +74,13 @@ const UserProfileEdit = (props) => {
         // data.append('file', profilePicture);
         // data.append('province', province);
         // data.append('city', city);
-        
+
         const formData = {
             file: profilePicture,
+            address: address,
             city: city,
+            country: country,
+            //externalcv: externalcv,
         }
 
         const config = {
@@ -94,7 +107,6 @@ const UserProfileEdit = (props) => {
     return(
         <section className ="userprofileedit">
             <form className="userprofileedit__form" onSubmit={handleSubmit} method="POST">
-
                 <h2>Algemene informatie</h2>
                 <label htmlFor="profilePicture">Afbeelding:</label>
                 <input
@@ -102,6 +114,14 @@ const UserProfileEdit = (props) => {
                     name="profilePicture"
                     id="profilePicture"
                     onChange={(e) => setProfilePicture(e.target.files[0])}
+                />
+                <label htmlFor="address">Adres:</label>
+                <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    value={address}
+                    onChange={addressChangeHandler}
                 />
                 <label htmlFor="city">Plaats:</label>
                 <input
@@ -119,49 +139,54 @@ const UserProfileEdit = (props) => {
                     value={province}
                     onChange={provinceChangeHandler}
                 />
+                <label htmlFor="country">Land:</label>
+                <input
+                    type="text"
+                    name="country"
+                    id="country"
+                    value={country}
+                    onChange={countryChangeHandler}
+                />
 
                 <h2>Kennismaking video</h2>
                 <p>Huidige video: <i>Profiel.mp4</i></p>
 
                 <h2>Eerdere banen</h2>
-                {jobFields.map((inputField, index) => (
-                  <Fragment key={`${inputField}~${index}`}>
-                      <label htmlFor="job">Baan/functie</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="job"
-                        name="job"
-                        value={inputField.job}
-                        onChange={event => handleInputChange(index, event)}
-                      />
-                      <label htmlFor="period">Periode</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="period"
-                        name="period"
-                        value={inputField.JobFields}
-                        onChange={event => handleInputChange(index, event)}
-                      />
-                    <div className="btn">
-                      <button
-                        className="btn btn-link"
-                        type="button"
-                        onClick={() => handleRemoveFields(index)}
-                      >-</button>
-                      <button
-                        className="btn btn-link"
-                        type="button"
-                        onClick={() => handleAddFields()}
-                      >+</button>
-                    </div>
-                  </Fragment>
-                ))}
+                {jobs.map((inputField, index) => (
+                    <Fragment key={`${inputField}~${index}`}>
+                        <label htmlFor="jobs">Baan/functie + periode:</label>
+                        <input
+                          type="text"
+                          id="jobs"
+                          name="jobs"
+                          value={inputField.jobs}
+                          onChange={event => handleJobsInputChange(index, event)}
+                        />
+                        <button
+                          className="btn btn-link"
+                          type="button"
+                          onClick={() => handleJobsRemoveFields(index, jobs)}
+                        >-</button>
+                        <button
+                          className="btn btn-link"
+                          type="button"
+                          onClick={() => handleJobsAddFields()}
+                        >+</button>
+                    </Fragment>
+                  ))}
 
                 <h2>Opleidingen</h2>
+
                 <h2>Skills</h2>
+
                 <h2>Extern CV</h2>
+                <input
+                    type="text"
+                    name="externalcv"
+                    id="externalcv"
+                    value={externalcv}
+                    onChange={externalcvChangeHandler}
+                />
 
                 <button type="submit">Submit</button>
             </form>

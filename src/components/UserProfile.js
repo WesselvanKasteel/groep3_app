@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,6 +12,10 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
+    const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
+    const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
+    const [educations, setEducations] = useState(['HAVO', 'HBO']);
+    //const [externalcv, setExternalcv] = useState('');
 
     useEffect(() => {
         getUserData();
@@ -24,19 +28,29 @@ const UserProfile = () => {
 
         // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
-        if(!res.data.user.prefix) {
-            setPrefix('');
-        }
 
         setFirstName(res.data.user.first_name);
+        setPrefix(res.data.user.prefix);
         setLastName(res.data.user.last_name);
         setAge(res.data.age);
         setImage(window.location.hostname + ":8000/" + res.data.user.picture_path);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
-        console.log(res.data.user);
-        console.log(res.data.age);
+        // console.log(res.data.user);
+        // console.log(res.data.age);
     }
+
+    const jobsList = jobs.map((jobs) =>
+        <p key={jobs}>{ jobs }</p>
+    );
+
+    const educationsList = educations.map((educations) =>
+        <p key={educations}>{ educations }</p>
+    );
+
+    const skillsList = skills.map((skill) =>
+        <p key={skill}>{ skill }</p>
+    );
 
     return(
         <article className="userprofile">
@@ -46,47 +60,44 @@ const UserProfile = () => {
                     <img src={ image } alt="Profile" />
                     }
                     <div className="userprofile-content__info__textdiv">
-                        <p className="userprofile-content__info__textdiv1">{ firstName + " " + prefix + " " + lastName }</p>
+                        <p className="userprofile-content__info__textdiv1">{ firstName + " "} {prefix !== "" && prefix}{ " " + lastName }</p>
                         <p className="userprofile-content__info__textdiv2">{ age + " jaar" }<br/>
                         { city + ", " + province }</p>
                     </div>
                 </section>
-
                 <section className="userprofile-content__edit userprofile-content__card">
                     <Link className="userprofile-content__edit__link" to="/profile-edit"><h2>Profiel bewerken</h2></Link>
                 </section>
-
-                <section className="userprofile-content__video userprofile-content__card">
-                    <h2>Kennismaking video </h2>
+                <div className="userprofile-content__grid">
+                    <section className="userprofile-content__grid__video userprofile-content__card">
+                        <h2>Kennismaking video </h2>
                         <video width="100%" height="100%" loop controls>
-                        <source src="vidvaso_video_1.mp4" type="video/mp4" />
-                        <source src="vidvaso_video_1.webm" type="video/ogg" />
-                        Dit device ondersteunt geen video.
+                            <source src="vidvaso_video_1.mp4" type="video/mp4" />
+                            <source src="vidvaso_video_1.webm" type="video/ogg" />
+                            Dit device ondersteunt geen video.
                         </video>
-                </section>
+                    </section>
 
-                <section className="userprofile-content__jobs userprofile-content__card">
-                    <h2>Eerdere banen</h2>
-                        <p>Vakken vuller AH 2017-2018</p>
-                        <p>Vakken vuller AH 2017-2018</p>
-                </section>
+                    <section className="userprofile-content__grid__jobs userprofile-content__card">
+                        <h2>Eerdere banen</h2>
+                        { jobsList }
+                    </section>
 
-                <section className="userprofile-content__education userprofile-content__card">
-                    <h2>Opleidingen</h2>
-                    <p>Hogeschool Leiden 2016-2020</p>
-                    <p>Hogeschool Leiden 2016-2020</p>
-                </section>
+                    <section className="userprofile-content__grid__education userprofile-content__card">
+                        <h2>Opleidingen</h2>
+                        { educationsList }
+                    </section>
 
-                <section className="userprofile-content__skills userprofile-content__card">
-                    <h2>Skills</h2>
-                    <p>HTML</p>
-                    <p>HTML</p>
-                </section>
+                    <section className="userprofile-content__grid__skills userprofile-content__card">
+                        <h2>Skills</h2>
+                        { skillsList }
+                    </section>
 
-                <section className="userprofile-content__external userprofile-content__card">
-                    <h2>Extern CV</h2>
-                    <a href="#">Linkedin</a>
-                </section>
+                    <section className="userprofile-content__grid__external userprofile-content__card">
+                        <h2>Extern CV</h2>
+                        <a href="#">Linkedin</a>
+                    </section>
+                </div>
 
             </section>
         </article>
