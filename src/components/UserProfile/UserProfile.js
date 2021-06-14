@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -40,12 +40,12 @@ const UserProfile = () => {
         // console.log(res.data.age);
     }
 
-    const jobsList = jobs.map((jobs) =>
-        <p key={jobs}>{ jobs }</p>
+    const jobsList = jobs.map((job) =>
+        <p key={job}>{ job }</p>
     );
 
-    const educationsList = educations.map((educations) =>
-        <p key={educations}>{ educations }</p>
+    const educationsList = educations.map((education) =>
+        <p key={education}>{ education }</p>
     );
 
     const skillsList = skills.map((skill) =>
@@ -53,7 +53,7 @@ const UserProfile = () => {
     );
 
     return(
-        <article className="userprofile">
+        <div className="userprofile">
             <section className="userprofile-content">
                 <section className="userprofile-content__info">
                     {image !== "" &&
@@ -68,39 +68,38 @@ const UserProfile = () => {
                 <section className="userprofile-content__edit userprofile-content__card">
                     <Link className="userprofile-content__edit__link" to="/profile-edit"><h2>Profiel bewerken</h2></Link>
                 </section>
-                <div className="userprofile-content__grid">
-                    <section className="userprofile-content__grid__video userprofile-content__card">
+                <section className="userprofile-content__grid">
+                    <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>
                         <video width="100%" height="100%" loop controls>
                             <source src="vidvaso_video_1.mp4" type="video/mp4" />
                             <source src="vidvaso_video_1.webm" type="video/ogg" />
                             Dit device ondersteunt geen video.
                         </video>
-                    </section>
+                    </article>
 
-                    <section className="userprofile-content__grid__jobs userprofile-content__card">
+                    <article className="userprofile-content__grid__jobs userprofile-content__card">
                         <h2>Eerdere banen</h2>
                         { jobsList }
-                    </section>
+                    </article>
 
-                    <section className="userprofile-content__grid__education userprofile-content__card">
+                    <article className="userprofile-content__grid__education userprofile-content__card">
                         <h2>Opleidingen</h2>
                         { educationsList }
-                    </section>
+                    </article>
 
-                    <section className="userprofile-content__grid__skills userprofile-content__card">
+                    <article className="userprofile-content__grid__skills userprofile-content__card">
                         <h2>Skills</h2>
                         { skillsList }
-                    </section>
+                    </article>
 
-                    <section className="userprofile-content__grid__external userprofile-content__card">
+                    <article className="userprofile-content__grid__external userprofile-content__card">
                         <h2>Extern CV</h2>
                         <a href="#">Linkedin</a>
-                    </section>
-                </div>
-
+                    </article>
+                </section>
             </section>
-        </article>
+        </div>
     );
 };
 

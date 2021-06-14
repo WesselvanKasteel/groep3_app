@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link, Redirect} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login.scss';
 
 const Login = (props) => {
@@ -57,7 +57,7 @@ const Login = (props) => {
                         onChange={passwordChangeHandler}
                     />
                 </div>
-                <a href="#">Wachtwoord vergeten?</a>
+                {/* <a href="#">Wachtwoord vergeten?</a> */}
                 <p>Nog geen account? <Link to="/register">Registreer hier.</Link></p>
                 <button>Login</button>
             </form>

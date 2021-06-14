@@ -63,38 +63,75 @@ const UserProfileEdit = (props) => {
     };
 
     const handleJobsInputChange = (index, event) => {
-      const values = [...jobs];
-       values[index].jobs = event.target.value;
-      setJobs(values);
+        const values = [...jobs];
+        values[index].jobs = event.target.value;
+        setJobs(values);
     };
 
-    const handleSubmit = async (event) => {
+    const profilePictureUpdateHandler = async (event) => {
         event.preventDefault();
-        // const data = new FormData();
-        // data.append('file', profilePicture);
-        // data.append('province', province);
-        // data.append('city', city);
 
-        const formData = {
-            file: profilePicture,
-            address: address,
-            city: city,
-            country: country,
-            //externalcv: externalcv,
-        }
+        const formData = new FormData();
+        formData.append('picture', profilePicture);
 
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'multipart/form-data',
+            },
         };
 
-        // const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
-        const res = await axios.put('http://127.0.0.1:8000/api/user/update', formData, config);
-        // console.log(res.data);
-        console.log(formData);
-        console.log(res);
+        const res = await axios.post('http://127.0.0.1:8000/api/user/edit/picture', formData, config);
+        console.log(res.data);
+    };
 
-        props.history.push("/profile");
-    }
+    const profileUpdateHandler = async (event) => {
+        event.preventDefault();
+
+        const data = {
+            address: address,
+            city: city,
+            province: province,
+            country: country,
+        };
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const res = await axios.put('http://127.0.0.1:8000/api/user/edit', data, config);
+        console.log(res.data);
+    };
+
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     // const data = new FormData();
+    //     // data.append('file', profilePicture);
+    //     // data.append('province', province);
+    //     // data.append('city', city);
+
+    //     const formData = {
+    //         file: profilePicture,
+    //         address: address,
+    //         city: city,
+    //         country: country,
+    //         //externalcv: externalcv,
+    //     }
+
+    //     const config = {
+    //         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    //     };
+
+    //     const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
+    //     // const res = await axios.put('http://127.0.0.1:8000/api/user/update', formData, config);
+    //     console.log(res.data);
+    //     console.log(formData);
+    //     console.log(res);
+
+    //     props.history.push("/profile");
+    // }
 
     // console.log(profilePicture);
     // console.log("city: " + city);
@@ -106,8 +143,7 @@ const UserProfileEdit = (props) => {
 
     return(
         <section className ="userprofileedit">
-            <form className="userprofileedit__form" onSubmit={handleSubmit} method="POST">
-                <h2>Algemene informatie</h2>
+            <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
                 <label htmlFor="profilePicture">Afbeelding:</label>
                 <input
                     type="file"
@@ -115,6 +151,11 @@ const UserProfileEdit = (props) => {
                     id="profilePicture"
                     onChange={(e) => setProfilePicture(e.target.files[0])}
                 />
+                <button>Upload</button>
+            </form>
+            <form className="userprofileedit__form" onSubmit={profileUpdateHandler} method="POST">
+                <h2>Algemene informatie</h2>
+
                 <label htmlFor="address">Adres:</label>
                 <input
                     type="text"

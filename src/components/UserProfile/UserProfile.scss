@@ -53,7 +53,7 @@
 
 .userprofile-content__card{
     border: 1px solid #bbb;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 1rem;
     margin: 2rem 0;
     background-color: #fff;
@@ -81,6 +81,8 @@
 
 .userprofile-content__edit__link{
     text-decoration: none;
+    border: none;
+    display: block;
 
     h2{
         margin: 0;
@@ -131,7 +133,7 @@
     }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 31.25em) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop)
     }
@@ -149,10 +151,12 @@
     }
 
     .userprofile-content__grid__video > video {
-        height: 85%;
+        height: 75%;
     }
+
+    .userprofileedit{
+        grid-template-columns: var(--userprofileedit-grid-desktop);
+    }    
 }
 
-.userprofileedit{
-    grid-template-columns: var(--userprofileedit-grid-desktop);
-}
+
