@@ -28,12 +28,14 @@ const UserProfile = () => {
 
         // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        console.log(res.data);
 
         setFirstName(res.data.user.first_name);
         setPrefix(res.data.user.prefix);
         setLastName(res.data.user.last_name);
         setAge(res.data.age);
-        setImage(window.location.hostname + ":8000/" + res.data.user.picture_path);
+        // setImage(window.location.hostname + ":8000/" + res.data.user.picture);
+        setImage(res.data.user.picture);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         // console.log(res.data.user);
@@ -57,7 +59,7 @@ const UserProfile = () => {
             <section className="userprofile-content">
                 <section className="userprofile-content__info">
                     {image !== "" &&
-                    <img src={ image } alt="Profile" />
+                    <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profile" />
                     }
                     <div className="userprofile-content__info__textdiv">
                         <p className="userprofile-content__info__textdiv1">{ firstName + " "} {prefix !== "" && prefix}{ " " + lastName }</p>

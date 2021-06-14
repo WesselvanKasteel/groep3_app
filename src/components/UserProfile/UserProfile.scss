@@ -11,8 +11,6 @@
 .userprofile{
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
-    background: var(--userprofile-background);
-    height: 100%;
 
     p{
         color: var(--userprofile-p);
@@ -25,13 +23,14 @@
 
 .userprofile-content__info{
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 40% 60%;
     margin-top: 2rem;
 
-    img{
+    &__img{
         grid-column: 1;
         width: 10rem;
         height: 10rem;
+        border-radius: 0.5rem;
     }
 }
 
@@ -105,7 +104,6 @@
 .userprofileedit{
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    background: var(--userprofile-background);
 
     h2{
         margin: 1rem 0;
@@ -135,13 +133,14 @@
 
 @media (min-width: 31.25em) {
     .userprofile{
-        grid-template-columns: var(--userprofile-grid-desktop)
+        grid-template-columns: var(--userprofile-grid-desktop);
     }
 
     .userprofile-content__info {
         display: grid;
-        grid-template-columns: 15% 85%;
+        // grid-template-columns: 15% 85%;
         margin-top: 2rem;
+        text-align: right;
     }
 
     .userprofile-content__grid{
