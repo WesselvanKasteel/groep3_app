@@ -6,35 +6,51 @@ import './DropdownSearch.scss';
 // icons
 import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';
 
-const DropdownSearch = () => {
+const DropdownSearch = ({ name, title, options, placeholder ,updateFilterItems, activeFilter, changeActiveFilter}) => {
 
-    const [placeholder, setPlaceholder] = useState('Zoekterm')
-
-    const [menu, setMenu] = useState(false);
+    const [active, setActive] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [options, setOptions] = useState(['optie 1', 'optie 2', 'optie 3', 'optie 4']);
 
     useEffect(() => {
+        setActive(activeFilter);
 
-    }, []);
+    }, [activeFilter])
 
-
-    let filterdList = options.map((option) => 
-        <li className="dropdown__menu__options__item" key={option}>
-            <h2 className="dropdown__menu__options__item__title">{ option }</h2>
+    let filterdList = options.filter((val) => {
+        if (searchTerm === '') {
+            return val
+        } else if (val.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val
+        }
+    }).map((option, index) => 
+        <li 
+            className={options.length > 3 ? 'dropdown-search__menu__options__item dropdown-search__menu__options__item-scroll' : 'dropdown-search__menu__options__item'} 
+            key={option}
+            onClick={() => updateFilterItems(option, index)}
+        >
+            <h2 className="dropdown-search__menu__options__item__title">{ option }</h2>
+            <span className="dropdown-search__menu__options__item__add">+</span>
         </li>
     ); 
 
-    return (
-        <div className="dropdown">
-            <div className="dropdown__button">
-                <button className="dropdown__button__btn" onClick={() => setMenu(!menu)}>Vaardigheden</button>
-                <img className={!menu ? 'dropdown__button__icon dropdown__button__icon-close' : 'dropdown__button__icon dropdown__button__icon-open'} src={ ArrowDropdown } alt="search icon" />
-            </div>
-            <div className={!menu ? "dropdown__menu  dropdown__menu-close" : 'dropdown__menu dropdown__menu-open'}>
-                <input className="dropdown__menu__input" type="text" placeholder={placeholder} onChange={(event) => setSearchTerm(event.target.value)}/>
+    if (options.length === 0 ) {
+        filterdList = <p className="dropdown-search__menu__options__item__null">Geen { name } gevonden.</p>
+    }
 
-                <ul className="dropdown__menu__options">
+    return (
+        <div className="dropdown-search">
+            <div className="dropdown-search__button">
+                <button className="dropdown-search__button__btn" onClick={() => { 
+                    const newActive = {search: !active.search, date: false, employment: false};
+                    setActive(newActive);
+                    changeActiveFilter(newActive); 
+                }}>{ title }</button>
+                <img className={!activeFilter.search ? 'dropdown-search__button__icon dropdown-search__button__icon-close' : 'dropdown-search__button__icon dropdown-search__button__icon-open'} src={ ArrowDropdown } alt="search icon" />
+            </div>
+            <div className={!activeFilter.search ? "dropdown-search__menu  dropdown-search__menu-close" : 'dropdown-search__menu dropdown-search__menu-open'}>
+                <input className="dropdown-search__menu__input" type="text" placeholder={placeholder} onChange={(event) => setSearchTerm(event.target.value)}/>
+
+                <ul className={options.length > 3 ? 'dropdown-search__menu__options dropdown-search__menu__options-none' : 'dropdown-search__menu__options dropdown-search__menu__options-scroll '}>
                     {filterdList}
                 </ul>
             </div>
