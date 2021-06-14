@@ -1,8 +1,7 @@
 import React from 'react';
-import SearchBarName from './SearchBarName';
 import VacancyList from './VacancyList';
 import axios from 'axios';
-import SearchBarSkill from './SearchBarSkills';
+
 
 class SearchPage extends React.Component{
 
