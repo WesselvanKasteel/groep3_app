@@ -1,0 +1,124 @@
+.filter {
+    width: auto;
+
+    margin-top: 2.5rem;
+}
+
+.filter__container {
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 8rem 8rem;
+}
+.filter__container__search {
+    grid-column: 1 / 3;
+    grid-row: 1;
+
+    padding: 1rem 1rem 1rem 0rem;
+}
+.filter__container__radius {
+    grid-column: 3;
+    grid-row: 1;
+
+    padding: 1rem 0rem 1rem 1rem;
+
+    z-index: 10;
+}
+.filter__container__skills {
+    grid-column: 1;
+    grid-row: 2;
+
+    padding: 1rem 1rem 1rem 0rem;
+
+    z-index: 10;
+}
+.filter__container__date {
+    grid-column: 2;
+    grid-row: 2;
+
+    padding: 1rem 1rem 1rem 1rem;
+}
+.filter__container__employment {
+    grid-column: 3;
+    grid-row: 2;
+
+    padding: 1rem 0rem 1rem 1rem;
+}
+
+/* tablet*/
+@media only screen and (max-width: 1400px) {
+    .filter__container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 8rem 8rem 8rem;
+    }
+    .filter__container__search {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    
+        padding: 1rem 0rem 1rem 0rem;
+    }
+    .filter__container__radius {
+        grid-column: 1;
+        grid-row: 2;
+    
+        padding: 1rem 1rem 1rem 0rem;
+    }
+    .filter__container__skills {
+        grid-column: 2;
+        grid-row: 2;
+    
+        padding: 1rem 0rem 1rem 1rem;
+    }
+    .filter__container__date {
+        grid-column: 1;
+        grid-row: 3;
+    
+        padding: 1rem 1rem 1rem 0rem;
+    }
+    .filter__container__employment {
+        grid-column: 2;
+        grid-row: 3;
+    
+        padding: 1rem 0rem 1rem 1rem;
+    }
+}
+
+/* phone */
+@media only screen and (max-width: 750px) {
+    .filter__container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 8rem 8rem 8rem 8rem 8rem;
+    }
+    .filter__container__search {
+        grid-column: 1;
+        grid-row: 1;
+    
+        padding: 1rem 0rem 1rem 0rem;
+    }
+    .filter__container__radius {
+        grid-column: 1;
+        grid-row: 2;
+    
+        padding: 1rem 0rem 1rem 0rem;
+    }
+    .filter__container__skills {
+        grid-column: 1;
+        grid-row: 3;
+    
+        padding: 1rem 0rem 1rem 0rem;
+    }
+    .filter__container__date {
+        grid-column: 1;
+        grid-row: 4;
+    
+        padding: 1rem 0rem 1rem 0rem;
+    }
+    .filter__container__employment {
+        grid-column: 1;
+        grid-row: 5;
+    
+        padding: 1rem 0rem 1rem 0rem;
+    }
+}
+
