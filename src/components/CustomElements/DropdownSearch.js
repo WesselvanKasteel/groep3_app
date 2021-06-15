@@ -6,14 +6,13 @@ import './DropdownSearch.scss';
 // icons
 import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';
 
-const DropdownSearch = ({ name, title, options, placeholder ,updateFilterItems, activeFilter, changeActiveFilter}) => {
+const DropdownSearch = ({ options ,updateFilterItems, activeFilter, changeActiveFilter}) => {
 
     const [active, setActive] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         setActive(activeFilter);
-
     }, [activeFilter])
 
     let filterdList = options.filter((val) => {
@@ -34,7 +33,7 @@ const DropdownSearch = ({ name, title, options, placeholder ,updateFilterItems, 
     ); 
 
     if (options.length === 0 ) {
-        filterdList = <p className="dropdown-search__menu__options__item__null">Geen { name } gevonden.</p>
+        filterdList = <p className="dropdown-search__menu__options__item__null">Geen vaardigheden gevonden.</p>
     }
 
     return (
@@ -44,11 +43,11 @@ const DropdownSearch = ({ name, title, options, placeholder ,updateFilterItems, 
                     const newActive = {search: !active.search, date: false, employment: false};
                     setActive(newActive);
                     changeActiveFilter(newActive); 
-                }}>{ title }</button>
+                }}>Vaardigheden</button>
                 <img className={!activeFilter.search ? 'dropdown-search__button__icon dropdown-search__button__icon-close' : 'dropdown-search__button__icon dropdown-search__button__icon-open'} src={ ArrowDropdown } alt="search icon" />
             </div>
             <div className={!activeFilter.search ? "dropdown-search__menu  dropdown-search__menu-close" : 'dropdown-search__menu dropdown-search__menu-open'}>
-                <input className="dropdown-search__menu__input" type="text" placeholder={placeholder} onChange={(event) => setSearchTerm(event.target.value)}/>
+                <input className="dropdown-search__menu__input" type="text" placeholder="Zoek vaardigheid" onChange={(event) => setSearchTerm(event.target.value)}/>
 
                 <ul className={options.length > 3 ? 'dropdown-search__menu__options dropdown-search__menu__options-none' : 'dropdown-search__menu__options dropdown-search__menu__options-scroll '}>
                     {filterdList}

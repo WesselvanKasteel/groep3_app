@@ -8,6 +8,7 @@ import SearchBar from '../../CustomElements/SearchBar';
 import DropdownSearch from '../../CustomElements/DropdownSearch';
 import DropdownEmployment from '../../CustomElements/DropdownEmployment';
 import DropdownDate from '../../CustomElements/DropdownDate';
+import RadiusSlider from '../../CustomElements/RadiusSlider';
 
 const SearchVacancyFilter = () => {
 
@@ -20,6 +21,7 @@ const SearchVacancyFilter = () => {
     const [activeFilter, setActiveFilter] = useState({search: false, date: false, employment: false});
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchRadius, setSearchRadius] = useState(0);
     const [filterItems, setFilterItems] = useState([]);
 
     // update searchTerm from child
@@ -65,6 +67,10 @@ const SearchVacancyFilter = () => {
         setDateOptions(newDateOptionsList);
     }
 
+    const updateRadiusValue = (value) => {
+        setSearchRadius(value);
+    }
+
     // update activeFilter
     const changeActiveFilter = (newActiveFilter) => {
         setActiveFilter(newActiveFilter);
@@ -77,8 +83,9 @@ const SearchVacancyFilter = () => {
         // console.log(searchTerm);
         // console.log(filterItems);
         // console.log(activeFilter);
+        console.log(searchRadius);
 
-    }, [searchTerm, filterItems, searchOptions, employmentOptions, activeFilter]);
+    }, [searchTerm, filterItems, searchOptions, employmentOptions, activeFilter, searchRadius]);
 
     return (
         <section className="filter">
@@ -87,14 +94,11 @@ const SearchVacancyFilter = () => {
                     <SearchBar updateSearchTerm={updateSearchTerm} />
                 </li>       
                 <li className="filter__container__radius">
-                    
+                    <RadiusSlider distance={searchRadius} updateRadiusValue={updateRadiusValue}/>
                 </li>
                 <li className="filter__container__skills">
                     <DropdownSearch 
-                        name="vaardigheid" 
-                        title="Vaardigheden" 
                         options={searchOptions} 
-                        placeholder="Zoek vaardigheid" 
                         updateFilterItems={updateFilterItems}
 
                         activeFilter={activeFilter}
@@ -103,8 +107,6 @@ const SearchVacancyFilter = () => {
                 </li>
                 <li className="filter__container__date">
                     <DropdownDate 
-                        name="datum" 
-                        title="Datum geplaats" 
                         options={dateOptions} 
                         updateDateItems={updateDateItems}
 
@@ -114,8 +116,6 @@ const SearchVacancyFilter = () => {
                 </li>
                 <li className="filter__container__employment">
                     <DropdownEmployment 
-                        name="dienstverband" 
-                        title="Dienstverband" 
                         options={employmentOptions} 
                         updateEmploymentItems={updateEmploymentItems}
 
