@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "chokidar": "^3.5.2",
     "sass-loader": "^10.1.1"
   }
 }
