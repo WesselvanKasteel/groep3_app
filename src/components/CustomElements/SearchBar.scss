@@ -1,0 +1,41 @@
+.searchbar {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+.searchbar__input {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 2.5rem;
+    border: none;
+
+    padding: 0rem 6.5rem 0rem 3rem;
+
+    box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.11);
+    -webkit-box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.11);
+    -moz-box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.11);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+
+    color: #061D45;
+}
+.searchbar__icon {
+    position: absolute;
+
+    top: 1.8rem;
+    right: 2rem;
+
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+/* phone */
+@media only screen and (max-width: 750px) {
+    .searchbar__input {
+        font-size: 1.2rem;
+    }
+}
