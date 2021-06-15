@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// css
+// scss
 import './SearchVacancyFilter.scss';
 
 // components
@@ -10,7 +10,10 @@ import DropdownEmployment from '../../CustomElements/DropdownEmployment';
 import DropdownDate from '../../CustomElements/DropdownDate';
 import RadiusSlider from '../../CustomElements/RadiusSlider';
 
-const SearchVacancyFilter = () => {
+import SearchVacancyAttributes from './SearchVacancyAttributes';
+
+// de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
+const SearchVacancyFilter = ({ updateFilterState }) => {
 
     // hardcode
     const [searchOptions, setSearchOptions] = useState(['Html', 'Css', 'Javascript', 'Laravel']);
@@ -24,6 +27,10 @@ const SearchVacancyFilter = () => {
     const [searchRadius, setSearchRadius] = useState(0);
     const [filterItems, setFilterItems] = useState([]);
 
+    useEffect(() => {
+        updateFilterState(filterItems)
+    }, [filterItems]);
+
     // update searchTerm from child
     const updateSearchTerm = (term) => { setSearchTerm(term); }
     
@@ -32,9 +39,14 @@ const SearchVacancyFilter = () => {
 
         // add clicked option to filterItems
         const item = searchOptions.splice(index, 1)[0];
-        const newFilterItems = filterItems;
-        newFilterItems.push(item);
-        setFilterItems(newFilterItems);
+
+        setFilterItems(prevAttributes => {
+            return [...prevAttributes, {
+                item: item,
+                state: 'searchOptions',
+                index: index
+            }]     
+        });
 
         // remove clicked option from initial options
         const newSearchOptionsList = searchOptions.filter(item => item !== option);
@@ -45,9 +57,14 @@ const SearchVacancyFilter = () => {
     const updateEmploymentItems = (tag, index) => {
         // add clicked option to filterItems
         const item = employmentOptions.splice(index, 1)[0];
-        const newFilterItems = filterItems;
-        newFilterItems.push(item);
-        setFilterItems(newFilterItems);
+
+        setFilterItems(prevAttributes => {
+            return [...prevAttributes, {
+                item: item,
+                state: 'employmentOptions',
+                index: index
+            }]     
+        });
 
         // remove clicked option from initial options
         const newEmploymentOptionsList = employmentOptions.filter(item => item !== tag);
@@ -58,15 +75,21 @@ const SearchVacancyFilter = () => {
     const updateDateItems = (tag, index) => {
         // add clicked tag to filterItems
         const item = dateOptions.splice(index, 1)[0];
-        const newFilterItems = filterItems;
-        newFilterItems.push(item);
-        setFilterItems(newFilterItems);
+
+        setFilterItems(prevAttributes => {
+            return [...prevAttributes, {
+                item: item,
+                state: 'dateOptions',
+                index: index
+            }]       
+        });
 
         // remove clicked tag from initial options
         const newDateOptionsList = dateOptions.filter(item => item !== tag);
         setDateOptions(newDateOptionsList);
     }
 
+    // update radius value
     const updateRadiusValue = (value) => {
         setSearchRadius(value);
     }
@@ -76,16 +99,29 @@ const SearchVacancyFilter = () => {
         setActiveFilter(newActiveFilter);
     }
 
-    useEffect(() => {
+    // update state on item removed
+    const updateFilter = (item) => {
 
-        // console.log(searchOptions);
-        // console.log(employmentOptions);
-        // console.log(searchTerm);
-        // console.log(filterItems);
-        // console.log(activeFilter);
-        console.log(searchRadius);
+        if (item.state === 'searchOptions') {
+            const newSearchOption = searchOptions;
+            newSearchOption.splice(item.index, 0, item.item);
+            setSearchOptions(newSearchOption);
+        }
+        else if (item.state === 'employmentOptions') {
+            const newEmploymentOptions = employmentOptions;
+            newEmploymentOptions.splice(item.index, 0, item.item);
+            setEmploymentOptions(newEmploymentOptions);
+        }
+        else if (item.state === 'dateOptions') {
+            const newDateOptions = dateOptions;
+            newDateOptions.splice(item.index, 0, item.item);
+            setDateOptions(newDateOptions);
+        }
 
-    }, [searchTerm, filterItems, searchOptions, employmentOptions, activeFilter, searchRadius]);
+        // remove item from filterlist
+        const newFilterList = filterItems.filter(filterItem => filterItem.item !== item.item);
+        setFilterItems(newFilterList);
+    }
 
     return (
         <section className="filter">
@@ -124,6 +160,7 @@ const SearchVacancyFilter = () => {
                     />
                 </li>
             </ul>
+            <SearchVacancyAttributes attributes={filterItems} updateFilter={updateFilter}/>
         </section>  
     )
 }

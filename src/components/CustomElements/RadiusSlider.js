@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// css
+// scss
 import './RadiusSlider.scss';
 
 const RadiusSlider = ({ distance, updateRadiusValue }) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// css
+// scss
 import './DropdownDate.scss';
 
 // icons
