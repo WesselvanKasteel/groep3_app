@@ -23,7 +23,7 @@
 
 .userprofile-content__info{
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 30% 70%;
     margin-top: 2rem;
 
     &__img{
@@ -38,6 +38,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: right;
 }
 
 .userprofile-content__info__textdiv1{
@@ -47,7 +48,7 @@
 }
 
 .userprofile-content__info__textdiv2{
-    line-height: 2;
+    text-align: right;
 }
 
 .userprofile-content__card{
@@ -155,7 +156,5 @@
 
     .userprofileedit{
         grid-template-columns: var(--userprofileedit-grid-desktop);
-    }    
+    }
 }
-
-

@@ -12,10 +12,10 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
+    const [jobs, setJobs] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
     const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
-    //const [externalcv, setExternalcv] = useState('');
+    const [externalcv, setExternalcv] = useState('');
 
     useEffect(() => {
         getUserData();
@@ -34,12 +34,12 @@ const UserProfile = () => {
         setPrefix(res.data.user.prefix);
         setLastName(res.data.user.last_name);
         setAge(res.data.age);
-        // setImage(window.location.hostname + ":8000/" + res.data.user.picture);
         setImage(res.data.user.picture);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
-        // console.log(res.data.user);
-        // console.log(res.data.age);
+        //setJobs(res.data.user.job);
+        setExternalcv(res.data.user.external_cv);
+        console.log(jobs);
     }
 
     const jobsList = jobs.map((job) =>
@@ -97,7 +97,7 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__external userprofile-content__card">
                         <h2>Extern CV</h2>
-                        <a href="#">Linkedin</a>
+                        <a href={externalcv} target="_blank">Link</a>
                     </article>
                 </section>
             </section>

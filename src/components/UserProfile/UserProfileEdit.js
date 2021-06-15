@@ -9,7 +9,8 @@ const UserProfileEdit = (props) => {
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
     const [externalcv, setExternalcv] = useState('');
-    const [jobs, setJobs] = useState([{ jobs: ''}]);
+    const [jobs, setJobs] = useState([{previous_jobs: ''}]);
+    //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
         getUserData();
@@ -17,7 +18,7 @@ const UserProfileEdit = (props) => {
 
     const getUserData = async () => {
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
         // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
@@ -26,6 +27,8 @@ const UserProfileEdit = (props) => {
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
+        // setJobs(res.data.user.jobs);
+        setExternalcv(res.data.user.external_cv);
 
         console.log(res.data);
     }
@@ -52,7 +55,7 @@ const UserProfileEdit = (props) => {
 
     const handleJobsAddFields = () => {
       const values = [...jobs];
-      values.push({ jobs: '' });
+      values.push({ previous_jobs: '' });
       setJobs(values);
     };
 
@@ -64,7 +67,7 @@ const UserProfileEdit = (props) => {
 
     const handleJobsInputChange = (index, event) => {
         const values = [...jobs];
-        values[index].jobs = event.target.value;
+        values[index].previous_jobs = event.target.value;
         setJobs(values);
     };
 
@@ -88,12 +91,23 @@ const UserProfileEdit = (props) => {
     const profileUpdateHandler = async (event) => {
         event.preventDefault();
 
+        let cv;
+        if (!externalcv.includes("https://")) {
+            cv = "https://" + externalcv;
+        }
+        else if (!externalcv.includes("http://")) {
+            cv = "http://" + externalcv;
+        }
+
         const data = {
             address: address,
             city: city,
             province: province,
             country: country,
+            previous_jobs: jobs,
+            external_cv: cv,
         };
+        console.log(jobs);
 
         const config = {
             headers: {
@@ -103,6 +117,7 @@ const UserProfileEdit = (props) => {
 
         const res = await axios.put('http://127.0.0.1:8000/api/user/edit', data, config);
         console.log(res.data);
+        props.history.push("/profile");
     };
 
     // const handleSubmit = async (event) => {
@@ -129,8 +144,6 @@ const UserProfileEdit = (props) => {
     //     console.log(res.data);
     //     console.log(formData);
     //     console.log(res);
-
-    //     props.history.push("/profile");
     // }
 
     // console.log(profilePicture);
@@ -144,6 +157,7 @@ const UserProfileEdit = (props) => {
     return(
         <section className ="userprofileedit">
             <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
+                <h2>Afbeelding</h2>
                 <label htmlFor="profilePicture">Afbeelding:</label>
                 <input
                     type="file"
@@ -221,6 +235,7 @@ const UserProfileEdit = (props) => {
                 <h2>Skills</h2>
 
                 <h2>Extern CV</h2>
+                <label htmlFor="externalcv">Link:</label>
                 <input
                     type="text"
                     name="externalcv"
