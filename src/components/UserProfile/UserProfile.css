@@ -11,10 +11,10 @@
 .userprofile{
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
+}
 
-    p{
-        color: var(--userprofile-p);
-    }
+.userprofile p {
+    color: var(--userprofile-p);
 }
 
 .userprofile-content{
@@ -25,13 +25,13 @@
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 2rem;
+}
 
-    &__img{
-        grid-column: 1;
-        width: 10rem;
-        height: 10rem;
-        border-radius: 0.5rem;
-    }
+.userprofile-content__info__img{
+    grid-column: 1;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 0.5rem;
 }
 
 .userprofile-content__info__textdiv{
@@ -57,36 +57,34 @@
     border-radius: 1rem;
     margin: 2rem 0;
     background-color: #fff;
+}
 
-    h2{
-        color: var(--userprofile-h2);
-        margin-bottom: 1rem;
+.userprofile-content__card h2{
+    color: var(--userprofile-h2);
+    margin-bottom: 1rem;
+}
 
-        span{
-            cursor: pointer;
-        }
-    }
-
+.userprofile-content__card h2 span{
+    cursor: pointer;
 }
 
 .userprofile-content__edit{
     background-color: #4CA5FC;
     cursor: pointer;
+}
 
-    h2{
-        text-align: center;
-        color: white;
-    }
+.userprofile-content__edit h2{
+    text-align: center;
+    color: white;
 }
 
 .userprofile-content__edit__link{
     text-decoration: none;
     border: none;
     display: block;
-
-    h2{
-        margin: 0;
-    }
+}
+.userprofile-content__edit__link h2{
+    margin: 0;
 }
 
 .userprofile-content__grid__video > video{
@@ -105,11 +103,11 @@
 .userprofileedit{
     display: grid;
     grid-template-columns: 10% 80% 10%;
+}
 
-    h2{
-        margin: 1rem 0;
-        color: var(--userprofile-h2);
-    }
+.userprofileedit h2{
+    margin: 1rem 0;
+    color: var(--userprofile-h2);
 }
 
 .userprofileedit__form{
@@ -139,7 +137,6 @@
 
     .userprofile-content__info {
         display: grid;
-        // grid-template-columns: 15% 85%;
         margin-top: 2rem;
         text-align: right;
     }
