@@ -97,7 +97,7 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__external userprofile-content__card">
                         <h2>Extern CV</h2>
-                        <a href={externalcv} target="_blank">Link</a>
+                        {/* <a href={externalcv} target="_blank">Link</a> */}
                     </article>
                 </section>
             </section>

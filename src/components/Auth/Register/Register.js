@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 import './Register.scss';
-
-
 
 const Register = () => {
     //onChange={(e) => setProfilePicture(e.target.files)}
@@ -155,7 +153,6 @@ const Register = () => {
                         onChange={(e) => setDateOfBirth(e.target.value)}
                     />
                 </div>
-                <a href="#">Wachtwoord vergeten?</a>
                 <p>Al een account? <Link to="/login">Log hier in.</Link></p>
                 <button>Registreer</button>
             </form>
