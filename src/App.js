@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Header from './components/Header/Header';
+
 import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
 import UserProfile from './components/UserProfile/UserProfile';
@@ -11,8 +13,9 @@ import SearchVacancy from './components/Search/Vacancy/SearchVacancy';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
-    return(
+    return (
         <Router>
+            <Header />
             <Route path="/zoek-vacature" component={SearchVacancy} />
             {/* <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
