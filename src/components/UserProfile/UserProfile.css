@@ -112,22 +112,22 @@
 
 .userprofileedit__form{
     grid-column: 2;
+}
 
-    label{
-        display: block;
-    }
+.userprofileedit__form label{
+    display: block;
+}
 
-    input{
-        font-family: 'Inter', sans-serif;
-        padding: 1rem;
-        margin: 0.5rem 0 1rem 0;
-        border-radius: 1rem;
-        border: solid 1px #ddd;
-        width: 100%;
-        box-shadow: 1px 5px 29px 4px #081f4710;
-        -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
-        -moz-box-shadow: 1px 5px 29px 4px #081f4710;
-    }
+.userprofileedit__form input{
+    font-family: 'Inter', sans-serif;
+    padding: 1rem;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 1rem;
+    border: solid 1px #ddd;
+    width: 100%;
+    box-shadow: 1px 5px 29px 4px #081f4710;
+    -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
+    -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
 @media (min-width: 31.25em) {

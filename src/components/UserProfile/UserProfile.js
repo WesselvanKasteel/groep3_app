@@ -26,7 +26,6 @@ const UserProfile = () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
         console.log(res.data);
 
@@ -97,7 +96,7 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__external userprofile-content__card">
                         <h2>Extern CV</h2>
-                        <a href={externalcv} target="_blank">Link</a>
+                        <a href={externalcv} target="_blank" rel="noreferrer">Link</a>
                     </article>
                 </section>
             </section>
