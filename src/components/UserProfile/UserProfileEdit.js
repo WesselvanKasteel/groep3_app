@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import axios from 'axios';
-import './UserProfile.css';
+import './UserProfile.scss';
 
 const UserProfileEdit = (props) => {
     const [profilePicture, setProfilePicture] = useState('');
@@ -209,7 +209,7 @@ const UserProfileEdit = (props) => {
 
                 <h2>Extern CV</h2>
                 <label htmlFor="externalCV">Link:</label>
-                <input
+                <input 
                     type="text"
                     name="externalCV"
                     id="externalCV"
