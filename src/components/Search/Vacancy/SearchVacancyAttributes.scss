@@ -54,3 +54,10 @@
     font-size: 1.5rem;
     font-weight: 500;
 }
+
+/* phone */
+@media only screen and (max-width: 750px) {
+    .attributes {
+        margin-top: 1.5rem;
+    }
+}

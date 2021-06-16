@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // scss
 import './SearchVacancyList.scss';
@@ -8,9 +8,13 @@ import SearchVacancyCard from './SearchVacancyCard';
 
 const SearchVacancyList = ({ vacancies }) => {
 
-    let vacancyList = vacancies.map((vacancy, index) => 
-        <SearchVacancyCard data={vacancy} key={index}/>
-    ); 
+    useEffect(() => {
+        console.log(vacancies);
+    }, [vacancies])
+
+    const vacancyList = vacancies.map((vacancy, index) =>
+        <SearchVacancyCard data={vacancy} key={vacancy.name} />
+    );
 
     return (
         <section className="vacancy-list">
