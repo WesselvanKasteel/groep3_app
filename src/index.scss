@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 
 :root {
-    --color-bg: #FBFBFB;
     --color-text: #222;
     --color-text-light: #FFF;
     --color-accent: #1E90FF;
+    --linear-bg: linear-gradient(180deg, rgba(249,249,255,1) 0%, rgba(234,235,244,1) 100%);
 }
 
 *, *::before, *::after {
@@ -22,6 +22,8 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 1.6rem;
     line-height: 1.55;
-    background-color: var(--color-bg);
+    background-image: var(--linear-bg);
     color: var(--color-text);
+    width: 100%;
+    height: 100vh;
 }

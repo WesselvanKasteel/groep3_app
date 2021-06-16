@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login.scss';
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        localStorage.removeItem("token");
+    }, []);
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -25,6 +29,8 @@ const Login = () => {
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
         console.log(res.data);
+        localStorage.setItem("token", res.data.access_token);
+        props.history.push("/profile");
     }
 
     return(
@@ -51,7 +57,7 @@ const Login = () => {
                         onChange={passwordChangeHandler}
                     />
                 </div>
-                <a href="#">Wachtwoord vergeten?</a>
+                {/* <a href="#">Wachtwoord vergeten?</a> */}
                 <p>Nog geen account? <Link to="/register">Registreer hier.</Link></p>
                 <button>Login</button>
             </form>
