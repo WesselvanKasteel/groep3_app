@@ -95,9 +95,6 @@ const UserProfileEdit = (props) => {
         if (!externalcv.includes("https://")) {
             cv = "https://" + externalcv;
         }
-        else if (!externalcv.includes("http://")) {
-            cv = "http://" + externalcv;
-        }
 
         const data = {
             address: address,
