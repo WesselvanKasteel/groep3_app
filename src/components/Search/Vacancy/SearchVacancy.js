@@ -3,6 +3,8 @@ import React from 'react';
 // css
 import './SearchVacancy.scss';
 
+import DistanceCalculator from '../../CustomElements/DistanceCalculator';
+
 // icons
 import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
 
@@ -19,6 +21,7 @@ const SearchVacancy = () => {
                     <img className="search__container__title-arrow_down" src={ ArrowDirection } alt="arrow" />
                 </div>
                 <SearchVacancyFilter />
+                <DistanceCalculator />
             </div>
         </section>
     )
