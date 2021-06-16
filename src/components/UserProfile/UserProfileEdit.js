@@ -10,6 +10,7 @@ const UserProfileEdit = (props) => {
     const [country, setCountry] = useState('');
     // const [externalCV, setExternalCV] = useState('');
     const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
+    const [skills, setSkills] = useState([]);
     //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {

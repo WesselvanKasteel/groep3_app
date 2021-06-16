@@ -12,13 +12,15 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobs, setJobs] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
-    const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
+    const [jobs, setJobs] = useState(['DC Dirk', 'Verkoopmedewerker Hoogvliet']);
+    // const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
+    const [skills, setSkills] = useState([]);
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
     const [externalcv, setExternalcv] = useState('');
 
     useEffect(() => {
         getUserData();
+        getSkills();
     }, []);
 
     const getUserData = async () => {
@@ -42,6 +44,11 @@ const UserProfile = () => {
         console.log(jobs);
     }
 
+    const getSkills = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/skills');
+        setSkills(res.data);
+    }
+
     const jobsList = jobs.map((job) =>
         <p key={job}>{ job }</p>
     );
@@ -50,9 +57,11 @@ const UserProfile = () => {
         <p key={education}>{ education }</p>
     );
 
-    const skillsList = skills.map((skill) =>
-        <p key={skill}>{ skill }</p>
-    );
+    // const skillsList = skills.map((skill) =>
+    //     console.log(skill)
+    // );
+
+    const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
 
     return(
         <div className="userprofile">
