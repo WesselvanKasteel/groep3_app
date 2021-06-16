@@ -5,18 +5,17 @@ import axios from 'axios';
 import './Register.scss';
 
 const Register = () => {
-    //onChange={(e) => setProfilePicture(e.target.files)}
-    const [firstName, setFirstName] = useState(null);
-    const [prefix, setPrefix] = useState(null);
-    const [lastName, setLastName] = useState(null);
-    const [country, setCountry] = useState(null);
-    const [province, setProvince] = useState(null);
-    const [city, setCity] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [dateOfBirth, setDateOfBirth] = useState(null);
+    const [firstName, setFirstName] = useState('');
+    const [prefix, setPrefix] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [country, setCountry] = useState('');
+    const [province, setProvince] = useState('');
+    const [city, setCity] = useState('');
+    const [address, setAddress] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
 
     const registerHandler = async (event) => {
         event.preventDefault();
