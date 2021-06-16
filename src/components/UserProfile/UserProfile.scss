@@ -11,10 +11,10 @@
 .userprofile{
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
-}
 
-.userprofile p {
-    color: var(--userprofile-p);
+    p{
+        color: var(--userprofile-p);
+    }
 }
 
 .userprofile-content{
@@ -25,13 +25,13 @@
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 2rem;
-}
 
-.userprofile-content__info__img{
-    grid-column: 1;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 0.5rem;
+    &__img{
+        grid-column: 1;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 0.5rem;
+    }
 }
 
 .userprofile-content__info__textdiv{
@@ -57,34 +57,36 @@
     border-radius: 1rem;
     margin: 2rem 0;
     background-color: #fff;
-}
 
-.userprofile-content__card h2{
-    color: var(--userprofile-h2);
-    margin-bottom: 1rem;
-}
+    h2{
+        color: var(--userprofile-h2);
+        margin-bottom: 1rem;
 
-.userprofile-content__card h2 span{
-    cursor: pointer;
+        span{
+            cursor: pointer;
+        }
+    }
+
 }
 
 .userprofile-content__edit{
     background-color: #4CA5FC;
     cursor: pointer;
-}
 
-.userprofile-content__edit h2{
-    text-align: center;
-    color: white;
+    h2{
+        text-align: center;
+        color: white;
+    }
 }
 
 .userprofile-content__edit__link{
     text-decoration: none;
     border: none;
     display: block;
-}
-.userprofile-content__edit__link h2{
-    margin: 0;
+
+    h2{
+        margin: 0;
+    }
 }
 
 .userprofile-content__grid__video > video{
@@ -103,31 +105,31 @@
 .userprofileedit{
     display: grid;
     grid-template-columns: 10% 80% 10%;
-}
 
-.userprofileedit h2{
-    margin: 1rem 0;
-    color: var(--userprofile-h2);
+    h2{
+        margin: 1rem 0;
+        color: var(--userprofile-h2);
+    }
 }
 
 .userprofileedit__form{
     grid-column: 2;
-}
 
-.userprofileedit__form label{
-    display: block;
-}
+    label{
+        display: block;
+    }
 
-.userprofileedit__form input{
-    font-family: 'Inter', sans-serif;
-    padding: 1rem;
-    margin: 0.5rem 0 1rem 0;
-    border-radius: 1rem;
-    border: solid 1px #ddd;
-    width: 100%;
-    box-shadow: 1px 5px 29px 4px #081f4710;
-    -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
-    -moz-box-shadow: 1px 5px 29px 4px #081f4710;
+    input{
+        font-family: 'Inter', sans-serif;
+        padding: 1rem;
+        margin: 0.5rem 0 1rem 0;
+        border-radius: 1rem;
+        border: solid 1px #ddd;
+        width: 100%;
+        box-shadow: 1px 5px 29px 4px #081f4710;
+        -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
+        -moz-box-shadow: 1px 5px 29px 4px #081f4710;
+    }
 }
 
 @media (min-width: 31.25em) {
@@ -137,6 +139,7 @@
 
     .userprofile-content__info {
         display: grid;
+        // grid-template-columns: 15% 85%;
         margin-top: 2rem;
         text-align: right;
     }
