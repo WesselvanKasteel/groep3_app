@@ -3,13 +3,13 @@ import axios from 'axios';
 import './UserProfile.scss';
 
 const UserProfileEdit = (props) => {
-    const [profilePicture, setProfilePicture] = useState(null);
+    const [profilePicture, setProfilePicture] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
-    const [externalcv, setExternalcv] = useState('');
     const [jobs, setJobs] = useState([{previous_jobs: ''}]);
+    const [externalCV, setExternalCV] = useState('');
     //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
@@ -21,14 +21,13 @@ const UserProfileEdit = (props) => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
         // setJobs(res.data.user.jobs);
-        setExternalcv(res.data.user.external_cv);
+        setExternalCV(res.data.user.external_cv);
 
         console.log(res.data);
     }
@@ -47,10 +46,6 @@ const UserProfileEdit = (props) => {
 
     const countryChangeHandler = (event) => {
         setCountry(event.target.value);
-    }
-
-    const externalcvChangeHandler = (event) => {
-        setExternalcv(event.target.value);
     }
 
     const handleJobsAddFields = () => {
@@ -91,13 +86,25 @@ const UserProfileEdit = (props) => {
     const profileUpdateHandler = async (event) => {
         event.preventDefault();
 
-        let cv;
-        if (!externalcv.includes("https://")) {
-            cv = "https://" + externalcv;
-        }
-        else if (!externalcv.includes("http://")) {
-            cv = "http://" + externalcv;
-        }
+        // let cv;
+        // if (!externalcv.includes("https://")) {
+        //     cv = "https://" + externalcv;
+        // }
+        // else if (!externalcv.includes("http://")) {
+        //     cv = "http://" + externalcv;
+        // }
+
+        let tempCV;
+        if(!externalCV.includes('https://')) {
+            tempCV = 'http://' + externalCV;
+        } else {
+            tempCV = 'https://' + externalCV;
+        };
+        // if(!externalCV.includes('https://')) {
+        //     setExternalCV(`https://${externalCV}`);
+        // } else {
+        //     setExternalCV(`http://${externalCV}`);
+        // };
 
         const data = {
             address: address,
@@ -105,7 +112,7 @@ const UserProfileEdit = (props) => {
             province: province,
             country: country,
             previous_jobs: jobs,
-            external_cv: cv,
+            external_cv: tempCV,
         };
         console.log(jobs);
 
@@ -119,40 +126,6 @@ const UserProfileEdit = (props) => {
         console.log(res.data);
         props.history.push("/profile");
     };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     // const data = new FormData();
-    //     // data.append('file', profilePicture);
-    //     // data.append('province', province);
-    //     // data.append('city', city);
-
-    //     const formData = {
-    //         file: profilePicture,
-    //         address: address,
-    //         city: city,
-    //         country: country,
-    //         //externalcv: externalcv,
-    //     }
-
-    //     const config = {
-    //         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    //     };
-
-    //     const res = await axios.post('http://127.0.0.1:8000/api/update-user', data, config);
-    //     // const res = await axios.put('http://127.0.0.1:8000/api/user/update', formData, config);
-    //     console.log(res.data);
-    //     console.log(formData);
-    //     console.log(res);
-    // }
-
-    // console.log(profilePicture);
-    // console.log("city: " + city);
-    // console.log("province: " + province);
-    // for (var i = 0; i < jobFields.length; i++) {
-    //     console.log(jobFields[i]);
-    // }
-    // console.log("job: " + jobFields[0]);
 
     return(
         <section className ="userprofileedit">
@@ -235,15 +208,14 @@ const UserProfileEdit = (props) => {
                 <h2>Skills</h2>
 
                 <h2>Extern CV</h2>
-                <label htmlFor="externalcv">Link:</label>
-                <input
+                <label htmlFor="externalCV">Link:</label>
+                <input 
                     type="text"
-                    name="externalcv"
-                    id="externalcv"
-                    value={externalcv}
-                    onChange={externalcvChangeHandler}
+                    name="externalCV"
+                    id="externalCV"
+                    value={externalCV}
+                    onChange={(event) => setExternalCV(event.target.value)}
                 />
-
                 <button type="submit">Submit</button>
             </form>
         </section>

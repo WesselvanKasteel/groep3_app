@@ -18,7 +18,6 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [password, setPassword] = useState(null);
     const [dateOfBirth, setDateOfBirth] = useState(null);
-//    const [profilePicture, setProfilePicture] = useState('');
 
     const registerHandler = async (event) => {
         event.preventDefault();
@@ -35,7 +34,6 @@ const Register = () => {
             phone_number: phoneNumber,
             password: password,
             date_of_birth: dateOfBirth,
-//            profilePicture: profilePicture
         }
         const res = await axios.post('http://127.0.0.1:8000/api/auth/register', registerData);
         console.log(res.data);
