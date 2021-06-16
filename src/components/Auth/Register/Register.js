@@ -4,7 +4,11 @@ import axios from 'axios';
 
 import './Register.scss';
 
+<<<<<<< HEAD
 const Register = (props) => {
+=======
+const Register = () => {
+>>>>>>> 76ba59eb8c4233a4f2a5c48cd87d1146d3f0c605
     const [firstName, setFirstName] = useState('');
     const [prefix, setPrefix] = useState('');
     const [lastName, setLastName] = useState('');

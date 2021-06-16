@@ -9,7 +9,7 @@ import Record from './components/Record/Record';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
-    return(
+    return (
         <Router>
             <section>
                 <Route path="/login" component={Login} />

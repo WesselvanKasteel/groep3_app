@@ -12,8 +12,8 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobs, setJobs] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
-    const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
+    const [jobs, setJobs] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
+    const [skills, setSkills] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
     const [externalcv, setExternalcv] = useState('');
 
@@ -42,28 +42,28 @@ const UserProfile = () => {
     }
 
     const jobsList = jobs.map((job) =>
-        <p key={job}>{ job }</p>
+        <p key={job}>{job}</p>
     );
 
     const educationsList = educations.map((education) =>
-        <p key={education}>{ education }</p>
+        <p key={education}>{education}</p>
     );
 
     const skillsList = skills.map((skill) =>
-        <p key={skill}>{ skill }</p>
+        <p key={skill}>{skill}</p>
     );
 
-    return(
+    return (
         <div className="userprofile">
             <section className="userprofile-content">
                 <section className="userprofile-content__info">
                     {image !== "" &&
-                    <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profile" />
+                        <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profile" />
                     }
                     <div className="userprofile-content__info__textdiv">
-                        <p className="userprofile-content__info__textdiv1">{ firstName + " "} {prefix !== "" && prefix}{ " " + lastName }</p>
-                        <p className="userprofile-content__info__textdiv2">{ age + " jaar" }<br/>
-                        { city + ", " + province }</p>
+                        <p className="userprofile-content__info__textdiv1">{firstName + " "} {prefix !== "" && prefix}{" " + lastName}</p>
+                        <p className="userprofile-content__info__textdiv2">{age + " jaar"}<br />
+                            {city + ", " + province}</p>
                     </div>
                 </section>
                 <section className="userprofile-content__edit userprofile-content__card">
@@ -81,17 +81,17 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__jobs userprofile-content__card">
                         <h2>Eerdere banen</h2>
-                        { jobsList }
+                        {jobsList}
                     </article>
 
                     <article className="userprofile-content__grid__education userprofile-content__card">
                         <h2>Opleidingen</h2>
-                        { educationsList }
+                        {educationsList}
                     </article>
 
                     <article className="userprofile-content__grid__skills userprofile-content__card">
                         <h2>Skills</h2>
-                        { skillsList }
+                        {skillsList}
                     </article>
 
                     <article className="userprofile-content__grid__external userprofile-content__card">
