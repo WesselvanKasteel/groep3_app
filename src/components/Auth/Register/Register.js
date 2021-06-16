@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+
 import './Register.scss';
 
-
-
-const Register = () => {
+const Register = (props) => {
     const [firstName, setFirstName] = useState('');
     const [prefix, setPrefix] = useState('');
     const [lastName, setLastName] = useState('');
@@ -36,6 +35,24 @@ const Register = () => {
         }
         const res = await axios.post('http://127.0.0.1:8000/api/auth/register', registerData);
         console.log(res.data);
+
+        if(res.status === 200) {
+            loginAfterRegisteringHandler();
+        }
+    }
+
+    const loginAfterRegisteringHandler = async () => {
+        const loginData = {
+            email: email,
+            password: password,
+        };
+
+        const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
+        console.log(res.data);
+
+        localStorage.setItem("token", res.data.access_token);
+        props.history.push('/profile');
+        
     }
 
     return(
