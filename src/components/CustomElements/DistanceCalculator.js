@@ -1,24 +1,24 @@
 import React from 'react';
-import axios from 'axios';
 import { getDistance } from 'geolib';
 import Geocode from "react-geocode";
 
-Geocode.setApiKey('AIzaSyBbTKTqfRDmqoxF3pjT_H3i2kmmNzKDEkc');
+Geocode.setApiKey('AIzaSyDSL79ceVElyvymC_WjjYJtSftaQJhzl0E');
 
 
 
 class DistanceCalculator extends React.Component{
     
-    state = {};
+    state = { latHome: "", lngHome: "", latDestination: "", lngDestination: "" };
 
-    componentDidUpdate(){
-        window.onload = () => {
-        Geocode.fromAddress("Groenland 4, Den Haag").then(
+    getLocations = () => {
+        
+        Geocode.fromAddress("Neptunus 49, Katwijk").then(
             (response) => {
             this.setState({
                 latHome: response.results[0].geometry.location.lat,
                 lngHome: response.results[0].geometry.location.lng
             })
+            
             },
 
 
@@ -26,7 +26,7 @@ class DistanceCalculator extends React.Component{
               console.error(error);
             })
         
-        Geocode.fromAddress("Fonteinkruidstraat 14, Den Haag").then(
+        Geocode.fromAddress("Schipholweg, Leiden").then(
             (response) => {
             this.setState({
                 latDestination: response.results[0].geometry.location.lat,
@@ -37,31 +37,30 @@ class DistanceCalculator extends React.Component{
               console.error(error);
             }
           );
-    }
+
+          console.log(this.state.latDestination);
+
+          let calculateDistance = () => {
+            var dis = getDistance(
+                { latitude: this.state.latHome, longitude: this.state.lngHome},
+                { latitude: this.state.latDestination, longitude: this.state.lngDestination},
+                
+            );
+            console.log("afstand in meter: " + dis);
+          }
+
+          calculateDistance();
 }
     
-    calculateDistance = () => {
-        var dis = getDistance(
-            { latitude: this.state.latHome, longitude: this.state.lngHome},
-            { latitude: this.state.latDestination, longitude: this.state.lngDestination},
-        );
-        console.log(dis);
-    }
 
-    checkLats = () =>{
-    console.log(this.state.latDestination);
-    console.log("home: "+ this.state.latHome);
-
-    }
 
 
     render(){
-        this.checkLats();
         
-        // console.log(this.state.latHome);
-        
-        return <h1></h1>;
-    }
+        return (
+        <button onClick={this.getLocations}>Hallo</button>
+
+        )}
 
 }
 
