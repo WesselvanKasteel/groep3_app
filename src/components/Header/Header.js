@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Menu from './Menu';
 
 // css
-import './Header.scss';
+import './Header.css';
 
 const Header = () => {
 

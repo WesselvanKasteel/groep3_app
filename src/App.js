@@ -8,19 +8,21 @@ import UserProfileEdit from './components/UserProfile/UserProfileEdit';
 import Record from './components/Record/Record';
 import SearchVacancy from './components/Search/Vacancy/SearchVacancy';
 
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Redirect, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
     return(
         <Router>
-            <section>
-                <Route path="/zoek-vacature" component={SearchVacancy} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/profile" component={UserProfile} />
-                <Route path="/profile-edit" component={UserProfileEdit} />
-                <Route path="/make-video" component={Record} />
-            </section>
+        <Header />
+            <Switch>
+                <Route exact path="/" component={SearchVacancy} />
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/registreer" component={Register} />
+                <Route exact path="/profiel" component={UserProfile} />
+                <Route exact path="/profiel-bewerken" component={UserProfileEdit} />
+                <Route exact path="/maak-video" component={Record} />
+                <Route default component={SearchVacancy} />
+            </Switch>
         </Router>
     );
 };

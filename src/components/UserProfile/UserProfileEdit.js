@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import axios from 'axios';
-import './UserProfile.scss';
+import { Link } from 'react-router-dom';
+import './UserProfile.css';
 
 const UserProfileEdit = (props) => {
     const [profilePicture, setProfilePicture] = useState('');
@@ -27,7 +28,12 @@ const UserProfileEdit = (props) => {
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
         // setJobs(res.data.user.jobs);
-        setExternalCV(res.data.user.external_cv);
+        if (res.data.user.external_cv === null) {
+            setExternalCV("");
+        }
+        else {
+            setExternalCV(res.data.user.external_cv);
+        }
 
         console.log(res.data);
     }
@@ -96,10 +102,11 @@ const UserProfileEdit = (props) => {
 
         let tempCV;
         if(!externalCV.includes('https://')) {
-            tempCV = 'http://' + externalCV;
-        } else {
             tempCV = 'https://' + externalCV;
-        };
+        }
+        else {
+            tempCV = externalCV;
+        }
         // if(!externalCV.includes('https://')) {
         //     setExternalCV(`https://${externalCV}`);
         // } else {
@@ -209,14 +216,15 @@ const UserProfileEdit = (props) => {
 
                 <h2>Extern CV</h2>
                 <label htmlFor="externalCV">Link:</label>
-                <input 
+                <input
                     type="text"
                     name="externalCV"
                     id="externalCV"
                     value={externalCV}
                     onChange={(event) => setExternalCV(event.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit">Opslaan</button>
+                <Link className="userprofileedit__form__cancel"to="/profile">Annuleren</Link>
             </form>
         </section>
     );
