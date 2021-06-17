@@ -93,6 +93,39 @@ h2 {
     margin-bottom: 3rem;
 }
 
+.login__title{
+    visibility: hidden;
+}
+
 @media (min-width: 750px) {
+    .login{
+        width: 30%;
+
     
+    }
+
+    .header__title{
+        visibility: hidden;
+    }
+
+    .login__title{
+        visibility: visible;
+        font-size: 10rem;
+        position: absolute;
+        top: -30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-decoration: none;
+        
+    }
+
+    .login__title__blue-1 {
+        color: #061D45;
+    }
+    .login__title__blue-2 {
+        color: #18315c;
+    }
+    .login__title__blue-3 {
+        color: #2a426b;
+    }
 }

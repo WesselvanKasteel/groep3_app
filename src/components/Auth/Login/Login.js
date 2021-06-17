@@ -36,6 +36,11 @@ const Login = (props) => {
     return(
         <section className="login">
             {/* <h2>Login</h2> */}
+            <Link to="/" className="login__title">
+                <span className="login__title__blue-1">Vid</span>
+                <span className="login__title__blue-2">Va</span>
+                <span className="login__title__blue-3">So</span>
+            </Link>
             <form method="post" className="login__form" onSubmit={loginHandler}>
                 <div className="login__form__container c1">
                     <label className="login__form__container__placeholder" htmlFor="email">E-mail</label>
