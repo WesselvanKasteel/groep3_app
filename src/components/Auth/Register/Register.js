@@ -4,20 +4,18 @@ import axios from 'axios';
 
 import './Register.scss';
 
-const Register = () => {
-    //onChange={(e) => setProfilePicture(e.target.files)}
-    const [firstName, setFirstName] = useState(null);
-    const [prefix, setPrefix] = useState(null);
-    const [lastName, setLastName] = useState(null);
-    const [country, setCountry] = useState(null);
-    const [province, setProvince] = useState(null);
-    const [city, setCity] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [dateOfBirth, setDateOfBirth] = useState(null);
-//    const [profilePicture, setProfilePicture] = useState('');
+const Register = (props) => {
+    const [firstName, setFirstName] = useState('');
+    const [prefix, setPrefix] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [country, setCountry] = useState('');
+    const [province, setProvince] = useState('');
+    const [city, setCity] = useState('');
+    const [address, setAddress] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
 
     const registerHandler = async (event) => {
         event.preventDefault();
@@ -34,10 +32,27 @@ const Register = () => {
             phone_number: phoneNumber,
             password: password,
             date_of_birth: dateOfBirth,
-//            profilePicture: profilePicture
         }
         const res = await axios.post('http://127.0.0.1:8000/api/auth/register', registerData);
         console.log(res.data);
+
+        if(res.status === 200) {
+            loginAfterRegisteringHandler();
+        }
+    }
+
+    const loginAfterRegisteringHandler = async () => {
+        const loginData = {
+            email: email,
+            password: password,
+        };
+
+        const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
+        console.log(res.data);
+
+        localStorage.setItem("token", res.data.access_token);
+        props.history.push('/profile');
+        
     }
 
     return(
