@@ -17,7 +17,7 @@ h2 {
 
 .login__form__container{
     position: relative;
-    
+
 }
 
 .login__form__container__input{
@@ -29,7 +29,7 @@ h2 {
 
 .login__form__container__input:focus{
     border-color: #28406A;
-    
+
 }
 
 .login__form__container__placeholder{
@@ -43,7 +43,7 @@ h2 {
 .login__form__container__input:focus ~ .login__form__container__placeholder,
 .login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
     transform: translateY(-30px) translateX(10px) scale(0.75);
-}   
+}
 
 .login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
     color:#28406A;
@@ -100,12 +100,6 @@ h2 {
 @media (min-width: 750px) {
     .login{
         width: 30%;
-
-    
-    }
-
-    .header__title{
-        visibility: hidden;
     }
 
     .login__title{
@@ -116,7 +110,7 @@ h2 {
         left: 50%;
         transform: translate(-50%, -50%);
         text-decoration: none;
-        
+
     }
 
     .login__title__blue-1 {

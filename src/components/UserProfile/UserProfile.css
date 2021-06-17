@@ -130,6 +130,26 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
+/* .userprofileedit__form button {
+    margin-top: 2rem;
+    height: 4.5rem;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    color: #fff;
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+    font-weight: 600;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    transition: filter 0.2s ease-out;
+}
+
+.userprofileedit button:hover {
+    filter: brightness(1.20);
+    cursor: pointer;
+} */
+
 @media (min-width: 31.25em) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);

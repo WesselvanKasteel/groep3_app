@@ -51,8 +51,8 @@ const Register = (props) => {
         console.log(res.data);
 
         localStorage.setItem("token", res.data.access_token);
-        props.history.push('/profile');
-        
+        props.history.push('/profiel');
+
     }
 
     return(
