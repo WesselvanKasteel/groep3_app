@@ -67,7 +67,7 @@ const UserProfile = () => {
                     </div>
                 </section>
                 <section className="userprofile-content__edit userprofile-content__card">
-                    <Link className="userprofile-content__edit__link" to="/profile-edit"><h2>Profiel bewerken</h2></Link>
+                    <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
                 </section>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">

@@ -43,7 +43,7 @@
 
 .userprofile-content__info__textdiv1{
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: var(--userprofile-h2);
 }
 
@@ -53,7 +53,7 @@
 
 .userprofile-content__card{
     border: 1px solid #bbb;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 1rem;
     margin: 2rem 0;
     background-color: #fff;
@@ -119,7 +119,7 @@
 }
 
 .userprofileedit__form input{
-    font-family: 'Inter', sans-serif;
+    font-family: inherit;
     padding: 1rem;
     margin: 0.5rem 0 1rem 0;
     border-radius: 1rem;
@@ -128,6 +128,27 @@
     box-shadow: 1px 5px 29px 4px #081f4710;
     -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
+}
+
+.userprofileedit__form button {
+    margin: 1rem 2rem 2rem 0;
+    color: #fff;
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+    font-weight: 600;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    transition: filter 0.2s ease-out;
+}
+
+.userprofileedit__form button > a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.userprofileedit button:hover {
+    filter: brightness(1.20);
+    cursor: pointer;
 }
 
 @media (min-width: 31.25em) {

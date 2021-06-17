@@ -30,7 +30,7 @@ const Login = (props) => {
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
         console.log(res.data);
         localStorage.setItem("token", res.data.access_token);
-        props.history.push("/profile");
+        props.history.push("/profiel");
     }
 
     return(
@@ -67,7 +67,7 @@ const Login = (props) => {
                     />
                 </div>
                 <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a>
-                
+
                 <button className="login__form__button">Login</button>
                 <p>of</p>
                 <Link className="login__form__register b2" to="/registreer">Registreer</Link>
