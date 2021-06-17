@@ -130,17 +130,8 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
-<<<<<<< HEAD
 .userprofileedit__form button {
     margin: 1rem 2rem 2rem 0;
-=======
-/* .userprofileedit__form button {
-    margin-top: 2rem;
-    height: 4.5rem;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
->>>>>>> 02af12777983d2576458101b6411a9c957e61f3e
     color: #fff;
     background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
     font-weight: 600;
@@ -150,7 +141,6 @@
     transition: filter 0.2s ease-out;
 }
 
-<<<<<<< HEAD
 .userprofileedit__form button > a{
     text-decoration: none;
     color: inherit;
@@ -160,12 +150,6 @@
     filter: brightness(1.20);
     cursor: pointer;
 }
-=======
-.userprofileedit button:hover {
-    filter: brightness(1.20);
-    cursor: pointer;
-} */
->>>>>>> 02af12777983d2576458101b6411a9c957e61f3e
 
 @media (min-width: 31.25em) {
     .userprofile{
