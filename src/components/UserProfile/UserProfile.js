@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import './UserProfile.scss';
+import './UserProfile.css';
 
 const UserProfile = () => {
     const [firstName, setFirstName] = useState('');
@@ -67,7 +67,7 @@ const UserProfile = () => {
                     </div>
                 </section>
                 <section className="userprofile-content__edit userprofile-content__card">
-                    <Link className="userprofile-content__edit__link" to="/profile-edit"><h2>Profiel bewerken</h2></Link>
+                    <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
                 </section>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
@@ -94,10 +94,13 @@ const UserProfile = () => {
                         {skillsList}
                     </article>
 
-                    <article className="userprofile-content__grid__external userprofile-content__card">
-                        <h2>Extern CV</h2>
-                        <a href={externalcv} target="_blank" rel="noreferrer">Link</a>
-                    </article>
+                    { externalcv &&
+                        <article className="userprofile-content__grid__external userprofile-content__card">
+                            <h2>Extern CV</h2>
+                            <a href={externalcv} target="_blank" rel="noreferrer">Link</a>
+                        </article>
+                    }
+
                 </section>
             </section>
         </div>
