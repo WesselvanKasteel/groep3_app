@@ -12,12 +12,12 @@
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 2rem;
+}
 
-    img{
-        grid-column: 1;
-        width: 10rem;
-        height: 10rem;
-    }
+.userprofile-content__info > img{
+    grid-column: 1;
+    width: 10rem;
+    height: 10rem;
 }
 
 .userprofile-content__info__textdiv{
@@ -42,21 +42,21 @@
     border-radius: 1rem;
     margin: 2rem 0;
     background-color: #fff;
+}
 
-    h2{
-        span{
-            cursor: pointer;
-        }
-    }
+.userprofile-content__card > h2 > span{
+        cursor: pointer;
 }
 
 
 
 .userprofile-content__edit{
     cursor: pointer;
-    h2{
-        text-align: center;
-    }
+    
+}
+
+.userprofile-content__edit > h2{
+    text-align: center;
 }
 
 .userprofile-content__edit__link{

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 // scss
-import './SearchVacancyCard.scss';
+import './SearchVacancyCard.css';
 
 // images (hardcode)
 import NikeLogo from '../../../assets/images/nike.png';

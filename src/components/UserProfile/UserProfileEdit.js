@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import axios from 'axios';
-import './UserProfile.scss';
+import './UserProfile.css';
 
 const UserProfileEdit = () => {
     const [profilePicture, setProfilePicture] = useState();

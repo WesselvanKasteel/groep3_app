@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 // scss
-import './SearchVacancyList.scss';
+import './SearchVacancyList.css';
 
 // components
 import SearchVacancyCard from './SearchVacancyCard';

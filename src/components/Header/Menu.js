@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // css
-import './Menu.scss';
+import './Menu.css';
 
 const Menu = (active) => {
 
