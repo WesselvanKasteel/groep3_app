@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.scss';
+import './Login.css';
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -34,32 +34,38 @@ const Login = (props) => {
     }
 
     return(
-        <section>
-            <h2>Login</h2>
-            <form method="post" onSubmit={loginHandler}>
-                <div>
-                    <label htmlFor="email">E-mail:</label>
+        <section className="login">
+            {/* <h2>Login</h2> */}
+            <form method="post" className="login__form" onSubmit={loginHandler}>
+                <div className="login__form__container c1">
+                    <label className="login__form__container__placeholder" htmlFor="email">E-mail</label>
                     <input
+                        className="login__form__container__input"
                         type="email"
                         name="email"
                         id="email"
                         value={email}
                         onChange={emailChangeHandler}
+                        placeholder=" "
                     />
                 </div>
-                <div>
-                    <label htmlFor="password">Wachtwoord:</label>
+                <div className="login__form__container">
+                    <label className="login__form__container__placeholder" htmlFor="password">Wachtwoord</label>
                     <input
+                        className="login__form__container__input"
                         type="password"
                         name="password"
                         id="password"
                         value={password}
                         onChange={passwordChangeHandler}
+                        placeholder=" "
                     />
                 </div>
-                {/* <a href="#">Wachtwoord vergeten?</a> */}
-                <p>Nog geen account? <Link to="/register">Registreer hier.</Link></p>
-                <button>Login</button>
+                <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a>
+                
+                <button className="login__form__button">Login</button>
+                <p>of</p>
+                <Link className="login__form__register b2" to="/registreer">Registreer</Link>
             </form>
         </section>
     );
