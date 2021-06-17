@@ -216,7 +216,11 @@ const UserProfileEdit = (props) => {
                     onChange={(event) => setExternalCV(event.target.value)}
                 />
                 <button type="submit">Opslaan</button>
+<<<<<<< HEAD
                 <button><Link className="userprofileedit__form__cancel"to="/profiel">Annuleren</Link></button>
+=======
+                <Link className="userprofileedit__form__cancel"to="/profiel">Annuleren</Link>
+>>>>>>> 02af12777983d2576458101b6411a9c957e61f3e
             </form>
         </section>
     );
