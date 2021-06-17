@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // css
 import './Menu.css';
@@ -15,7 +16,9 @@ const Menu = (active) => {
 
     return (
         <section className={menu ? 'menu active' : 'menu'}>
-            <h2>test</h2>
+            <Link to="/"><h2>Home</h2></Link>
+            <Link to="/profiel"><h2>Profiel</h2></Link>
+            <Link to="/login"><h2>Uitloggen</h2></Link>
         </section>
     )
 }

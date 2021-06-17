@@ -12,7 +12,7 @@
     list-style-type: none;
 
     border: 1px solid #ece9f7;
-    
+
     transform-origin: 0% 0%;
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 
@@ -21,4 +21,8 @@
 
 .active {
     transform: translate(-25rem, 0);
+}
+
+.menu > a {
+    text-decoration: none;
 }
