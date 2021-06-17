@@ -14,11 +14,11 @@ const App = () => {
     return(
         <Router>
             <Route path="/zoek-vacature" component={SearchVacancy} />
-            {/* <Route path="/login" component={Login} />
+            <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/profile-edit" component={UserProfileEdit} />
-            <Route path="/make-video" component={Record} /> */}
+            <Route path="/make-video" component={Record} />
         </Router>
     );
 };

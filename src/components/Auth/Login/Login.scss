@@ -2,13 +2,24 @@ h2 {
     color: var(--color-accent);
 }
 
-// button
-// {
-//     font: inherit;
-//     background-color: var(--color-accent);
-//     color: var(--color-text-light);
-//     border: 0.1rem solid var(--color-accent);
-//     border-radius: 0.3rem;
-//     padding: 1rem 4rem;
-//     cursor: pointer;
-// }
+ button{
+     font: inherit;
+     background-color: var(--color-accent);
+     color: var(--color-text-light);
+     border: 0.1rem solid var(--color-accent);
+     border-radius: 0.3rem;
+     padding: 1rem 4rem;
+     cursor: pointer;
+ }
+
+ .placeholder {
+    color: #65657b;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+  }

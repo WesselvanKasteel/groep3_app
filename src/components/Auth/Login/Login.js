@@ -45,6 +45,7 @@ const Login = (props) => {
                         id="email"
                         value={email}
                         onChange={emailChangeHandler}
+                        placeholder="Email"
                     />
                 </div>
                 <div>
@@ -55,6 +56,7 @@ const Login = (props) => {
                         id="password"
                         value={password}
                         onChange={passwordChangeHandler}
+                        placeholder="wachtwoord"
                     />
                 </div>
                 {/* <a href="#">Wachtwoord vergeten?</a> */}
