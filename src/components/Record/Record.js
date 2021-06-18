@@ -27,9 +27,7 @@ const Record = () => {
     const recordWebcam = useRecordWebcam();
 
     useEffect(() => {
-        // console.log(recordWebcam);
-        // console.log(activeComponent);
-    }, [activeComponent]);
+    }, []);
 
     const startRecording = () => {
         setRecording(true);
@@ -74,7 +72,7 @@ const Record = () => {
     const componentList = components.map((component, index) =>
         <li className={`components__list__item ${index !== activeComponent ? "" : "components__list__item--active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
 
-            <h1 className="components__list__item__titel">{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
+            <h1 className={component.video != null ? 'components__list__item__titel' : 'components__list__item__titel--large'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
             
             {component.video != null &&
                 <video className="components__list__item__video" src={component.video} controls></video>
