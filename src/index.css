@@ -22,9 +22,6 @@
 
 html {
     font-size: 62.5%;
-    background: linear-gradient(180deg, #ffffff 0%, #e0e2ec 200%);
-    height: 100%;
-    margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -34,6 +31,8 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     line-height: 1.55;
-    background-color: var(--color-bg);
+    background-image: linear(180deg, #FFFF 0%, #E0E2EC 200%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--color-text);
 }
