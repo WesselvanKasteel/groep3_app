@@ -1,11 +1,8 @@
 :root {
-    --userprofile-h2: #061D45;
-    --userprofile-p: #5A6080;
     --userprofile-grid-mobile: 5% 90% 5%;
     --userprofile-grid-desktop: 20% 60% 20%;
     --userprofileedit-grid-mobile: 5% 90% 5%;
     --userprofileedit-grid-desktop: 35% 30% 35%;
-    --userprofile-background: linear-gradient(180deg, rgba(249,249,255,1) 0%, rgba(234,235,244,1) 100%);
 }
 
 .userprofile{
@@ -14,7 +11,7 @@
 }
 
 .userprofile p {
-    color: var(--userprofile-p);
+    color: var(--color-text-light);
 }
 
 .userprofile-content{
@@ -44,7 +41,7 @@
 .userprofile-content__info__textdiv1{
     font-weight: bold;
     font-size: 2rem;
-    color: var(--userprofile-h2);
+    color: var(--color-text);
 }
 
 .userprofile-content__info__textdiv2{
@@ -63,12 +60,8 @@
 }
 
 .userprofile-content__card h2{
-    color: var(--userprofile-h2);
+    color: var(--color-text);
     margin-bottom: 1rem;
-}
-
-.userprofile-content__card h2 span{
-    cursor: pointer;
 }
 
 .userprofile-content__edit{
@@ -109,20 +102,16 @@
 
 .userprofileedit{
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: var(--userprofileedit-grid-mobile);
 }
 
 .userprofileedit h2{
     margin: 1rem 0;
-    color: var(--userprofile-h2);
+    color: var(--color-text);
 }
 
 .userprofileedit__form{
     grid-column: 2;
-}
-
-.userprofileedit__form label{
-    display: block;
 }
 
 .userprofileedit__form input{
@@ -149,7 +138,6 @@
 
 .userprofileedit__form__button--accept{
     background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
-    width: 50%;
 }
 
 .userprofileedit__form__button--remove{
@@ -166,7 +154,7 @@
     cursor: pointer;
 }
 
-@media (min-width: 31.25em) {
+@media (min-width: 60rem) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);
     }
@@ -182,7 +170,6 @@
     .userprofile-content__info {
         display: grid;
         margin-top: 2rem;
-        text-align: right;
     }
 
     .userprofile-content__grid{
