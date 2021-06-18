@@ -1,11 +1,11 @@
-// grid
 .record {
     width: 100%;
-    height: 100vh;
-
+    height: auto;
+    margin-top: 10vh;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 50% 50% auto;
+    grid-template-rows: auto auto auto;
+    margin-top: 10vh;
 }
 
 .webcam {
@@ -16,8 +16,6 @@
 .description {
     grid-column: 1;
     grid-row: 2;
-
-    background-color: rgb(243, 243, 243);
 }
 
 .components {
@@ -25,63 +23,141 @@
     grid-row: 3;
 }
 
-// webcam
 .webcam {
-    position: relative;
+    height: auto;
+    background-color: #F2F2F8;
 }
 
 .webcam__preview {
     width: 100%;
-    height: 100%;
+    height: auto;
+    position: sticky;
+    z-index: 0;
+    background-color: #ededf5;
 }
 
 .webcam__buttons {
-    position: absolute;
-
-    bottom: 0;
-
-    height: 13vh;
-    width: 100%;   
-
+    width: 100%;
+    height: 8rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 2rem;
+    padding: 0rem 2rem;
 }
-
 .webcam__btn {
-    font-size: 1.25rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem;
+    border-radius: 1rem;
+    border: none;
 }
 
-.webcam__btn-open, .webcam__btn-close {
-    height: 6rem;
-    padding: 0rem 2rem;
-}
-.webcam__btn-start, .webcam__btn-stop {
-    height: 6rem;
-    padding: 0rem 2rem;
-
+.webcam__btn--start,
+.webcam__btn--stop   {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 1.5rem;
     margin-right: 2rem;
 }
 
+.webcam__btn--start {
+    background: linear-gradient(135deg, #9EEA6F -50%, #30BA6F 150%);
+}
 
-// description
+.webcam__btn--stop {
+    background: linear-gradient(135deg, #EA6F6F -50%, #BA3030 150%);
+}
+
+.webcam__btn--close,
+.webcam__btn--open {
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+}
+
+.webcam__btn__img--start,
+.webcam__btn__img--stop{
+    width: 4rem;
+    height: 4rem;
+}
+
+.webcam__btn__img--close,
+.webcam__btn__img--open {
+    width: 2rem;
+    height: 2rem;
+}
+
 .description {
-    padding: 2rem;
+    padding: 2.5rem;
 }
 
+.description__title {
+    font-size: 2rem;
+    font-weight: 600;
+}
 
-// components
+.description__description {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 1rem;
+    color: #5A6080;
+}
+
 .components {
-    display: flex; 
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-
-    padding: 2rem;
+    background-color: #F2F2F8;
+    width: auto;
 }
 
-.components__card__video {
-    width: 100%;
-    height: auto;
+.components__list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    padding: 6rem 4rem 6rem 4rem;
+
+    width: auto;
+}
+
+.components__list__item {
+    width: 30rem;
+    height: 20rem;
+
+    background-color: #fff;
+    padding: 2.5rem;
+
+    margin-right: 4rem;
+    border-radius: 2.5rem;
+
+    display: flex;
+
+    box-shadow: 0px 5px 15px rgba(6, 29, 69, 0.1);
+
+    transition: transform 0.1s ease-out;
+}
+.components__list__item--active {
+    transform: scale(1.05);
+}
+
+.components__list__item__titel {
+    font-size: 2rem;
+    color: #061D45;
+}
+.components__list__item__titel {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #061D45;
+
+    width: 25rem;
+}
+
+.components__list__item__video {
+    
 }

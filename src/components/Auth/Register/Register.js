@@ -169,7 +169,6 @@ const Register = (props) => {
                         onChange={(e) => setDateOfBirth(e.target.value)}
                     />
                 </div>
-                <a href="#">Wachtwoord vergeten?</a>
                 <p>Al een account? <Link to="/login">Log hier in.</Link></p>
                 <button>Registreer</button>
             </form>

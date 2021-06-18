@@ -1,11 +1,8 @@
 :root {
-    --userprofile-h2: #061D45;
-    --userprofile-p: #5A6080;
     --userprofile-grid-mobile: 5% 90% 5%;
     --userprofile-grid-desktop: 20% 60% 20%;
     --userprofileedit-grid-mobile: 5% 90% 5%;
     --userprofileedit-grid-desktop: 35% 30% 35%;
-    --userprofile-background: linear-gradient(180deg, rgba(249,249,255,1) 0%, rgba(234,235,244,1) 100%);
 }
 
 .userprofile{
@@ -14,7 +11,7 @@
 }
 
 .userprofile p {
-    color: var(--userprofile-p);
+    color: var(--color-text-light);
 }
 
 .userprofile-content{
@@ -44,7 +41,7 @@
 .userprofile-content__info__textdiv1{
     font-weight: bold;
     font-size: 2rem;
-    color: var(--userprofile-h2);
+    color: var(--color-text);
 }
 
 .userprofile-content__info__textdiv2{
@@ -55,22 +52,24 @@
     border: 1px solid #bbb;
     padding: 1rem;
     border-radius: 1rem;
-    margin: 2rem 0;
+    margin: 1rem 0;
     background-color: #fff;
+    box-shadow: 1px 5px 29px 4px #081f4710;
+    -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
+    -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
 .userprofile-content__card h2{
-    color: var(--userprofile-h2);
+    color: var(--color-text);
     margin-bottom: 1rem;
-}
-
-.userprofile-content__card h2 span{
-    cursor: pointer;
 }
 
 .userprofile-content__edit{
     background-color: #4CA5FC;
     cursor: pointer;
+    width: 100%;
+    border-radius: 1rem;
+    margin: 1rem 0;
 }
 
 .userprofile-content__edit h2{
@@ -83,6 +82,7 @@
     border: none;
     display: block;
 }
+
 .userprofile-content__edit__link h2{
     margin: 0;
 }
@@ -102,20 +102,16 @@
 
 .userprofileedit{
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: var(--userprofileedit-grid-mobile);
 }
 
 .userprofileedit h2{
     margin: 1rem 0;
-    color: var(--userprofile-h2);
+    color: var(--color-text);
 }
 
 .userprofileedit__form{
     grid-column: 2;
-}
-
-.userprofileedit__form label{
-    display: block;
 }
 
 .userprofileedit__form input{
@@ -123,7 +119,7 @@
     padding: 1rem;
     margin: 0.5rem 0 1rem 0;
     border-radius: 1rem;
-    border: solid 1px #ddd;
+    border: solid 1px #bbb;
     width: 100%;
     box-shadow: 1px 5px 29px 4px #081f4710;
     -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
@@ -133,12 +129,19 @@
 .userprofileedit__form button {
     margin: 1rem 2rem 2rem 0;
     color: #fff;
-    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
     font-weight: 600;
     font-size: 1.25rem;
     border-radius: 1rem;
     border: none;
     transition: filter 0.2s ease-out;
+}
+
+.userprofileedit__form__button--accept{
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+}
+
+.userprofileedit__form__button--remove{
+    background: red;
 }
 
 .userprofileedit__form button > a{
@@ -151,21 +154,27 @@
     cursor: pointer;
 }
 
-@media (min-width: 31.25em) {
+@media (min-width: 60rem) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);
+    }
+
+    .userprofile-content__card:nth-child(1), .userprofile-content__card:nth-child(3), .userprofile-content__card:nth-child(5){
+        margin-right: 1rem;
+    }
+
+    .userprofile-content__card:nth-child(2), .userprofile-content__card:nth-child(4){
+        margin-left: 1rem;
     }
 
     .userprofile-content__info {
         display: grid;
         margin-top: 2rem;
-        text-align: right;
     }
 
     .userprofile-content__grid{
         display: grid;
         grid-template-columns: 50% 50%;
-        grid-gap: 0 2rem;
     }
 
     .userprofile-content__grid__video > video {
