@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-// scss
-import './SearchVacancyFilter.css';
-
-// components
-import SearchBar from '../../CustomElements/SearchBar';
-import DropdownSearch from '../../CustomElements/DropdownSearch';
-import DropdownEmployment from '../../CustomElements/DropdownEmployment';
-import DropdownDate from '../../CustomElements/DropdownDate';
-import RadiusSlider from '../../CustomElements/RadiusSlider';
+import SearchBar from '../../CustomElements/Searchbar/SearchBar';
+import DropdownSearch from '../../CustomElements/Dropdown/DropdownSearch/DropdownSearch';
+import DropdownEmployment from '../../CustomElements/Dropdown/DropdownEmployment/DropdownEmployment';
+import DropdownDate from '../../CustomElements/Dropdown/DropdownDate/DropdownDate';
+import RadiusSlider from '../../CustomElements/RadiusSlider/RadiusSlider';
 
 import SearchVacancyAttributes from './SearchVacancyAttributes';
+
+import './SearchVacancyFilter.css';
 
 // de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
 const SearchVacancyFilter = ({ updateFilterState }) => {

@@ -11,7 +11,7 @@ const UserProfileEdit = (props) => {
     const [country, setCountry] = useState('');
     const [externalCV, setExternalCV] = useState('');
     const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
-    const [skills, setSkills] = useState([]);
+    const [skills, setSkills] = useState([{ skill: '' }]);
     //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
@@ -57,10 +57,6 @@ const UserProfileEdit = (props) => {
         setCountry(event.target.value);
     }
 
-    // const externalCVChangeHandler = (event) => {
-    //     setExternalCV(event.target.value);
-    // }
-
     const handleJobsInputChange = (index, event) => {
         const oldJobs = [...jobs];
         oldJobs[index].previous_jobs = event.target.value;
@@ -91,7 +87,7 @@ const UserProfileEdit = (props) => {
         setJobs(jobs.filter((_, i) => i !== index));
     };
 
-    const skillsInputChangeHandler = (event, index) => {
+    const skillsInputChangeHandler = (index, event) => {
         const oldSkills = [...skills];
         oldSkills[index].skill = event.target.value;
         setSkills(oldSkills);
@@ -102,13 +98,21 @@ const UserProfileEdit = (props) => {
             return [
                 ...prevSkills,
                 {
-                    skills: '',
+                    skill: '',
                 }
             ]
         });
+        // setSkills(prevSkills => {
+        //     return [
+        //         ...prevSkills,
+        //         {
+        //             skill: '',
+        //         }
+        //     ]
+        // });
     }
 
-    const skillsRemoveHandler = (skills, index) => {
+    const skillsRemoveHandler = (index, skills) => {
         setSkills(skills.filter((_, i) => i !== index));
     }
 
@@ -145,7 +149,7 @@ const UserProfileEdit = (props) => {
         //     setExternalCV(`http://${externalCV}`);
         // };
 
-        const data = {
+        const profileData = {
             address: address,
             city: city,
             province: province,
@@ -161,8 +165,20 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const res = await axios.put('http://127.0.0.1:8000/api/user/edit', data, config);
-        console.log(res.data);
+        const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
+        console.log(profileRes.data);
+
+        const skillsToBeAdded = skills.map(skill => {
+            return skill.skill;
+        });
+
+        const skillsData = {
+            skill: skillsToBeAdded,
+        }
+
+        const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
+        console.log(skillsRes.data);
+
         props.history.push('/profiel');
     };
 
@@ -253,7 +269,7 @@ const UserProfileEdit = (props) => {
                             id="skills"
                             name="skills"
                             value={inputField.skill}
-                            onChange={(event) => skillsInputChangeHandler(event, index)}
+                            onChange={(event) => skillsInputChangeHandler(index, event)}
                         />
                         <button
                             type="button"
@@ -262,8 +278,8 @@ const UserProfileEdit = (props) => {
                         >+</button>
                         <button
                             type="button"
-                            className="userprofileedit__form__button--remove"
-                            onClick={() => skillsRemoveHandler(skills, index)}
+                            className="userprofileedit__form__button"
+                            onClick={() => skillsRemoveHandler(index, skills)}
                         >x</button>
                     </Fragment>
                 ))}

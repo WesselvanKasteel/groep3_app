@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// scss
-import './SearchVacancy.css';
-
-// icons
-import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
-
-// components
 import SearchVacancyFilter from './SearchVacancyFilter';
 import SearchVacancyList from './SearchVacancyList';
+
+import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
+import './SearchVacancy.css';
+
 const SearchVacancy = () => {
 
     // States
