@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-// scss
+import ArrowDropdown from '../../../../assets/svg/arrow_drop_down.svg';
 import './DropdownDate.css';
-
-// icons
-import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';
 
 const DropdownDate = ({ options, updateDateItems, activeFilter, changeActiveFilter }) => {
 
@@ -25,19 +22,33 @@ const DropdownDate = ({ options, updateDateItems, activeFilter, changeActiveFilt
         optionsList = <p className="dropdown-date__menu__options__item__null">Geen datum gevonden.</p>
     }
 
+    const dropdownDateFilterHandler = () => {
+        const newActive = {
+            search: false,
+            date: !active.date,
+            employment: false,
+        };
+        setActive(newActive);
+        changeActiveFilter(newActive);
+    }
+
+    const dropdownDateButtonIconClass = !activeFilter.date
+        ? 'dropdown-date__button__icon dropdown-date__button__icon-close'
+        : 'dropdown-date__button__icon dropdown-date__button__icon-open'
+
+    const dropdownDateMenuClass = !activeFilter.date
+        ? 'dropdown-date__menu  dropdown-date__menu-close'
+        : 'dropdown-date__menu dropdown-date__menu-open'
+
     return (
         <div className="dropdown-date">
             <div className="dropdown-date__button">
-                <button className="dropdown-date__button__btn" onClick={() => {
-                    const newActive = {search: false, date: !active.date, employment: false};
-                    setActive(newActive);
-                    changeActiveFilter(newActive); 
-                }}>Datum geplaats</button>
-                <img className={!activeFilter.date? 'dropdown-date__button__icon dropdown-date__button__icon-close' : 'dropdown-date__button__icon dropdown-date__button__icon-open'} src={ ArrowDropdown } alt="search icon" />
+                <button className="dropdown-date__button__btn" onClick={dropdownDateFilterHandler}>Datum geplaatst</button>
+                <img className={dropdownDateButtonIconClass} src={ ArrowDropdown } alt="search icon" />
             </div>
-            <div className={!activeFilter.date ? "dropdown-date__menu  dropdown-date__menu-close" : 'dropdown-date__menu dropdown-date__menu-open'}>
+            <div className={dropdownDateMenuClass}>
                 <ul className="dropdown-date__menu__options">
-                    { optionsList }
+                    {optionsList}
                 </ul>
             </div>
         </div>
