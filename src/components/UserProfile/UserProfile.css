@@ -8,6 +8,7 @@
 .userprofile{
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
+    margin-top: 10vh;
 }
 
 .userprofile p {
@@ -103,6 +104,7 @@
 .userprofileedit{
     display: grid;
     grid-template-columns: var(--userprofileedit-grid-mobile);
+    margin-top: 10vh;
 }
 
 .userprofileedit h2{
@@ -154,7 +156,7 @@
     cursor: pointer;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 1000px) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);
     }
@@ -168,12 +170,10 @@
     }
 
     .userprofile-content__info {
-        display: grid;
         margin-top: 2rem;
     }
 
     .userprofile-content__grid{
-        display: grid;
         grid-template-columns: 50% 50%;
     }
 
