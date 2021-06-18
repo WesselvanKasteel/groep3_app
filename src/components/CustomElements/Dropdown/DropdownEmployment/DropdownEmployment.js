@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-// scss
+import ArrowDropdown from '../../../../assets/svg/arrow_drop_down.svg';
 import './DropdownEmployment.css';
-
-// icons
-import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';
 
 const DropdownEmployment = ({ options, updateEmploymentItems, activeFilter, changeActiveFilter }) => {
 
@@ -25,17 +22,31 @@ const DropdownEmployment = ({ options, updateEmploymentItems, activeFilter, chan
         optionsList = <p className="dropdown-employment__menu__options__item__null">Geen dienstverband gevonden.</p>
     }
 
+    const dropdownEmploymenFilterHandler = () => {
+        const newActive = {
+            search: false,
+            date: false,
+            employment: !active.employment,
+        };
+        setActive(newActive);
+        changeActiveFilter(newActive);
+    }
+
+    const dropdownEmploymentButtonIconClass = !activeFilter.employment
+        ? 'dropdown-employment__button__icon dropdown-employment__button__icon-close'
+        : 'dropdown-employment__button__icon dropdown-employment__button__icon-open'
+
+    const dropdownEmploymentMenuClass = !activeFilter.employment
+        ? 'dropdown-employment__menu  dropdown-employment__menu-close'
+        : 'dropdown-employment__menu dropdown-employment__menu-open'
+
     return (
         <div className="dropdown-employment">
             <div className="dropdown-employment__button">
-                <button className="dropdown-employment__button__btn" onClick={() => {
-                    const newActive = {search: false, date: false, employment: !active.employment};
-                    setActive(newActive);
-                    changeActiveFilter(newActive); 
-                }}>Dienstverband</button>
-                <img className={!activeFilter.employment ? 'dropdown-employment__button__icon dropdown-employment__button__icon-close' : 'dropdown-employment__button__icon dropdown-employment__button__icon-open'} src={ ArrowDropdown } alt="search icon" />
+                <button className="dropdown-employment__button__btn" onClick={dropdownEmploymenFilterHandler}>Dienstverband</button>
+                <img className={dropdownEmploymentButtonIconClass} src={ ArrowDropdown } alt="search icon" />
             </div>
-            <div className={!activeFilter.employment ? "dropdown-employment__menu  dropdown-employment__menu-close" : 'dropdown-employment__menu dropdown-employment__menu-open'}>
+            <div className={dropdownEmploymentMenuClass}>
                 <ul className="dropdown-employment__menu__options">
                     { optionsList }
                 </ul>
