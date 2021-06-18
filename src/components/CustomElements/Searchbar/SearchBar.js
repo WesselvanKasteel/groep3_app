@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-// css
-import './SearchBar.scss';
-
-// icons
-import Search from '../../assets/svg/search.svg';
+import Search from '../../../assets/svg/search.svg';
+import './SearchBar.css';
 
 const SearchBar = ({ updateSearchTerm }) => {
 
@@ -16,7 +13,7 @@ const SearchBar = ({ updateSearchTerm }) => {
         // update parent when searchTerm changes
         updateSearchTerm(searchTerm);
         
-    }, [searchTerm]);
+    }, [searchTerm, updateSearchTerm]);
 
     return (
         <div className="searchbar">
@@ -25,8 +22,7 @@ const SearchBar = ({ updateSearchTerm }) => {
                 placeholder={placeholder} 
                 onChange={event => setSearchterm(event.target.value)} 
             />
-
-            <img className="searchbar__icon" src={ Search } alt="search icon" />
+            <img className="searchbar__icon" src={Search} alt="search icon" />
         </div>
     )
 }

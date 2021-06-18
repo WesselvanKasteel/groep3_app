@@ -29,7 +29,6 @@
     margin-right: 2rem;
 }
 
-// slider
 .slider-radius__slider {
     width: 100%;
 
@@ -60,7 +59,7 @@
     background: #061D45;
     cursor: pointer;
     border: none;
-  }
+}
 .slider-radius__slide__input::-moz-range-thumb {
     width: 1.75rem;
     height: 1.75rem;

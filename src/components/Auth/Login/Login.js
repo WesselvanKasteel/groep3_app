@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.scss';
+import './Login.css';
+import Lock from '../../../assets/svg/lock.svg';
+import Mail from '../../../assets/svg/email.svg';
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -29,39 +31,49 @@ const Login = (props) => {
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
         console.log(res.data);
-        localStorage.setItem("token",res.data.access_token);
-        props.history.push("/profile");
+        localStorage.setItem("token", res.data.access_token);
+        props.history.push("/profiel");
     }
 
     return(
-        <section>
-            <h2>Login</h2>
-            <form method="post" onSubmit={loginHandler}>
-                <div>
-                    <label htmlFor="email">E-mail:</label>
+        <section className="login">
+            {/* <h2>Login</h2> */}
+            <Link to="/" className="login__title">
+                <span className="login__title__blue-1">Vid</span>
+                <span className="login__title__blue-2">Va</span>
+                <span className="login__title__blue-3">So</span>
+            </Link>
+            <form method="post" className="login__form" onSubmit={loginHandler}>
+                <div className="login__form__container c1">
+                    <img className="login__form__container__icon" src={Mail}></img>
                     <input
+                        className="login__form__container__input"
                         type="email"
                         name="email"
                         id="email"
                         value={email}
                         onChange={emailChangeHandler}
-                        placeholder="Email"
+                        placeholder=" "
                     />
+                    <label className="login__form__container__placeholder" htmlFor="email">E-mail</label>
                 </div>
-                <div>
-                    <label htmlFor="password">Wachtwoord:</label>
+                <div className="login__form__container">
+                    <img className="login__form__container__icon" src={Lock}></img>
                     <input
+                        className="login__form__container__input"
                         type="password"
                         name="password"
                         id="password"
                         value={password}
                         onChange={passwordChangeHandler}
-                        placeholder="wachtwoord"
+                        placeholder=" "
                     />
+                    <label className="login__form__container__placeholder" htmlFor="password">Wachtwoord</label>
                 </div>
-                {/* <a href="#">Wachtwoord vergeten?</a> */}
-                <p>Nog geen account? <Link to="/register">Registreer hier.</Link></p>
-                <button>Login</button>
+                {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
+                
+                <button className="login__form__button">Inloggen</button>
+                <p>Nog geen account? <Link className="login__form__register b2" to="/registreer">Registreer</Link></p>
             </form>
         </section>
     );

@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './Record.scss';
+import './Record.css';
 
 // packages
 import { useRecordWebcam } from 'react-record-webcam'
+
+// icons
+import CamOff from '../../assets/svg/videocam_off.svg';
+import CamOn from '../../assets/svg/videocam_on.svg';
+import StopRecord from '../../assets/svg/videocam_stop_recording.svg';
+import StartRecord from '../../assets/svg/videocam_start_recording.svg';
 
 const Record = () => {
 
@@ -13,7 +19,7 @@ const Record = () => {
 
     const [activeComponent, setActiveComponent] = useState(0);
     const [components, setComponents] = useState([
-        {name: "introductie", description: "introductie beschrijving", video: null},
+        {name: "introductie", description: "introductie beschrijving introductie beschrijving introductie beschrijving introductie beschrijving", video: null},
         {name: "motivatie", description: "motivatie beschrijving", video: null},
         {name: "skills", description: "skills beschrijving", video: null},
     ]);
@@ -21,10 +27,7 @@ const Record = () => {
     const recordWebcam = useRecordWebcam();
 
     useEffect(() => {
-        // console.log(recordWebcam);
-        // console.log(activeComponent);    
-
-    }, [activeComponent]);
+    }, []);
 
     const startRecording = () => {
         setRecording(true);
@@ -66,20 +69,16 @@ const Record = () => {
         setActiveComponent(index);
     };
 
-    const componentList = components.map((component, index) => 
-        <article className={`components__card ${index !== activeComponent ? "" : "active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
+    const componentList = components.map((component, index) =>
+        <li className={`components__list__item ${index !== activeComponent ? "" : "components__list__item--active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
 
+            <h1 className={component.video != null ? 'components__list__item__titel' : 'components__list__item__titel--large'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
+            
             {component.video != null &&
-                <h1 className="components__card__title">{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
+                <video className="components__list__item__video" src={component.video} controls></video>
             }
-            {component.video === null &&
-                <h2 className="components__card__instruction">{component.description.charAt(0).toUpperCase() + component.description.slice(1)}</h2>
-            }
-            {component.video != null &&
-                <video className="components__card__video" src={component.video} controls></video>
-            }
-        </article>
-    ); 
+        </li>
+    );
 
     return (
         <section className="record">
@@ -89,22 +88,29 @@ const Record = () => {
                 <video className="webcam__preview" ref={recordWebcam.webcamRef} autoPlay muted />
 
                 <div className="webcam__buttons">
-                    {recording && 
-                        <button className="webcam__btn webcam__btn-stop" onClick={stopRecording}>Stop Recording</button>
+                    {recording &&
+                        <button className="webcam__btn webcam__btn--stop" onClick={stopRecording}>
+                            <img className="webcam__btn__img--stop" src={StopRecord} alt="stop recording icon" />
+                        </button>
                     }
                     {!recording && webcam &&
-                        <button className="webcam__btn webcam__btn-start" onClick={startRecording}>Start Recording</button>
+                        <button className="webcam__btn webcam__btn--start" onClick={startRecording}>
+                            <img className="webcam__btn__img--start" src={StartRecord} alt="start recording icon" />
+                        </button>
                     }
 
                     {webcam ? (
-                        <button className="webcam__btn webcam__btn-close" onClick={closeWebcam}>Close Webcam</button> 
+                        <button className="webcam__btn webcam__btn--close" onClick={closeWebcam}>
+                            <img className="webcam__btn__img--close" src={CamOff} alt="close webcam icon" />
+                        </button>
                     ) : (
-                        <button className="webcam__btn webcam__btn-open" onClick={openWebcam}>Open Webcam</button>
+                        <button className="webcam__btn webcam__btn--open" onClick={openWebcam}>
+                            <img className="webcam__btn__img--open" src={CamOn} alt="open webcam icon" />
+                        </button>
                     )}
                 </div>
 
             </div>
-
 
             <div className="description">
 
@@ -119,15 +125,15 @@ const Record = () => {
             </div>
 
             <div className="components">
+                <ul className="components__list">
 
-                { componentList }
+                    { componentList }
 
-                <article className="components__next">
-                    <button className="components__next__btn">Volgende stap</button>
-                </article>
-
+                    <li className="components__list__item components__list__item--next">
+                        <button className="components__next__btn">Volgende stap</button>
+                    </li>
+                </ul>
             </div>
-    
         </section>
     )
 }

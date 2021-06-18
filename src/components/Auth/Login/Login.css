@@ -1,0 +1,126 @@
+h2 {
+    color: var(--color-accent);
+}
+
+.login{
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.1);
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+    text-align: center;
+}
+
+.login__form__container{
+    position: relative;
+    margin-bottom: 3rem;
+    
+}
+
+.login__form__container__input{
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #A3A6BA;
+    width: 100%;
+    font-family: inherit;
+    color: inherit;
+    padding-left: 3rem;
+    padding-bottom: 0.5rem;
+}
+
+.login__form__container__input:focus{
+    border-color: #28406A;
+}
+
+.login__form__container__placeholder{
+    color: #65657b;
+    pointer-events: none;
+    position:absolute;
+    transform-origin: 0 50%;
+    transition:200ms, color 200ms;
+    left: 3rem;
+}
+
+.login__form__container > img{
+    position: absolute;
+    filter: invert(22%) sepia(13%) saturate(2496%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    left: 0;
+    transform: scale(0.8);
+}
+
+.login__form__container__input:focus ~ .login__form__container__placeholder,
+.login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
+    transform: translateY(-2rem) scale(0.7);
+    font-weight: bold;
+    left: 0;
+}   
+
+.login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
+    color:#28406A;
+}
+
+.login__form > button
+{
+    font: inherit;
+    background-color: #28406A;
+    color: #fff;
+    border: 0.1rem solid var(--color-accent);
+    border-radius: 2rem;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.login__form > p {
+    margin-bottom: 1rem;
+}
+
+.login__form__forgot {
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+    display: block;
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+
+
+.login__title{
+    visibility: hidden;
+}
+
+@media (min-width: 750px) {
+    .login{
+        width: 30%;
+    }
+
+    .login__title{
+        visibility: visible;
+        font-size: 5rem;
+        position: absolute;
+        top: -30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-decoration: none;
+
+    }
+
+    .login__title__blue-1 {
+        color: #061D45;
+    }
+    .login__title__blue-2 {
+        color: #18315c;
+    }
+    .login__title__blue-3 {
+        color: #2a426b;
+    }
+
+    .c1{
+        margin-top: 3rem;
+    }
+}

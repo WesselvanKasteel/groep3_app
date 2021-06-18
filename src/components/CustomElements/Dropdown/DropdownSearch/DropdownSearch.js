@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-// css
-import './DropdownSearch.scss';
-
-// icons
-import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';
+import ArrowDropdown from '../../../../assets/svg/arrow_drop_down.svg';
+import './DropdownSearch.css';
 
 const DropdownSearch = ({ options ,updateFilterItems, activeFilter, changeActiveFilter}) => {
 
@@ -15,7 +12,7 @@ const DropdownSearch = ({ options ,updateFilterItems, activeFilter, changeActive
         setActive(activeFilter);
     }, [activeFilter])
 
-    let filterdList = options.filter((val) => {
+    let filteredList = options.filter((val) => {
         if (searchTerm === '') {
             return val
         } else if (val.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -33,8 +30,20 @@ const DropdownSearch = ({ options ,updateFilterItems, activeFilter, changeActive
     ); 
 
     if (options.length === 0 ) {
-        filterdList = <p className="dropdown-search__menu__options__item__null">Geen vaardigheden gevonden.</p>
+        filteredList = <p className="dropdown-search__menu__options__item__null">Geen vaardigheden gevonden.</p>
     }
+
+    const dropdownSearchButtonIconClass = !activeFilter.search
+        ? 'dropdown-search__button__icon dropdown-search__button__icon-close'
+        : 'dropdown-search__button__icon dropdown-search__button__icon-open'
+    
+    const dropdownSearchMenuToggleClass = !activeFilter.search
+        ? 'dropdown-search__menu  dropdown-search__menu-close'
+        : 'dropdown-search__menu dropdown-search__menu-open'
+
+    const dropdownSearchMenuOptionsClass = options.length > 3
+        ? 'dropdown-search__menu__options dropdown-search__menu__options-none'
+        : 'dropdown-search__menu__options dropdown-search__menu__options-scroll'
 
     return (
         <div className="dropdown-search">
@@ -44,13 +53,12 @@ const DropdownSearch = ({ options ,updateFilterItems, activeFilter, changeActive
                     setActive(newActive);
                     changeActiveFilter(newActive); 
                 }}>Vaardigheden</button>
-                <img className={!activeFilter.search ? 'dropdown-search__button__icon dropdown-search__button__icon-close' : 'dropdown-search__button__icon dropdown-search__button__icon-open'} src={ ArrowDropdown } alt="search icon" />
+                <img className={dropdownSearchButtonIconClass} src={ ArrowDropdown } alt="search icon" />
             </div>
-            <div className={!activeFilter.search ? "dropdown-search__menu  dropdown-search__menu-close" : 'dropdown-search__menu dropdown-search__menu-open'}>
+            <div className={dropdownSearchMenuToggleClass}>
                 <input className="dropdown-search__menu__input" type="text" placeholder="Zoek vaardigheid" onChange={(event) => setSearchTerm(event.target.value)}/>
-
-                <ul className={options.length > 3 ? 'dropdown-search__menu__options dropdown-search__menu__options-none' : 'dropdown-search__menu__options dropdown-search__menu__options-scroll '}>
-                    {filterdList}
+                <ul className={dropdownSearchMenuOptionsClass}>
+                    {filteredList}
                 </ul>
             </div>
         </div>

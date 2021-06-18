@@ -1,27 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-// css
-import './SearchVacancy.scss';
+import SearchVacancyFilter from './SearchVacancyFilter';
+import SearchVacancyList from './SearchVacancyList';
 
 import DistanceCalculator from '../../CustomElements/DistanceCalculator';
 
 // icons
 import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
-
-// components
-import SearchVacancyFilter from './SearchVacancyFilter';
+import './SearchVacancy.css';
 
 const SearchVacancy = () => {
+
+    // States
+    const [vacancyList, setVacancyList] = useState([]);
+    const [filterItems, setFilterItems] = useState([]);
+    const [filterSearchTerm, setFilterSearchTerm] = useState('');
+    const [filterVacancies, setFilterVacancies] = useState([]);
+
+    useEffect(() => {
+        getVacancies();
+    }, []);
+
+    const getVacancies = () =>{
+        const BASE_URL ="http://localhost:8000/api/vacancies";
+        axios.get(BASE_URL).then(res =>{
+            setVacancyList(res.data);            
+        })
+    }
+
+    // update filterItems
+    const updateFilterState = (list, searchTerm) => { 
+        setFilterItems(list);
+        setFilterSearchTerm(searchTerm); 
+
+        console.log(list);
+        console.log(searchTerm);
+    }
 
     return (
         <section className="search">
             <div className="search__container">
                 <div className="search__container__title">
                     <h1 className="search__container__title-search">Zoeken</h1>
-                    <img className="search__container__title-arrow_down" src={ ArrowDirection } alt="arrow" />
+                    <img className="search__container__title-arrow_down" src={ArrowDirection} alt="arrow" />
                 </div>
-                <SearchVacancyFilter />
-                <DistanceCalculator />
+                <SearchVacancyFilter updateFilterState={updateFilterState} />
+                <SearchVacancyList vacancies={vacancyList} />
             </div>
         </section>
     )
