@@ -4,6 +4,10 @@
 
     display: grid;
     grid-template-columns: 25% 75%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .header__title {
