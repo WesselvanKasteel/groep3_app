@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './SearchVacancyFilter.scss';
+import './SearchVacancyFilter.css';
 
 // components
 import SearchBar from '../../CustomElements/SearchBar';

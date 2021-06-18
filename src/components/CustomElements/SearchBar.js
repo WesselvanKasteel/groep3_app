@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './SearchBar.scss';
+import './SearchBar.css';
 
 // icons
 import Search from '../../assets/svg/search.svg';

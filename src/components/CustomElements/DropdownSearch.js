@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './DropdownSearch.scss';
+import './DropdownSearch.css';
 
 // icons
 import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';

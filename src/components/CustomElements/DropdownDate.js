@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
+<<<<<<< HEAD
 import './DropdownDate.scss';
+=======
+import './DropdownDate.css';
+>>>>>>> development
 
 // icons
 import ArrowDropdown from '../../assets/svg/arrow_drop_down.svg';

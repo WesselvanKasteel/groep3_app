@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './SearchVacancy.scss';
+import './SearchVacancy.css';
 
 // icons
 import ArrowDirection from '../../../assets/svg/arrow_direction.svg';

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 // scss
-import './SearchVacancyAttributes.scss';
+import './SearchVacancyAttributes.css';
 
 const SearchVacancyAttributes = ({ attributes, updateFilter }) => {
 
