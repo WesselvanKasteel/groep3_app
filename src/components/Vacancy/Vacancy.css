@@ -1,0 +1,171 @@
+.vacancy {
+    margin-top: 15vh;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 80%;
+    height: auto;
+}
+
+.vacancy__container {
+    width: auto;
+    height: auto;
+}
+
+.vacancy__title {
+    margin-bottom: 4rem;
+}
+
+.vacancy__title--company {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #061D45;
+}
+
+.vacancy__title--job {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #5A6080;
+}
+
+.vacancy__info {
+    margin-bottom: 5rem;
+}
+
+.vacancy__info__list {
+    list-style: none;
+    margin-bottom: 2.5rem;
+}
+
+.vacancy__info__list__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.vacancy__info__list__item__img {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.vacancy__info__list__item__address {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #5A6080;
+
+    margin-left: 1rem;
+}
+
+.vacancy__info__description {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #5A6080;
+}
+
+.vacancy__video {
+    margin-bottom: 5rem;
+}
+
+.vacancy__video__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #061D45;
+    margin-bottom: 2rem;
+}   
+
+.vacancy__video__src {
+    width: 100%;
+    height: auto;
+    border-radius: 2rem;
+    background-color: #ededf5;
+}
+
+.vacancy__skills {
+    margin-bottom: 5rem;
+}
+
+.vacancy__skills__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #061D45;
+    margin-bottom: 2rem;
+}
+
+.vacancy__skills__list {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.vacancy__skills__list__item {
+    padding: 0.6rem 2.2rem;
+    background: linear-gradient(135deg, #28406A -50%, #061D45 150%);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 1.2rem;
+}
+
+.vacancy__apply {
+    margin-bottom: 5rem;
+}   
+
+.vacancy__apply__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #061D45;
+    margin-bottom: 1rem;
+}
+
+.vacancy__apply__info {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #5A6080;
+    margin-bottom: 5rem;
+}
+
+.vacancy__apply__btn {
+    display: inline-block;
+
+    width: 100%;
+    height: 7rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+    border-radius: 2.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: #fff;
+
+    transition: filter 0.2s ease-out;
+}
+
+.vacancy__apply__btn:hover {
+    filter: brightness(1.15);
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 1500px) {
+    .vacancy {
+        margin-top: 15vh;
+        width: 50%;
+    }
+
+    .vacancy__video__src {
+        width: 100%;
+    }
+
+
+    .vacancy__apply__btn {
+        width: 25%;
+    }
+}

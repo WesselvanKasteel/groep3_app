@@ -6,11 +6,14 @@ import './SearchVacancyCard.css';
 // images (hardcode)
 import NikeLogo from '../../../assets/images/nike.png';
 
+// react-router
+import { Link } from 'react-router-dom';
+
 const SearchVacancyCard = ({ data }) => {
 
     useEffect(() => {
-        // console.log(data);
-    }, [data])
+  
+    }, [])
 
     const vacancyTags = data.skills.map((skill, index) =>
         <li className="vacancy-card__list__item" key={index}>{skill.skill}</li>
@@ -30,7 +33,7 @@ const SearchVacancyCard = ({ data }) => {
                 {vacancyTags}
             </ul>
 
-            <button className="vacancy-card__btn">Nu bekijken</button>
+            <Link className="vacancy-card__btn" to={'/vacature/' + data.code}>Nu bekijken</Link>
         </li>
     )
 }

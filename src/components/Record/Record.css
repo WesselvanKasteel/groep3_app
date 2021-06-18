@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto;
-    margin-top: 10vh;
+    margin-top: 7.5vh;
 }
 
 .webcam {
@@ -53,6 +53,11 @@
     padding: 0rem;
     border-radius: 1rem;
     border: none;
+    transition: filter 0.1s ease-out;
+}
+.webcam__btn:hover {
+    cursor: pointer;
+    filter: brightness(1.05);
 }
 
 .webcam__btn--start,
@@ -89,7 +94,7 @@
 }
 
 .description {
-    padding: 2.5rem;
+    padding: 4rem 2.5rem;
 }
 
 .description__title {
@@ -117,47 +122,114 @@
     justify-content: flex-start;
     align-items: center;
 
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
     padding: 6rem 4rem 6rem 4rem;
 
     width: auto;
 }
 
-.components__list__item {
+.components__list__item, 
+.components__list__item--next {
     width: 30rem;
     height: 20rem;
-
     background-color: #fff;
     padding: 2.5rem;
-
     margin-right: 4rem;
     border-radius: 2.5rem;
-
     display: flex;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     box-shadow: 0px 5px 15px rgba(6, 29, 69, 0.1);
-
     transition: transform 0.1s ease-out;
+    flex: 0 0 auto;
+}
+.components__list__item:hover {
+    cursor: pointer;
 }
 .components__list__item--active {
     transform: scale(1.05);
 }
 
-.components__list__item__titel {
-    font-size: 2rem;
-    color: #061D45;
-}
-.components__list__item__titel {
-    font-size: 1.5rem;
+.components__list__item__titel--recorded {
+    font-size: 1.4rem;
     font-weight: 500;
-    color: #061D45;
-
+    color: #5A607F;
+    position: absolute;
+    top: -3rem;
+    left: 0rem;
     width: 25rem;
 }
 
+.components__list__item__titel {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #061D45;
+    margin-bottom: 2rem;
+}
+
+.components__list__item__subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #767c96;
+    font-weight: 400;
+}
+
 .components__list__item__video {
+    width: 100%;
+    height: auto;
+}
+
+.components__next__btn {
+    padding: 2rem 4rem;
+    border-radius: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    transition: filter 0.1s ease-out;
+}
+.components__next__btn:hover {
+    cursor: pointer;
+    filter: brightness(1.15);
+}
+
+
+@media (min-width: 1000px) {
+    .record {
+        margin-top: 7.5vh;
+    }
+
+    .webcam {
+        padding: 0rem 25%;
+    }
     
+    .description {
+        padding: 5rem 25%;
+    }
+    
+    .components {
+        padding: 0rem 0rem 0rem 0rem;
+    }
+    .components__list {
+        padding: 6rem 6rem 6rem 6rem;
+        -webkit-overflow-scrolling: auto;
+    }
+
+    .webcam__preview {
+        margin-top: 5vh;
+        width: 100%;
+        height: auto;
+
+        border-radius: 2rem;
+        background-color: #dfdfeb;
+    }
+
+    .webcam__buttons {
+        padding: 5rem 0rem;
+    }
+
 }
