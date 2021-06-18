@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import Lock from '../../../assets/svg/lock.svg';
+import Mail from '../../../assets/svg/email.svg';
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -43,7 +45,7 @@ const Login = (props) => {
             </Link>
             <form method="post" className="login__form" onSubmit={loginHandler}>
                 <div className="login__form__container c1">
-                    <label className="login__form__container__placeholder" htmlFor="email">E-mail</label>
+                    <img className="login__form__container__icon" src={Mail}></img>
                     <input
                         className="login__form__container__input"
                         type="email"
@@ -53,9 +55,10 @@ const Login = (props) => {
                         onChange={emailChangeHandler}
                         placeholder=" "
                     />
+                    <label className="login__form__container__placeholder" htmlFor="email">E-mail</label>
                 </div>
                 <div className="login__form__container">
-                    <label className="login__form__container__placeholder" htmlFor="password">Wachtwoord</label>
+                    <img className="login__form__container__icon" src={Lock}></img>
                     <input
                         className="login__form__container__input"
                         type="password"
@@ -65,12 +68,12 @@ const Login = (props) => {
                         onChange={passwordChangeHandler}
                         placeholder=" "
                     />
+                    <label className="login__form__container__placeholder" htmlFor="password">Wachtwoord</label>
                 </div>
-                <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a>
-
+                {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
+                
                 <button className="login__form__button">Login</button>
-                <p>of</p>
-                <Link className="login__form__register b2" to="/registreer">Registreer</Link>
+                <p>Nog geen account? <Link className="login__form__register b2" to="/registreer">Registreer</Link></p>
             </form>
         </section>
     );

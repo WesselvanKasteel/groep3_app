@@ -17,7 +17,8 @@ h2 {
 
 .login__form__container{
     position: relative;
-
+    margin-bottom: 3rem;
+    
 }
 
 .login__form__container__input{
@@ -25,6 +26,10 @@ h2 {
     border-width: 0 0 2px;
     border-color: #A3A6BA;
     width: 100%;
+    font-family: inherit;
+    color: inherit;
+    padding-left: 3rem;
+    padding-bottom: 0.5rem;
 }
 
 .login__form__container__input:focus{
@@ -37,16 +42,30 @@ h2 {
     pointer-events: none;
     position:absolute;
     transform-origin: 0 50%;
-    transition: transform 200ms, color 200ms;
+    transition:200ms, color 200ms;
+    left: 3rem;
+}
+
+.login__form__container > img{
+    position: absolute;
+    /* filter: invert(80%) sepia(42%) saturate(106%) hue-rotate(194deg) brightness(79%) contrast(84%); */
+    filter: invert(22%) sepia(13%) saturate(2496%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    left: 0;
+    transform: scale(80%);
 }
 
 .login__form__container__input:focus ~ .login__form__container__placeholder,
 .login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
-    transform: translateY(-30px) translateX(10px) scale(0.75);
-}
+    transform: translateY(-2rem) scale(70%);
+    left: 0;
+}   
 
 .login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
     color:#28406A;
+}
+
+.login__form__container__input:not(:placeholder-shown) ~ .login__form__container > img {
+    
 }
 
 .login__form > button
@@ -62,20 +81,6 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.login__form__register{
-    font: inherit;
-    display: inline-block;
-    background-color: #fff;
-    color: #28406A;
-    border: 0.2rem solid #28406A;
-    border-radius: 2rem;
-    padding: 1rem 4rem;
-    cursor: pointer;
-    width: 80%;
-    text-decoration: none;
-    margin-bottom: 2rem;
-}
-
 .login__form > p {
     margin-bottom: 1rem;
 }
@@ -88,10 +93,7 @@ h2 {
     font-size: 1.2rem;
 }
 
-.c1{
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
+
 
 .login__title{
     visibility: hidden;
@@ -104,7 +106,7 @@ h2 {
 
     .login__title{
         visibility: visible;
-        font-size: 10rem;
+        font-size: 5rem;
         position: absolute;
         top: -30%;
         left: 50%;
@@ -121,5 +123,9 @@ h2 {
     }
     .login__title__blue-3 {
         color: #2a426b;
+    }
+
+    .c1{
+        margin-top: 3rem;
     }
 }
