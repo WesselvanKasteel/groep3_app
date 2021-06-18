@@ -17,6 +17,7 @@ h2 {
 
 .login__form__container{
     position: relative;
+    margin-bottom: 3rem;
     
 }
 
@@ -92,10 +93,7 @@ h2 {
     font-size: 1.2rem;
 }
 
-.c1{
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
+
 
 .login__title{
     visibility: hidden;
@@ -125,5 +123,9 @@ h2 {
     }
     .login__title__blue-3 {
         color: #2a426b;
+    }
+
+    .c1{
+        margin-top: 3rem;
     }
 }
