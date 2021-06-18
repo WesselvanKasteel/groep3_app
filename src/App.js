@@ -1,12 +1,15 @@
 import React from 'react';
 import SearchPage from './SearchPage';
+import TemporaryTest from './TemporaryTest';
 
 class App extends React.Component {
     
     render(){
         return(
             <section>
-                <SearchPage />
+                <TemporaryTest />
+                {/* <SearchPage /> */}
+
             </section>
         )
     }

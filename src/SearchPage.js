@@ -7,7 +7,7 @@ class SearchPage extends React.Component{
 
     state = { searchTerm: "", pokemons: [], name: "", img:"",number:"", abilities:[] ,types:[]};
 
-    // state = { job_title:"", job_skills:[], job_adress:"", (meer als het moet)};
+    // state = { job_title:"", job_skills:[], job_adress:"", };
     componentDidMount(){
         const BASE_URL ="https://pokeapi.co/api/v2/pokemon/";
         axios.get(BASE_URL).then(res =>{
@@ -50,9 +50,10 @@ class SearchPage extends React.Component{
     }
 
     render(){
-        console.log(this.state.searchTerm)
+        console.log(this.state.searchTerm);
+        console.log(this.pokemons);
         const filteredPokemons = this.state.pokemons.filter(pokemon =>{
-            return pokemon.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !==-1;
+            return pokemon.name.indexOf(this.state.searchTerm.toLowerCase()) !==-1;
         });
         return(
             <article>   
