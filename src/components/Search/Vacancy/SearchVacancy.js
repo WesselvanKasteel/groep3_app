@@ -24,7 +24,7 @@ const SearchVacancy = () => {
     const getVacancies = () =>{
         const BASE_URL ="http://localhost:8000/api/vacancies";
         axios.get(BASE_URL).then(res =>{
-            setVacancyList([res.data]);            
+            setVacancyList(res.data);            
         })
         console.log(vacancyList)
     }
