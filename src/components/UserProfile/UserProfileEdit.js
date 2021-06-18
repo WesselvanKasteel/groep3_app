@@ -23,10 +23,12 @@ const UserProfileEdit = (props) => {
         };
 
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        console.log(res.data);
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
+        setSkills(res.data.user.skills);
         // setJobs(res.data.user.jobs);
         // setExternalCV(res.data.user.external_cv);
     }
@@ -51,6 +53,13 @@ const UserProfileEdit = (props) => {
     //     setExternalCV(event.target.value);
     // }
 
+    const handleJobsInputChange = (index, event) => {
+        const oldJobs = [...jobs];
+        oldJobs[index].previous_jobs = event.target.value;
+        setJobs(oldJobs);
+        console.log(jobs);
+    };
+
     const handleJobsAddFields = () => {
         // const values = [...jobs];
         // values.push({ previous_jobs: '' });
@@ -74,12 +83,26 @@ const UserProfileEdit = (props) => {
         setJobs(jobs.filter((_, i) => i !== index));
     };
 
-    const handleJobsInputChange = (index, event) => {
-        const oldJobs = [...jobs];
-        oldJobs[index].previous_jobs = event.target.value;
-        setJobs(oldJobs);
-        console.log(jobs);
-    };
+    const skillsInputChangeHandler = (event, index) => {
+        const oldSkills = [...skills];
+        oldSkills[index].skill = event.target.value;
+        setSkills(oldSkills);
+    }
+    
+    const skillsAddHandler = () => {
+        setSkills(prevSkills => {
+            return [
+                ...prevSkills,
+                {
+                    skills: '',
+                }
+            ]
+        });
+    }
+
+    const skillsRemoveHandler = (skills, index) => {
+        setSkills(skills.filter((_, i) => i !== index));
+    }
 
     const profilePictureUpdateHandler = async (event) => {
         event.preventDefault();
@@ -215,6 +238,28 @@ const UserProfileEdit = (props) => {
                 <h2>Opleidingen</h2>
 
                 <h2>Skills</h2>
+                {skills.map((inputField, index) => (
+                    <Fragment key={`${inputField}~${index}`}>
+                        <label htmlFor="skills">Skill:</label>
+                        <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            value={inputField.skill}
+                            onChange={(event) => skillsInputChangeHandler(event, index)}
+                        />
+                        <button
+                            type="button"
+                            className="btn btn-link"
+                            onClick={() => skillsRemoveHandler(skills, index)}
+                        >-</button>
+                        <button
+                            type="button"
+                            className="btn btn-link"
+                            onClick={skillsAddHandler}
+                        >+</button>
+                    </Fragment>
+                ))}
 
                 <h2>Extern CV</h2>
                 {/* <label htmlFor="externalCV">Link:</label>

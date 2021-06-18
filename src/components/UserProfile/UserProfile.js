@@ -20,7 +20,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         getUserData();
-        getSkills();
+        // getSkills();
     }, []);
 
     const getUserData = async () => {
@@ -40,14 +40,15 @@ const UserProfile = () => {
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         //setJobs(res.data.user.job);
+        setSkills(res.data.user.skills);
         setExternalcv(res.data.user.external_cv);
         console.log(jobs);
     }
 
-    const getSkills = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/skills');
-        setSkills(res.data);
-    }
+    // const getSkills = async () => {
+    //     const res = await axios.get('http://127.0.0.1:8000/api/skills');
+    //     setSkills(res.data);
+    // }
 
     const jobsList = jobs.map((job) =>
         <p key={job}>{ job }</p>
@@ -56,10 +57,6 @@ const UserProfile = () => {
     const educationsList = educations.map((education) =>
         <p key={education}>{ education }</p>
     );
-
-    // const skillsList = skills.map((skill) =>
-    //     console.log(skill)
-    // );
 
     const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
 
