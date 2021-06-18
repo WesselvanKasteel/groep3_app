@@ -12,8 +12,8 @@ const SearchVacancyCard = ({ data }) => {
         console.log(data);
     }, [data])
 
-    const vacancyTags = data.tags.map((tag, index) =>
-        <li className="vacancy-card__list__item" key={index}>{tag}</li>
+    const vacancyTags = data.skills.map((skill, index) =>
+        <li className="vacancy-card__list__item" key={skill.skill}>{skill.skill}</li>
     );
 
 
@@ -23,8 +23,8 @@ const SearchVacancyCard = ({ data }) => {
                 <img className="vacancy-card__logo__img" src={NikeLogo} alt="logo" />
             </div>
 
-            <h3 className="vacancy-card__title">{data.name}</h3>
-            <h4 className="vacancy-card__subtitle">{data.duty}</h4>
+            <h3 className="vacancy-card__title">{data.title}</h3>
+            <h4 className="vacancy-card__subtitle">{data.title}</h4>
 
             <ul className="vacancy-card__list">
                 {vacancyTags}

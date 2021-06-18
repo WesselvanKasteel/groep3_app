@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // scss
 import './SearchVacancy.css';
@@ -11,21 +12,22 @@ import SearchVacancyFilter from './SearchVacancyFilter';
 import SearchVacancyList from './SearchVacancyList';
 const SearchVacancy = () => {
 
-    // hardcode
-    const [vacancyList, setVacancyList] = useState([
-        { name: 'Nike', duty: 'Lead UI designer', tags: ['javascript', 'laravel', 'sass'] },
-        { name: 'North Face', duty: 'Graphic designer', tags: ['react', 'sass'] },
-        { name: 'Albert Hijen', duty: 'Lead UI designer', tags: ['javascript', 'laravel', 'sass', 'node'] },
-        { name: 'Jobanie World', duty: 'Graphic designer', tags: ['react', 'sass'] },
-        { name: 'Goosland', duty: 'Lead UI designer', tags: ['javascript', 'laravel', 'sass'] },
-        { name: 'MacDonalds', duty: 'Graphic designer', tags: ['react', 'sass'] },
-    ]);
-
+    // States
+    const [vacancyList, setVacancyList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
+    const [filterVacancies, setFilterVacancies] = useState([]);
 
     useEffect(() => {
-        console.log(filterItems);
-    }, [filterItems]);
+        getVacancies();
+    }, []);
+
+    const getVacancies = () =>{
+        const BASE_URL ="http://localhost:8000/api/vacancies";
+        axios.get(BASE_URL).then(res =>{
+            setVacancyList([res.data]);            
+        })
+        console.log(vacancyList)
+    }
 
     // update filterItems
     const updateFilterState = (list) => { setFilterItems(list) }

@@ -13,7 +13,7 @@ const SearchVacancyList = ({ vacancies }) => {
     }, [vacancies])
 
     const vacancyList = vacancies.map((vacancy, index) =>
-        <SearchVacancyCard data={vacancy} key={vacancy.name} />
+        <SearchVacancyCard data={vacancy} key={vacancy.title} />
     );
 
     return (
