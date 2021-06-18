@@ -72,7 +72,7 @@ const Login = (props) => {
                 </div>
                 {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
                 
-                <button className="login__form__button">Login</button>
+                <button className="login__form__button">Inloggen</button>
                 <p>Nog geen account? <Link className="login__form__register b2" to="/registreer">Registreer</Link></p>
             </form>
         </section>
