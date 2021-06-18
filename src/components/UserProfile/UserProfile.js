@@ -65,9 +65,9 @@ const UserProfile = () => {
                             {city + ", " + province}</p>
                     </div>
                 </section>
-                <section className="userprofile-content__edit">
+                <button className="userprofile-content__edit">
                     <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
-                </section>
+                </button>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>

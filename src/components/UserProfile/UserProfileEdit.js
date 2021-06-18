@@ -87,7 +87,7 @@ const UserProfileEdit = (props) => {
         // const values = [...jobs];
         // values.splice(index, 1);
         // setJobs(values);
-        
+
         setJobs(jobs.filter((_, i) => i !== index));
     };
 
@@ -96,7 +96,7 @@ const UserProfileEdit = (props) => {
         oldSkills[index].skill = event.target.value;
         setSkills(oldSkills);
     }
-    
+
     const skillsAddHandler = () => {
         setSkills(prevSkills => {
             return [
@@ -230,12 +230,12 @@ const UserProfileEdit = (props) => {
                             onChange={event => handleJobsInputChange(index, event)}
                         />
                         <button
-                            className="userprofileedit__form__button"
+                            className="userprofileedit__form__button--add"
                             type="button"
                             onClick={() => handleJobsAddFields()}
                         >+</button>
                         <button
-                            className="userprofileedit__form__button"
+                            className="userprofileedit__form__button--remove"
                             type="button"
                             onClick={() => handleJobsRemoveFields(index, jobs)}
                         >x</button>
@@ -257,12 +257,12 @@ const UserProfileEdit = (props) => {
                         />
                         <button
                             type="button"
-                            className="userprofileedit__form__button"
+                            className="userprofileedit__form__button--add"
                             onClick={skillsAddHandler}
                         >+</button>
                         <button
                             type="button"
-                            className="userprofileedit__form__button"
+                            className="userprofileedit__form__button--remove"
                             onClick={() => skillsRemoveHandler(skills, index)}
                         >x</button>
                     </Fragment>

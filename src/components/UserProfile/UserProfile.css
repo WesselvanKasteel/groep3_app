@@ -55,8 +55,11 @@
     border: 1px solid #bbb;
     padding: 1rem;
     border-radius: 1rem;
-    margin: 2rem 0;
+    margin: 1rem 0;
     background-color: #fff;
+    box-shadow: 1px 5px 29px 4px #081f4710;
+    -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
+    -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
 .userprofile-content__card h2{
@@ -70,10 +73,10 @@
 
 .userprofile-content__edit{
     background-color: #4CA5FC;
-    padding: 1rem;
-    border-radius: 1rem;
-    margin: 2rem 0;
     cursor: pointer;
+    width: 100%;
+    border-radius: 1rem;
+    margin: 1rem 0;
 }
 
 .userprofile-content__edit h2{
@@ -86,6 +89,7 @@
     border: none;
     display: block;
 }
+
 .userprofile-content__edit__link h2{
     margin: 0;
 }
@@ -126,22 +130,30 @@
     padding: 1rem;
     margin: 0.5rem 0 1rem 0;
     border-radius: 1rem;
-    border: solid 1px #ddd;
+    border: solid 1px #bbb;
     width: 100%;
     box-shadow: 1px 5px 29px 4px #081f4710;
     -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
-.userprofileedit__form__button {
+.userprofileedit__form button {
     margin: 1rem 2rem 2rem 0;
     color: #fff;
-    background-image: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
     font-weight: 600;
     font-size: 1.25rem;
     border-radius: 1rem;
     border: none;
     transition: filter 0.2s ease-out;
+}
+
+.userprofileedit__form__button--accept{
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+    width: 50%;
+}
+
+.userprofileedit__form__button--remove{
+    background: red;
 }
 
 .userprofileedit__form button > a{
@@ -154,15 +166,17 @@
     cursor: pointer;
 }
 
-.userprofileedit__form__button--cancel {
-    background: none;
-    background-color: #FFF;
-    color: #2D78CC;
-}
-
 @media (min-width: 31.25em) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);
+    }
+
+    .userprofile-content__card:nth-child(1), .userprofile-content__card:nth-child(3), .userprofile-content__card:nth-child(5){
+        margin-right: 1rem;
+    }
+
+    .userprofile-content__card:nth-child(2), .userprofile-content__card:nth-child(4){
+        margin-left: 1rem;
     }
 
     .userprofile-content__info {
@@ -174,7 +188,6 @@
     .userprofile-content__grid{
         display: grid;
         grid-template-columns: 50% 50%;
-        grid-gap: 0 2rem;
     }
 
     .userprofile-content__grid__video > video {
