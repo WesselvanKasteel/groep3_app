@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import axios from 'axios';
-import './UserProfile.scss';
+import { Link } from 'react-router-dom';
+import './UserProfile.css';
 
 const UserProfileEdit = (props) => {
     const [profilePicture, setProfilePicture] = useState('');
@@ -8,7 +9,7 @@ const UserProfileEdit = (props) => {
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
-    // const [externalCV, setExternalCV] = useState('');
+    const [externalCV, setExternalCV] = useState('');
     const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
     const [skills, setSkills] = useState([]);
     //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
@@ -30,7 +31,14 @@ const UserProfileEdit = (props) => {
         setCountry(res.data.user.country);
         setSkills(res.data.user.skills);
         // setJobs(res.data.user.jobs);
-        // setExternalCV(res.data.user.external_cv);
+        if (res.data.user.external_cv === null) {
+            setExternalCV("");
+        }
+        else {
+            setExternalCV(res.data.user.external_cv);
+        }
+
+        console.log(res.data);
     }
 
     const addressChangeHandler = (event) => {
@@ -124,27 +132,26 @@ const UserProfileEdit = (props) => {
     const profileUpdateHandler = async (event) => {
         event.preventDefault();
 
-        // let cv;
-        // if (!externalCV.includes("https://")) {
-        //     cv = "https://" + externalCV;
-        // }
-        // else if (!externalCV.includes("http://")) {
-        //     cv = "http://" + externalCV;
-        // }
-
+        let tempCV;
+        if(!externalCV.includes('https://')) {
+            tempCV = 'https://' + externalCV;
+        }
+        else {
+            tempCV = externalCV;
+        }
         // if(!externalCV.includes('https://')) {
         //     setExternalCV(`https://${externalCV}`);
         // } else {
         //     setExternalCV(`http://${externalCV}`);
-        // }
-        
+        // };
+
         const data = {
             address: address,
             city: city,
             province: province,
             country: country,
             previous_jobs: jobs,
-            // external_cv: externalCV,
+            external_cv: tempCV,
         };
         console.log(jobs);
 
@@ -262,15 +269,16 @@ const UserProfileEdit = (props) => {
                 ))}
 
                 <h2>Extern CV</h2>
-                {/* <label htmlFor="externalCV">Link:</label>
-                <input 
+                <label htmlFor="externalCV">Link:</label>
+                <input
                     type="text"
                     name="externalCV"
                     id="externalCV"
                     value={externalCV}
-                    onChange={externalCVChangeHandler}
-                /> */}
-                <button type="submit">Submit</button>
+                    onChange={(event) => setExternalCV(event.target.value)}
+                />
+                <button type="submit">Opslaan</button>
+                <button><Link className="userprofileedit__form__cancel"to="/profiel">Annuleren</Link></button>
             </form>
         </section>
     );

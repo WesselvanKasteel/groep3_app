@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './Record.scss';
+import './Record.css';
 
 // packages
 import { useRecordWebcam } from 'react-record-webcam'
@@ -22,7 +22,7 @@ const Record = () => {
 
     useEffect(() => {
         // console.log(recordWebcam);
-        // console.log(activeComponent);    
+        // console.log(activeComponent);
 
     }, [activeComponent]);
 
@@ -66,7 +66,7 @@ const Record = () => {
         setActiveComponent(index);
     };
 
-    const componentList = components.map((component, index) => 
+    const componentList = components.map((component, index) =>
         <article className={`components__card ${index !== activeComponent ? "" : "active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
 
             {component.video != null &&
@@ -79,7 +79,7 @@ const Record = () => {
                 <video className="components__card__video" src={component.video} controls></video>
             }
         </article>
-    ); 
+    );
 
     return (
         <section className="record">
@@ -89,7 +89,7 @@ const Record = () => {
                 <video className="webcam__preview" ref={recordWebcam.webcamRef} autoPlay muted />
 
                 <div className="webcam__buttons">
-                    {recording && 
+                    {recording &&
                         <button className="webcam__btn webcam__btn-stop" onClick={stopRecording}>Stop Recording</button>
                     }
                     {!recording && webcam &&
@@ -97,7 +97,7 @@ const Record = () => {
                     }
 
                     {webcam ? (
-                        <button className="webcam__btn webcam__btn-close" onClick={closeWebcam}>Close Webcam</button> 
+                        <button className="webcam__btn webcam__btn-close" onClick={closeWebcam}>Close Webcam</button>
                     ) : (
                         <button className="webcam__btn webcam__btn-open" onClick={openWebcam}>Open Webcam</button>
                     )}
@@ -127,7 +127,7 @@ const Record = () => {
                 </article>
 
             </div>
-    
+
         </section>
     )
 }

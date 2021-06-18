@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import './UserProfile.scss';
+import './UserProfile.css';
 
 const UserProfile = () => {
     const [firstName, setFirstName] = useState('');
@@ -12,9 +12,14 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
+<<<<<<< HEAD
     const [jobs, setJobs] = useState(['DC Dirk', 'Verkoopmedewerker Hoogvliet']);
     // const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
     const [skills, setSkills] = useState([]);
+=======
+    const [jobs, setJobs] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
+    const [skills, setSkills] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
+>>>>>>> development
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
     const [externalcv, setExternalcv] = useState('');
 
@@ -28,7 +33,6 @@ const UserProfile = () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        // const res = await axios.get('http://127.0.0.1:8000/api/get-user-data', config);
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
         console.log(res.data);
 
@@ -51,30 +55,36 @@ const UserProfile = () => {
     // }
 
     const jobsList = jobs.map((job) =>
-        <p key={job}>{ job }</p>
+        <p key={job}>{job}</p>
     );
 
     const educationsList = educations.map((education) =>
-        <p key={education}>{ education }</p>
+        <p key={education}>{education}</p>
     );
 
+<<<<<<< HEAD
     const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
+=======
+    const skillsList = skills.map((skill) =>
+        <p key={skill}>{skill}</p>
+    );
+>>>>>>> development
 
-    return(
+    return (
         <div className="userprofile">
             <section className="userprofile-content">
                 <section className="userprofile-content__info">
                     {image !== "" &&
-                    <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profile" />
+                        <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profile" />
                     }
                     <div className="userprofile-content__info__textdiv">
-                        <p className="userprofile-content__info__textdiv1">{ firstName + " "} {prefix !== "" && prefix}{ " " + lastName }</p>
-                        <p className="userprofile-content__info__textdiv2">{ age + " jaar" }<br/>
-                        { city + ", " + province }</p>
+                        <p className="userprofile-content__info__textdiv1">{firstName + " "} {prefix !== "" && prefix}{" " + lastName}</p>
+                        <p className="userprofile-content__info__textdiv2">{age + " jaar"}<br />
+                            {city + ", " + province}</p>
                     </div>
                 </section>
                 <section className="userprofile-content__edit userprofile-content__card">
-                    <Link className="userprofile-content__edit__link" to="/profile-edit"><h2>Profiel bewerken</h2></Link>
+                    <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
                 </section>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
@@ -88,23 +98,33 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__jobs userprofile-content__card">
                         <h2>Eerdere banen</h2>
-                        { jobsList }
+                        {jobsList}
                     </article>
 
                     <article className="userprofile-content__grid__education userprofile-content__card">
                         <h2>Opleidingen</h2>
-                        { educationsList }
+                        {educationsList}
                     </article>
 
                     <article className="userprofile-content__grid__skills userprofile-content__card">
                         <h2>Skills</h2>
-                        { skillsList }
+                        {skillsList}
                     </article>
 
+<<<<<<< HEAD
                     <article className="userprofile-content__grid__external userprofile-content__card">
                         <h2>Extern CV</h2>
                         {/* <a href={externalcv} target="_blank">Link</a> */}
                     </article>
+=======
+                    { externalcv &&
+                        <article className="userprofile-content__grid__external userprofile-content__card">
+                            <h2>Extern CV</h2>
+                            <a href={externalcv} target="_blank" rel="noreferrer">Link</a>
+                        </article>
+                    }
+
+>>>>>>> development
                 </section>
             </section>
         </div>
