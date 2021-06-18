@@ -1,0 +1,28 @@
+.menu {
+    position: fixed;
+    top: 0rem;
+    right: -25rem;
+
+    width: 25rem;
+    height: 100vh;
+
+    padding: 15rem 4rem 4rem 4rem;
+
+    background-color: #fbfbff;
+    list-style-type: none;
+
+    border: 1px solid #ece9f7;
+
+    transform-origin: 0% 0%;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+    z-index: 15;
+}
+
+.active {
+    transform: translate(-25rem, 0);
+}
+
+.menu > a {
+    text-decoration: none;
+}
