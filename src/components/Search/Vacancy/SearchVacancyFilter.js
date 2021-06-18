@@ -28,8 +28,8 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
     const [filterItems, setFilterItems] = useState([]);
 
     useEffect(() => {
-        updateFilterState(filterItems)
-    }, [filterItems]);
+        updateFilterState(filterItems, searchTerm)
+    }, [filterItems, searchTerm]);
 
     // update searchTerm from child
     const updateSearchTerm = (term) => { setSearchTerm(term); }
@@ -43,6 +43,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
+                filter: 'skill',
                 state: 'searchOptions',
                 index: index
             }]     
@@ -61,6 +62,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
+                filter: 'employment',
                 state: 'employmentOptions',
                 index: index
             }]     
@@ -79,6 +81,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
+                filter: 'date',
                 state: 'dateOptions',
                 index: index
             }]       

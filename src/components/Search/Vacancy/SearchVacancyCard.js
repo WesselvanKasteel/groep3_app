@@ -9,7 +9,7 @@ import NikeLogo from '../../../assets/images/nike.png';
 const SearchVacancyCard = ({ data }) => {
 
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
     }, [data])
 
     const vacancyTags = data.skills.map((skill, index) =>

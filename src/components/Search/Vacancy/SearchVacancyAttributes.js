@@ -6,7 +6,7 @@ import './SearchVacancyAttributes.css';
 const SearchVacancyAttributes = ({ attributes, updateFilter }) => {
 
     useEffect(() => [
-        console.log(attributes.length)
+        // console.log(attributes)
     ], [attributes]);
 
     const list = attributes.map((attribute) => 
