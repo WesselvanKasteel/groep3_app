@@ -12,10 +12,10 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobs, setJobs] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
-    const [skills, setSkills] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
+    const [jobs, setJobs] = useState(['DC Dirk', 'Verkoopmedewerker Hoogvliet']);
+    const [skills, setSkills] = useState([]);
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
-    const [externalcv, setExternalcv] = useState('');
+    const [externalCV, setExternalCV] = useState('');
 
     useEffect(() => {
         getUserData();
@@ -37,7 +37,8 @@ const UserProfile = () => {
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         //setJobs(res.data.user.job);
-        setExternalcv(res.data.user.external_cv);
+        setSkills(res.data.user.skills);
+        setExternalCV(res.data.user.external_cv);
         console.log(jobs);
     }
 
@@ -49,9 +50,7 @@ const UserProfile = () => {
         <p key={education}>{education}</p>
     );
 
-    const skillsList = skills.map((skill) =>
-        <p key={skill}>{skill}</p>
-    );
+    const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
 
     return (
         <div className="userprofile">
@@ -66,9 +65,9 @@ const UserProfile = () => {
                             {city + ", " + province}</p>
                     </div>
                 </section>
-                <section className="userprofile-content__edit userprofile-content__card">
+                <button className="userprofile-content__edit">
                     <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
-                </section>
+                </button>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>
@@ -94,13 +93,12 @@ const UserProfile = () => {
                         {skillsList}
                     </article>
 
-                    { externalcv &&
+                    {externalCV &&
                         <article className="userprofile-content__grid__external userprofile-content__card">
                             <h2>Extern CV</h2>
-                            <a href={externalcv} target="_blank" rel="noreferrer">Link</a>
+                            <a href={externalCV} target="_blank" rel="noreferrer">Link</a>
                         </article>
                     }
-
                 </section>
             </section>
         </div>
