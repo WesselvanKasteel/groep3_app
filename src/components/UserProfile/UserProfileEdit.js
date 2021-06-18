@@ -32,7 +32,7 @@ const UserProfileEdit = (props) => {
         setSkills(res.data.user.skills);
         // setJobs(res.data.user.jobs);
         if (res.data.user.external_cv === null) {
-            setExternalCV("");
+            setExternalCV('');
         }
         else {
             setExternalCV(res.data.user.external_cv);
@@ -163,7 +163,7 @@ const UserProfileEdit = (props) => {
 
         const res = await axios.put('http://127.0.0.1:8000/api/user/edit', data, config);
         console.log(res.data);
-        props.history.push("/profile");
+        props.history.push('/profiel');
     };
 
     return(
@@ -177,7 +177,7 @@ const UserProfileEdit = (props) => {
                     id="profilePicture"
                     onChange={(e) => setProfilePicture(e.target.files[0])}
                 />
-                <button>Upload</button>
+                <button className="userprofileedit__form__button">Upload</button>
             </form>
             <form className="userprofileedit__form" onSubmit={profileUpdateHandler} method="POST">
                 <h2>Algemene informatie</h2>
@@ -230,15 +230,15 @@ const UserProfileEdit = (props) => {
                             onChange={event => handleJobsInputChange(index, event)}
                         />
                         <button
-                            className="btn btn-link"
-                            type="button"
-                            onClick={() => handleJobsRemoveFields(index, jobs)}
-                        >-</button>
-                        <button
-                            className="btn btn-link"
+                            className="userprofileedit__form__button"
                             type="button"
                             onClick={() => handleJobsAddFields()}
                         >+</button>
+                        <button
+                            className="userprofileedit__form__button"
+                            type="button"
+                            onClick={() => handleJobsRemoveFields(index, jobs)}
+                        >x</button>
                     </Fragment>
                 ))}
 
@@ -257,14 +257,14 @@ const UserProfileEdit = (props) => {
                         />
                         <button
                             type="button"
-                            className="btn btn-link"
-                            onClick={() => skillsRemoveHandler(skills, index)}
-                        >-</button>
-                        <button
-                            type="button"
-                            className="btn btn-link"
+                            className="userprofileedit__form__button"
                             onClick={skillsAddHandler}
                         >+</button>
+                        <button
+                            type="button"
+                            className="userprofileedit__form__button"
+                            onClick={() => skillsRemoveHandler(skills, index)}
+                        >x</button>
                     </Fragment>
                 ))}
 
@@ -277,8 +277,10 @@ const UserProfileEdit = (props) => {
                     value={externalCV}
                     onChange={(event) => setExternalCV(event.target.value)}
                 />
-                <button type="submit">Opslaan</button>
-                <button><Link className="userprofileedit__form__cancel"to="/profiel">Annuleren</Link></button>
+                <button className="userprofileedit__form__button userprofileedit__form__button--save">Opslaan</button>
+                <button className="userprofileedit__form__button userprofileedit__form__button--cancel">
+                    <Link to="/profiel">Annuleren</Link>
+                </button>
             </form>
         </section>
     );

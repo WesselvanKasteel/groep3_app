@@ -12,20 +12,13 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-<<<<<<< HEAD
     const [jobs, setJobs] = useState(['DC Dirk', 'Verkoopmedewerker Hoogvliet']);
-    // const [skills, setSkills] = useState(['HTML', 'CSS','Javascript', 'Laravel', 'React']);
     const [skills, setSkills] = useState([]);
-=======
-    const [jobs, setJobs] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
-    const [skills, setSkills] = useState(['HTML', 'CSS', 'Javascript', 'Laravel', 'React']);
->>>>>>> development
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
-    const [externalcv, setExternalcv] = useState('');
+    const [externalCV, setExternalCV] = useState('');
 
     useEffect(() => {
         getUserData();
-        // getSkills();
     }, []);
 
     const getUserData = async () => {
@@ -45,14 +38,9 @@ const UserProfile = () => {
         setProvince(res.data.user.province);
         //setJobs(res.data.user.job);
         setSkills(res.data.user.skills);
-        setExternalcv(res.data.user.external_cv);
+        setExternalCV(res.data.user.external_cv);
         console.log(jobs);
     }
-
-    // const getSkills = async () => {
-    //     const res = await axios.get('http://127.0.0.1:8000/api/skills');
-    //     setSkills(res.data);
-    // }
 
     const jobsList = jobs.map((job) =>
         <p key={job}>{job}</p>
@@ -62,13 +50,7 @@ const UserProfile = () => {
         <p key={education}>{education}</p>
     );
 
-<<<<<<< HEAD
     const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
-=======
-    const skillsList = skills.map((skill) =>
-        <p key={skill}>{skill}</p>
-    );
->>>>>>> development
 
     return (
         <div className="userprofile">
@@ -83,7 +65,7 @@ const UserProfile = () => {
                             {city + ", " + province}</p>
                     </div>
                 </section>
-                <section className="userprofile-content__edit userprofile-content__card">
+                <section className="userprofile-content__edit">
                     <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
                 </section>
                 <section className="userprofile-content__grid">
@@ -111,20 +93,12 @@ const UserProfile = () => {
                         {skillsList}
                     </article>
 
-<<<<<<< HEAD
-                    <article className="userprofile-content__grid__external userprofile-content__card">
-                        <h2>Extern CV</h2>
-                        {/* <a href={externalcv} target="_blank">Link</a> */}
-                    </article>
-=======
-                    { externalcv &&
+                    {externalCV &&
                         <article className="userprofile-content__grid__external userprofile-content__card">
                             <h2>Extern CV</h2>
-                            <a href={externalcv} target="_blank" rel="noreferrer">Link</a>
+                            <a href={externalCV} target="_blank" rel="noreferrer">Link</a>
                         </article>
                     }
-
->>>>>>> development
                 </section>
             </section>
         </div>

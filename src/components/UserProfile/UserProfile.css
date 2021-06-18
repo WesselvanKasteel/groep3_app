@@ -70,6 +70,9 @@
 
 .userprofile-content__edit{
     background-color: #4CA5FC;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
     cursor: pointer;
 }
 
@@ -130,10 +133,10 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
-.userprofileedit__form button {
+.userprofileedit__form__button {
     margin: 1rem 2rem 2rem 0;
     color: #fff;
-    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+    background-image: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
     font-weight: 600;
     font-size: 1.25rem;
     border-radius: 1rem;
@@ -149,6 +152,12 @@
 .userprofileedit button:hover {
     filter: brightness(1.20);
     cursor: pointer;
+}
+
+.userprofileedit__form__button--cancel {
+    background: none;
+    background-color: #FFF;
+    color: #2D78CC;
 }
 
 @media (min-width: 31.25em) {

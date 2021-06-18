@@ -19,9 +19,11 @@
 .header__title__blue-1 {
     color: #061D45;
 }
+
 .header__title__blue-2 {
     color: #18315c;
 }
+
 .header__title__blue-3 {
     color: #2a426b;
 }
@@ -49,9 +51,11 @@
 
     transition: opacity 0.25s ease-in-out;
 }
+
 .label-active {
     opacity: 0;
 }
+
 .header__nav__btn {
     height: 3rem;
     width: 3rem;
@@ -67,6 +71,7 @@
 
     border: none;
 }
+
 .header__nav__btn:hover {
     cursor: pointer;
 }
@@ -87,19 +92,24 @@
 .header__nav__btn__bar-1 {
     transform: translateY(-0.5rem);
 }
+
 .header__nav__btn__bar-2 {
     transform: translateY(0rem);
     opacity: 1;
 }
+
 .header__nav__btn__bar-3 {
     transform: translateY(0.5rem);
 }
-.active-1{
+
+.active-1 {
     transform: translateY(0.1rem) rotate(45deg);
 }
+
 .active-2 {
     opacity: 0;
 }
+
 .active-3 {
     transform: translateY(-0.1rem) rotate(-45deg);
 }
