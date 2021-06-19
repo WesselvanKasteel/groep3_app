@@ -50,7 +50,7 @@ const UserProfile = () => {
         <p key={education}>{education}</p>
     );
 
-    const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
+    const skillsList = skills.map(skill => <p className="userprofile-content__grid__skills__skill" key={skill.id}>{skill.skill}</p>);
 
     return (
         <div className="userprofile">

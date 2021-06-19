@@ -88,36 +88,11 @@ const UserProfileEdit = (props) => {
         setJobs(jobs.filter((_, i) => i !== index));
     };
 
-    // const skillsInputChangeHandler = (index, event) => {
-    //     const oldSkills = [...skills];
-    //     oldSkills[index].skill = event.target.value;
-    //     setSkills(oldSkills);
-    // };
-
     const skillsInputChangeHandler = (event) => {
         setEnteredSkill(event.target.value);
     }
 
-    const skillsAddHandler = () => {
-        if(enteredSkill === '') {
-            return;
-        }
-        setSkills(prevSkills => {
-            return [
-                ...prevSkills,
-                {
-                    skill: enteredSkill,
-                }
-            ];
-        });
-        setEnteredSkill('');
-    };
-
     const skillsRemoveHandler = (index) => {
-        // const values = [...jobs];
-        // values.splice(index, 1);
-        // setJobs(values);
-
         setSkills(skills.filter((_, i) => i !== index));
     };
 
@@ -148,11 +123,6 @@ const UserProfileEdit = (props) => {
         else {
             tempCV = externalCV;
         }
-        // if(!externalCV.includes('https://')) {
-        //     setExternalCV(`https://${externalCV}`);
-        // } else {
-        //     setExternalCV(`http://${externalCV}`);
-        // };
 
         const profileData = {
             address: address,
@@ -162,7 +132,6 @@ const UserProfileEdit = (props) => {
             previous_jobs: jobs,
             external_cv: tempCV,
         };
-        console.log(jobs);
 
         const config = {
             headers: {
@@ -173,26 +142,51 @@ const UserProfileEdit = (props) => {
         const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
         console.log(profileRes.data);
 
-        const skillsToBeAdded = skills.map(skill => {
-            return skill.skill;
-        });
-
-        const skillsData = {
-            skill: skillsToBeAdded,
-        }
-
-        const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
-        console.log(skillsRes.data);
-
         props.history.push('/profiel');
     };
 
+    const storeSkillsHandler = async () => {
+        // const skillsToBeAdded = skills.map(skill => {
+        //     return skill.skill;
+        // });
+
+        const skillsData = {
+            skill: enteredSkill,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
+        console.log(skillsRes.data);
+    }
+
+    const skillsAddHandler = () => {
+        if(enteredSkill === '') {
+            return;
+        }
+
+        setSkills(prevSkills => {
+            return [
+                ...prevSkills,
+                {
+                    skill: enteredSkill,
+                }
+            ];
+        });
+        storeSkillsHandler();
+        setEnteredSkill('');
+    };
+
     const skillsEmpty = skills.length === 0 && (
-        <p style={{marginBottom: `2rem`}}>Je hebt nog geen skills.</p>
+        <p>Je hebt nog geen skills.</p>
     );
 
     const skillsList = skills.map(skill => (
-        <span key={skill.id}>{skill.skill}</span>
+        <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
     ))
 
     return(
