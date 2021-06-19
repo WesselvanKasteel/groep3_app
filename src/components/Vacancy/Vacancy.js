@@ -71,7 +71,6 @@ const Vacancy = () => {
                     </article>
                 </div>
             }
-            
         </section>
     )
 }

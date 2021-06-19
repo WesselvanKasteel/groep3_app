@@ -9,11 +9,10 @@ import SearchVacancyCard from './SearchVacancyCard';
 const SearchVacancyList = ({ vacancies }) => {
 
     useEffect(() => {
-        // console.log(vacancies);
-    }, [vacancies])
+    }, [])
 
     const vacancyList = vacancies.map((vacancy, index) =>
-        <SearchVacancyCard data={vacancy} key={vacancy.id} />
+        <SearchVacancyCard data={vacancy} key={vacancy.code} />
     );
 
     return (
