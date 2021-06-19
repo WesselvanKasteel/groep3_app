@@ -278,7 +278,7 @@ const UserProfileEdit = (props) => {
                         >+</button>
                         <button
                             type="button"
-                            className="userprofileedit__form__button"
+                            className="userprofileedit__form__button--remove"
                             onClick={() => skillsRemoveHandler(index, skills)}
                         >x</button>
                     </Fragment>

@@ -117,6 +117,10 @@
     grid-column: 2;
 }
 
+.userprofileedit__form label {
+    display: block;
+}
+
 .userprofileedit__form input{
     font-family: inherit;
     padding: 1rem;
