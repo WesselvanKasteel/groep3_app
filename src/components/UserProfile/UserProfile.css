@@ -8,7 +8,6 @@
 .userprofile{
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
-
     margin-top: 10vh;
 }
 
@@ -72,6 +71,7 @@
     width: 100%;
     border-radius: 1rem;
     margin: 1rem 0;
+    padding: 1rem;
 }
 
 .userprofile-content__edit h2{
@@ -105,7 +105,6 @@
 .userprofileedit{
     display: grid;
     grid-template-columns: var(--userprofileedit-grid-mobile);
-
     margin-top: 10vh;
 }
 
@@ -138,13 +137,14 @@
     border-radius: 1rem;
     border: none;
     transition: filter 0.2s ease-out;
+    padding: 1rem 2rem;
 }
 
-.userprofileedit__form__button--accept{
-    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+.userprofileedit__form__button--add, .userprofileedit__form__button{
+    background-color: var(--color-accent);
 }
 
-.userprofileedit__form__button--remove{
+.userprofileedit__form__button--remove, .userprofileedit__form__button--cancel{
     background: red;
 }
 
@@ -158,7 +158,7 @@
     cursor: pointer;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 1000px) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);
     }
@@ -172,7 +172,6 @@
     }
 
     .userprofile-content__info {
-        display: grid;
         margin-top: 2rem;
     }
 
