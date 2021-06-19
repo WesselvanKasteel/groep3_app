@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 
 // scss
-import './SearchVacancyAttributes.css';
+import './SearchProfileAttributes.css';
 
-const SearchVacancyAttributes = ({ attributes, updateFilter }) => {
+const SearchProfileAttributes = ({ attributes, updateFilter }) => {
 
     useEffect(() => [
         // console.log(attributes)
@@ -27,4 +27,4 @@ const SearchVacancyAttributes = ({ attributes, updateFilter }) => {
     )
 }
 
-export default SearchVacancyAttributes;
+export default SearchProfileAttributes;

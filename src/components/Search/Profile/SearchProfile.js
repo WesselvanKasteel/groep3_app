@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // scss
-import './SearchVacancy.css';
+import './SearchProfile.css';
 
 // icons
 import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
 
 // components
-import SearchVacancyFilter from './SearchVacancyFilter';
-import SearchVacancyList from './SearchVacancyList';
+import SearchProfileFilter from './SearchProfileFilter';
+import SearchProfileList from './SearchProfileList';
 const SearchVacancy = () => {
 
     // States
-    const [vacancyList, setVacancyList] = useState([]);
+    const [ProfileList, setVacancyList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
     const [filterSearchTerm, setFilterSearchTerm] = useState('');
     const [filterVacancies, setFilterVacancies] = useState([]);
 
     useEffect(() => {
-        getVacancies();
+        getProfiles();
     }, []);
 
-    const getVacancies = () =>{
+    const getProfiles = () =>{
         const BASE_URL ="http://localhost:8000/api/vacancies";
         axios.get(BASE_URL).then(res =>{
             setVacancyList(res.data);            
@@ -60,10 +60,10 @@ const SearchVacancy = () => {
                 </div>
                 <SearchVacancyFilter updateFilterState={updateFilterState} />
                 {/* <SearchVacancyList vacancies={filteringVacancies} /> */}
-                <SearchVacancyList vacancies={vacancyList} />
+                <SearchVacancyList profiles={vacancyList} />
             </div>
         </section>
     )
 }
 
-export default SearchVacancy;
+export default SearchProfile;

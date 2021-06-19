@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 
 // scss
-import './SearchVacancyList.css';
+import './SearchProfileList.css';
 
 // components
-import SearchVacancyCard from './SearchVacancyCard';
+import SearchProfileCard from './SearchProfileCard';
 
-const SearchVacancyList = ({ vacancies }) => {
+const SearchProfileList = ({ vacancies }) => {
 
     useEffect(() => {
         // console.log(vacancies);
     }, [vacancies])
 
-    const vacancyList = vacancies.map((vacancy, index) =>
-        <SearchVacancyCard data={vacancy} key={vacancy.id} />
+    const profileList = vacancies.map((profile, index) =>
+        <SearchProfileCard data={profile} key={profile.id} />
     );
 
     return (
-        <section className="vacancy-list">
-            <ul className="vacancy-list__list">
-                {vacancyList}
+        <section className="profile-list">
+            <ul className="profile-list__list">
+                {profileList}
             </ul>
         </section>
     )
 }
 
-export default SearchVacancyList;
+export default SearchProfileList;
