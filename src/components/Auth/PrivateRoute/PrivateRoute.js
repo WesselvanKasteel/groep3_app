@@ -13,12 +13,6 @@ const PrivateRoute = ({ path, component, exact, role }) => {
     const [activeRole, setActiveRole] = useState('');
 
     useEffect(() => {
-
-        console.log(path);
-        console.log(component);
-        console.log(exact);
-        console.log(role);
-
         fetchUserAuth();
     }, []);
 
@@ -46,6 +40,8 @@ const PrivateRoute = ({ path, component, exact, role }) => {
         setIsLoading(false);
         setIsLoggedIn(true);
         setActiveRole('unemployed');
+
+        console.log();
     }
 
     return isLoading ? null : isLoggedIn && activeRole === role ?

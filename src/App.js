@@ -8,8 +8,9 @@ import UserProfileEdit from './components/UserProfile/UserProfileEdit';
 import Record from './components/Record/Record';
 import SearchVacancy from './components/Search/Vacancy/SearchVacancy';
 import Vacancy from './components/Vacancy/Vacancy';
+import PageNotFound from './components/Error/PageNotFound';
 
-// protected route
+// privateRoute route
 import PrivateRoute from './components/Auth/PrivateRoute/PrivateRoute';
 
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
@@ -35,7 +36,7 @@ const App = () => {
 
                 <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} role="unemployed"/>
 
-                <Route default component={SearchVacancy} />
+                <Route default component={PageNotFound} />
             </Switch>
         </Router>
     );
