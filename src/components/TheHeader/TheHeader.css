@@ -1,11 +1,13 @@
 .header {
-    height: 10vh;
+    height: 7.5vh;
     width: 100%;
 
     display: grid;
     grid-template-columns: 25% 75%;
 
     background-color: #fff;
+
+    box-shadow: 0px 5px 15px rgba(6, 29, 69, 0.1);
 
     position: fixed;
     top: 0;

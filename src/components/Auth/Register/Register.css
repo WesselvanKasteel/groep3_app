@@ -1,4 +1,4 @@
-h2 {
+/* h2 {
     color: var(--color-accent);
 }
 
@@ -10,4 +10,104 @@ button
     border: 0.1rem solid var(--color-accent);
     border-radius: 0.3rem;
     padding: 1rem 4rem;
+} */
+
+.register{
+    display: block;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    margin-top: 7.5rem;
+}
+
+.register__article__title{
+    color: #28406A;
+    margin-bottom: 2rem;
+}
+
+.register__form__article__container{
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.register__form__article__container__input{
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #A3A6BA;
+    width: 100%;
+    font-family: inherit;
+    color: inherit;
+    padding-left: 0rem;
+    padding-bottom: 0.5rem;
+}
+
+.register__form__article__container__input:focus{
+    border-color: #28406A;
+}
+
+.register__form__article__container__placeholder{
+    color: #65657b;
+    pointer-events: none;
+    position:absolute;
+    transform-origin: 0 50%;
+    transition:200ms, color 200ms;
+    left: 0;
+}
+
+.register__form__article__container__input:focus ~ .register__form__article__container__placeholder,
+.register__form__article__container__input:not(:placeholder-shown) ~ .register__form__article__container__placeholder {
+    transform: translateY(-2rem) scale(0.7);
+    font-weight: bold;
+    left: 0;
+}   
+
+.register__form__article__container__input:not(:placeholder-shown) ~ .register__form__article__container__placeholder {
+    color:#28406A;
+    
+}
+
+.register__form > button
+{
+    display: block;
+    font: inherit;
+    background-color: #28406A;
+    color: #fff;
+    border: 0.1rem solid var(--color-accent);
+    border-radius: 2rem;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.register__form > p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.t1{
+    margin-top:1rem;
+}
+
+@media (min-width: 750px) {
+    .register{
+        width: 50%;
+        margin-top: 10rem;
+    }
+    .register__form__article{
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .register__form > button{
+        width: 50%;
+    }
+
+    
 }

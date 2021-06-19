@@ -19,9 +19,10 @@ const Record = () => {
 
     const [activeComponent, setActiveComponent] = useState(0);
     const [components, setComponents] = useState([
-        {name: "introductie", description: "introductie beschrijving introductie beschrijving introductie beschrijving introductie beschrijving", video: null},
+        {name: "introductie", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius non donec faucibus semper vel. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit.", video: null},
         {name: "motivatie", description: "motivatie beschrijving", video: null},
         {name: "skills", description: "skills beschrijving", video: null},
+        {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null},
     ]);
 
     const recordWebcam = useRecordWebcam();
@@ -69,11 +70,16 @@ const Record = () => {
         setActiveComponent(index);
     };
 
+
     const componentList = components.map((component, index) =>
         <li className={`components__list__item ${index !== activeComponent ? "" : "components__list__item--active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
 
-            <h1 className={component.video != null ? 'components__list__item__titel' : 'components__list__item__titel--large'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
+            <h1 className={component.video != null ? 'components__list__item__titel--recorded' : 'components__list__item__titel'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
             
+            {component.video === null &&
+                <p className="components__list__item__subtitle">klik hier om de {component.name} op te nemen</p>
+            }
+
             {component.video != null &&
                 <video className="components__list__item__video" src={component.video} controls></video>
             }
@@ -129,7 +135,7 @@ const Record = () => {
 
                     { componentList }
 
-                    <li className="components__list__item components__list__item--next">
+                    <li className="components__list__item--next">
                         <button className="components__next__btn">Volgende stap</button>
                     </li>
                 </ul>
