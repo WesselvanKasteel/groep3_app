@@ -8,6 +8,8 @@
 .userprofile{
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
+
+    margin-top: 10vh;
 }
 
 .userprofile p {
@@ -103,6 +105,8 @@
 .userprofileedit{
     display: grid;
     grid-template-columns: var(--userprofileedit-grid-mobile);
+
+    margin-top: 10vh;
 }
 
 .userprofileedit h2{
