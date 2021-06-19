@@ -8,6 +8,7 @@ import UserProfileEdit from './components/UserProfile/UserProfileEdit';
 import Record from './components/Record/Record';
 import SearchVacancy from './components/Search/Vacancy/SearchVacancy';
 import Vacancy from './components/Vacancy/Vacancy';
+import CreateVacancy from './components/Vacancy/CreateVacancy';
 import PageNotFound from './components/Error/PageNotFound';
 
 // privateRoute route
@@ -21,7 +22,6 @@ const App = () => {
         <TheHeader />
             <Switch>
                 
-
                 <Route exact path="/">
                         <Redirect to="/zoeken" />
                 </Route>
@@ -33,6 +33,7 @@ const App = () => {
                 {/* <Route exact path="/profiel-bewerken" component={UserProfileEdit} /> */}
                 <Route exact path="/maak-sollicitatievideo/:handle" component={Record} />
                 <Route exact path="/vacature/:handle" component={Vacancy} />
+                <Route exact path="/create-vacature" component={CreateVacancy} />
 
                 <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} role="unemployed"/>
 
