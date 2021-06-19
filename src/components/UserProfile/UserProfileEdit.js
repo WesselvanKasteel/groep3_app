@@ -11,7 +11,8 @@ const UserProfileEdit = (props) => {
     const [country, setCountry] = useState('');
     const [externalCV, setExternalCV] = useState('');
     const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
-    const [skills, setSkills] = useState([{ skill: '' }]);
+    const [enteredSkill, setEnteredSkill] = useState('');
+    const [skills, setSkills] = useState([]);
     //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
@@ -87,34 +88,38 @@ const UserProfileEdit = (props) => {
         setJobs(jobs.filter((_, i) => i !== index));
     };
 
-    const skillsInputChangeHandler = (index, event) => {
-        const oldSkills = [...skills];
-        oldSkills[index].skill = event.target.value;
-        setSkills(oldSkills);
+    // const skillsInputChangeHandler = (index, event) => {
+    //     const oldSkills = [...skills];
+    //     oldSkills[index].skill = event.target.value;
+    //     setSkills(oldSkills);
+    // };
+
+    const skillsInputChangeHandler = (event) => {
+        setEnteredSkill(event.target.value);
     }
 
     const skillsAddHandler = () => {
+        if(enteredSkill === '') {
+            return;
+        }
         setSkills(prevSkills => {
             return [
                 ...prevSkills,
                 {
-                    skill: '',
+                    skill: enteredSkill,
                 }
-            ]
+            ];
         });
-        // setSkills(prevSkills => {
-        //     return [
-        //         ...prevSkills,
-        //         {
-        //             skill: '',
-        //         }
-        //     ]
-        // });
-    }
+        setEnteredSkill('');
+    };
 
-    const skillsRemoveHandler = (index, skills) => {
+    const skillsRemoveHandler = (index) => {
+        // const values = [...jobs];
+        // values.splice(index, 1);
+        // setJobs(values);
+
         setSkills(skills.filter((_, i) => i !== index));
-    }
+    };
 
     const profilePictureUpdateHandler = async (event) => {
         event.preventDefault();
@@ -182,6 +187,14 @@ const UserProfileEdit = (props) => {
         props.history.push('/profiel');
     };
 
+    const skillsEmpty = skills.length === 0 && (
+        <p style={{marginBottom: `2rem`}}>Je hebt nog geen skills.</p>
+    );
+
+    const skillsList = skills.map(skill => (
+        <span key={skill.id}>{skill.skill}</span>
+    ))
+
     return(
         <section className ="userprofileedit">
             <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
@@ -246,12 +259,12 @@ const UserProfileEdit = (props) => {
                             onChange={event => handleJobsInputChange(index, event)}
                         />
                         <button
-                            className="userprofileedit__form__button--add"
+                            className="userprofileedit__form__button userprofileedit__form__button--add"
                             type="button"
                             onClick={() => handleJobsAddFields()}
                         >+</button>
                         <button
-                            className="userprofileedit__form__button--remove"
+                            className="userprofileedit__form__button userprofileedit__form__button--remove"
                             type="button"
                             onClick={() => handleJobsRemoveFields(index, jobs)}
                         >x</button>
@@ -261,28 +274,21 @@ const UserProfileEdit = (props) => {
                 <h2>Opleidingen</h2>
 
                 <h2>Skills</h2>
-                {skills.map((inputField, index) => (
-                    <Fragment key={`${inputField}~${index}`}>
-                        <label htmlFor="skills">Skill:</label>
-                        <input
-                            type="text"
-                            id="skills"
-                            name="skills"
-                            value={inputField.skill}
-                            onChange={(event) => skillsInputChangeHandler(index, event)}
-                        />
-                        <button
-                            type="button"
-                            className="userprofileedit__form__button--add"
-                            onClick={skillsAddHandler}
-                        >+</button>
-                        <button
-                            type="button"
-                            className="userprofileedit__form__button--remove"
-                            onClick={() => skillsRemoveHandler(index, skills)}
-                        >x</button>
-                    </Fragment>
-                ))}
+                {skillsList}
+                <br />
+                <label htmlFor="skill">Skill:</label>
+                <input
+                    type="text"
+                    id="skill"
+                    name="skill"
+                    value={enteredSkill}
+                    onChange={skillsInputChangeHandler}
+                />
+                <button
+                    type="button"
+                    className="userprofileedit__form__button userprofileedit__form__button--add"
+                    onClick={skillsAddHandler}
+                >+</button>
 
                 <h2>Extern CV</h2>
                 <label htmlFor="externalCV">Link:</label>

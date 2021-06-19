@@ -5,7 +5,7 @@
     --userprofileedit-grid-desktop: 35% 30% 35%;
 }
 
-.userprofile{
+.userprofile {
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
     margin-top: 10vh;
@@ -15,41 +15,41 @@
     color: var(--color-text-light);
 }
 
-.userprofile-content{
+.userprofile-content {
     grid-column: 2;
 }
 
-.userprofile-content__info{
+.userprofile-content__info {
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 2rem;
 }
 
-.userprofile-content__info__img{
+.userprofile-content__info__img {
     grid-column: 1;
     width: 10rem;
     height: 10rem;
     border-radius: 0.5rem;
 }
 
-.userprofile-content__info__textdiv{
+.userprofile-content__info__textdiv {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: right;
 }
 
-.userprofile-content__info__textdiv1{
+.userprofile-content__info__textdiv1 {
     font-weight: bold;
     font-size: 2rem;
     color: var(--color-text);
 }
 
-.userprofile-content__info__textdiv2{
+.userprofile-content__info__textdiv2 {
     text-align: right;
 }
 
-.userprofile-content__card{
+.userprofile-content__card {
     border: 1px solid #bbb;
     padding: 1rem;
     border-radius: 1rem;
@@ -60,12 +60,13 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
-.userprofile-content__card h2{
+.userprofile-content__card h2 {
     color: var(--color-text);
     margin-bottom: 1rem;
 }
 
-.userprofile-content__edit{
+.userprofile-content__edit {
+    border: none;
     background-color: #4CA5FC;
     cursor: pointer;
     width: 100%;
@@ -74,26 +75,26 @@
     padding: 1rem;
 }
 
-.userprofile-content__edit h2{
+.userprofile-content__edit h2 {
     text-align: center;
     color: white;
 }
 
-.userprofile-content__edit__link{
+.userprofile-content__edit__link {
     text-decoration: none;
     border: none;
     display: block;
 }
 
-.userprofile-content__edit__link h2{
+.userprofile-content__edit__link h2 {
     margin: 0;
 }
 
-.userprofile-content__grid__video > video{
+.userprofile-content__grid__video > video {
     border-radius: 1rem;
 }
 
-.userprofile-content__grid__skills > p{
+.userprofile-content__grid__skills > p {
     display: inline-block;
     background-color: #28406A;
     color: white;
@@ -102,7 +103,7 @@
     border-radius: 1rem;
 }
 
-.userprofileedit{
+.userprofileedit {
     display: grid;
     grid-template-columns: var(--userprofileedit-grid-mobile);
     margin-top: 10vh;
@@ -133,7 +134,7 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
-.userprofileedit__form button {
+.userprofileedit__form__button {
     margin: 1rem 2rem 2rem 0;
     color: #fff;
     font-weight: 600;
@@ -144,15 +145,15 @@
     padding: 1rem 2rem;
 }
 
-.userprofileedit__form__button--add, .userprofileedit__form__button{
+.userprofileedit__form__button--add, .userprofileedit__form__button {
     background-color: var(--color-accent);
 }
 
-.userprofileedit__form__button--remove, .userprofileedit__form__button--cancel{
-    background: red;
+.userprofileedit__form__button--remove, .userprofileedit__form__button--cancel {
+    background-color: red;
 }
 
-.userprofileedit__form button > a{
+.userprofileedit__form button > a {
     text-decoration: none;
     color: inherit;
 }
@@ -162,16 +163,16 @@
     cursor: pointer;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 62.5em) {
     .userprofile{
         grid-template-columns: var(--userprofile-grid-desktop);
     }
 
-    .userprofile-content__card:nth-child(1), .userprofile-content__card:nth-child(3), .userprofile-content__card:nth-child(5){
+    .userprofile-content__card:nth-child(1), .userprofile-content__card:nth-child(3), .userprofile-content__card:nth-child(5) {
         margin-right: 1rem;
     }
 
-    .userprofile-content__card:nth-child(2), .userprofile-content__card:nth-child(4){
+    .userprofile-content__card:nth-child(2), .userprofile-content__card:nth-child(4) {
         margin-left: 1rem;
     }
 
@@ -179,7 +180,7 @@
         margin-top: 2rem;
     }
 
-    .userprofile-content__grid{
+    .userprofile-content__grid {
         display: grid;
         grid-template-columns: 50% 50%;
     }
@@ -188,7 +189,7 @@
         height: 75%;
     }
 
-    .userprofileedit{
+    .userprofileedit {
         grid-template-columns: var(--userprofileedit-grid-desktop);
     }
 }
