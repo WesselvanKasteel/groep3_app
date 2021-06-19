@@ -71,6 +71,7 @@
     width: 100%;
     border-radius: 1rem;
     margin: 1rem 0;
+    padding: 1rem;
 }
 
 .userprofile-content__edit h2{
@@ -136,13 +137,14 @@
     border-radius: 1rem;
     border: none;
     transition: filter 0.2s ease-out;
+    padding: 1rem 2rem;
 }
 
-.userprofileedit__form__button--accept{
-    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+.userprofileedit__form__button--add, .userprofileedit__form__button{
+    background-color: var(--color-accent);
 }
 
-.userprofileedit__form__button--remove{
+.userprofileedit__form__button--remove, .userprofileedit__form__button--cancel{
     background: red;
 }
 
@@ -174,6 +176,7 @@
     }
 
     .userprofile-content__grid{
+        display: grid;
         grid-template-columns: 50% 50%;
     }
 
