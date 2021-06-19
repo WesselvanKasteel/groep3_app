@@ -94,13 +94,21 @@
     border-radius: 1rem;
 }
 
-.userprofile-content__grid__skills > p {
+.userprofile-content__grid__skills > p,
+.userprofile__form__skill {
     display: inline-block;
     background-color: #28406A;
     color: white;
     padding: 0.5rem;
     margin: 0 1rem 1rem 0;
     border-radius: 1rem;
+    transition: all 0.2s;
+}
+
+.userprofile__form__skill:hover {
+    background-color: red;
+    text-decoration: line-through;
+    cursor: pointer;
 }
 
 .userprofileedit {
