@@ -7,8 +7,10 @@ import UserProfile from './components/UserProfile/UserProfile';
 import UserProfileEdit from './components/UserProfile/UserProfileEdit';
 import Record from './components/Record/Record';
 import SearchVacancy from './components/Search/Vacancy/SearchVacancy';
+import SearchProfile from './components/Search/Profile/SearchProfile';
 
 import { Route, Redirect, Switch, BrowserRouter as Router } from 'react-router-dom';
+
 
 const App = () => {
     return (
@@ -16,6 +18,7 @@ const App = () => {
         <Header />
             <Switch>
                 <Route exact path="/" component={SearchVacancy} />
+                <Route exact path="/zoek-profiel" component={SearchProfile} />
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/registreer" component={Register} />
                 <Route exact path="/profiel" component={UserProfile} />

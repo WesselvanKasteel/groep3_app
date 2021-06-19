@@ -15,6 +15,7 @@ const SearchVacancy = () => {
     // States
     const [vacancyList, setVacancyList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
+    const [filterSearchTerm, setFilterSearchTerm] = useState('');
     const [filterVacancies, setFilterVacancies] = useState([]);
 
     useEffect(() => {
@@ -24,26 +25,20 @@ const SearchVacancy = () => {
     const getVacancies = () =>{
         const BASE_URL ="http://localhost:8000/api/vacancies";
         axios.get(BASE_URL).then(res =>{
-            setVacancyList([res.data]);            
+            setVacancyList(res.data);            
         })
         console.log(vacancyList)
     }
 
     // update filterItems
-    const updateFilterState = (list) => { setFilterItems(list) }
+    const updateFilterState = (list, searchTerm) => { 
+        setFilterItems(list);
+        setFilterSearchTerm(searchTerm); 
 
-    const filteringVacancies = () =>{
-        const filteredVacancies = vacancyList.filter(vacancy =>{
-            const searchText = filterSearchTerm.toLowerCase();
-            const searchTags = filterItems.item 
-            return (
-                vacancy.title.indexOf(searchText)!==-1 ||
-                vacancy.searchTags.indexOf(searchTags) >= 0
-            );
-           
-        })
-        console.log(filteredVacancies);
+        console.log(list);
+        console.log(searchTerm);
     }
+
 
     return (
         <section className="search">

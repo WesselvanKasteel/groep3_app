@@ -6,14 +6,14 @@ import './SearchProfileList.css';
 // components
 import SearchProfileCard from './SearchProfileCard';
 
-const SearchProfileList = ({ vacancies }) => {
+const SearchProfileList = ({ profiles }) => {
 
     useEffect(() => {
         // console.log(vacancies);
-    }, [vacancies])
+    }, [profiles])
 
-    const profileList = vacancies.map((profile, index) =>
-        <SearchProfileCard data={profile} key={profile.id} />
+    const profileList = profiles.map((profile, index) =>
+        <SearchProfileCard data={profile} key={profile.first_name} />
     );
 
     return (

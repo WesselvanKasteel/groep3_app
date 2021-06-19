@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // scss
-import './SearchVacancyFilter.css';
+import './SearchProfileFilter.css';
 
 // components
 import SearchBar from '../../CustomElements/SearchBar';
@@ -10,10 +10,10 @@ import DropdownEmployment from '../../CustomElements/DropdownEmployment';
 import DropdownDate from '../../CustomElements/DropdownDate';
 import RadiusSlider from '../../CustomElements/RadiusSlider';
 
-import SearchVacancyAttributes from './SearchVacancyAttributes';
+import SearchProfileAttributes from './SearchProfileAttributes';
 
 // de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
-const SearchVacancyFilter = ({ updateFilterState }) => {
+const SearchProfileFilter = ({ updateFilterState }) => {
 
     // hardcode
     const [searchOptions, setSearchOptions] = useState(['Html', 'Css', 'Javascript', 'Laravel']);
@@ -28,8 +28,8 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
     const [filterItems, setFilterItems] = useState([]);
 
     useEffect(() => {
-        updateFilterState(filterItems, searchTerm)
-    }, [filterItems, searchTerm]);
+        updateFilterState(filterItems)
+    }, [filterItems]);
 
     // update searchTerm from child
     const updateSearchTerm = (term) => { setSearchTerm(term); }
@@ -43,7 +43,6 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
-                filter: 'skill',
                 state: 'searchOptions',
                 index: index
             }]     
@@ -62,7 +61,6 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
-                filter: 'employment',
                 state: 'employmentOptions',
                 index: index
             }]     
@@ -81,7 +79,6 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
-                filter: 'date',
                 state: 'dateOptions',
                 index: index
             }]       
@@ -163,9 +160,9 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
                     />
                 </li>
             </ul>
-            <SearchVacancyAttributes attributes={filterItems} updateFilter={updateFilter}/>
+            <SearchProfileAttributes attributes={filterItems} updateFilter={updateFilter}/>
         </section>  
     )
 }
 
-export default SearchVacancyFilter;
+export default SearchProfileFilter;

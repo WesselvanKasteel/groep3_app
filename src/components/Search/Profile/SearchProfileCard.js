@@ -20,10 +20,10 @@ const SearchProfileCard = ({ data }) => {
     return (
         <li className="profile-card">
             <div className="profile-card__logo">
-                <img className="profile-card__logo__img" src={NikeLogo} alt="logo" />
+                <img className="profile-card__logo__img" src={data.picture} alt="profiel-foto" />
             </div>
 
-            <h3 className="profile-card__title">{data.title}</h3>
+            <h3 className="profile-card__title">{data.first_name}</h3>
             <h4 className="profile-card__subtitle">{data.title}</h4>
 
             <ul className="profile-card__list">

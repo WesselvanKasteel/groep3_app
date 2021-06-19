@@ -10,22 +10,24 @@ import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
 // components
 import SearchProfileFilter from './SearchProfileFilter';
 import SearchProfileList from './SearchProfileList';
-const SearchVacancy = () => {
+const SearchProfile = () => {
 
     // States
-    const [ProfileList, setVacancyList] = useState([]);
+    const [profileList, setProfileList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
     const [filterSearchTerm, setFilterSearchTerm] = useState('');
-    const [filterVacancies, setFilterVacancies] = useState([]);
+    const [filterProfiles, setFilterProfiles] = useState([]);
 
     useEffect(() => {
         getProfiles();
+        
     }, []);
 
     const getProfiles = () =>{
-        const BASE_URL ="http://localhost:8000/api/vacancies";
+        const BASE_URL ="http://localhost:8000/api/users";
         axios.get(BASE_URL).then(res =>{
-            setVacancyList(res.data);            
+            setProfileList(res.data);  
+            console.log(res.data)          
         })
     }
 
@@ -38,18 +40,7 @@ const SearchVacancy = () => {
         console.log(searchTerm);
     }
 
-    const filteringVacancies = () =>{
-        const filteredVacancies = vacancyList.filter(vacancy =>{
-            const searchText = filterSearchTerm.toLowerCase();
-            const searchTags = filterItems.item 
-            return (
-                vacancy.title.indexOf(searchText)!==-1 ||
-                vacancy.searchTags.indexOf(searchTags) >= 0
-            );
-           
-        })
-        console.log(filteredVacancies);
-    }
+    
 
     return (
         <section className="search">
@@ -58,9 +49,9 @@ const SearchVacancy = () => {
                     <h1 className="search__container__title-search">Zoeken</h1>
                     <img className="search__container__title-arrow_down" src={ArrowDirection} alt="arrow" />
                 </div>
-                <SearchVacancyFilter updateFilterState={updateFilterState} />
-                {/* <SearchVacancyList vacancies={filteringVacancies} /> */}
-                <SearchVacancyList profiles={vacancyList} />
+                <SearchProfileFilter updateFilterState={updateFilterState} />
+                {/* <SearchProfileList vacancies={filteringVacancies} /> */}
+                <SearchProfileList profiles={profileList} />
             </div>
         </section>
     )
