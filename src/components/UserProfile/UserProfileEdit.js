@@ -12,6 +12,8 @@ const UserProfileEdit = (props) => {
     const [externalCV, setExternalCV] = useState('');
     const [enteredJob, setEnteredJob] = useState('');
     const [jobs, setJobs] = useState([]);
+    const [enteredEducation, setEnteredEducation] = useState('');
+    const [education, setEducation] = useState([]);
     const [enteredSkill, setEnteredSkill] = useState('');
     const [skills, setSkills] = useState([]);
 
@@ -31,6 +33,7 @@ const UserProfileEdit = (props) => {
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
         setSkills(res.data.user.skills);
+        setEducation(res.data.user.education);
         setJobs(res.data.user.jobs);
         if (res.data.user.external_cv === null) {
             setExternalCV('');
@@ -65,6 +68,14 @@ const UserProfileEdit = (props) => {
 
     const jobsRemoveHandler = (index) => {
         setJobs(jobs.filter((_, i) => i !== index));
+    };
+
+    const educationInputChangeHandler = (event) => {
+        setEnteredEducation(event.target.value);
+    }
+
+    const educationRemoveHandler = (index) => {
+        setEducation(education.filter((_, i) => i !== index));
     };
 
     const skillsInputChangeHandler = (event) => {
@@ -108,7 +119,6 @@ const UserProfileEdit = (props) => {
             city: city,
             province: province,
             country: country,
-            // previous_jobs: jobs,
             external_cv: tempCV,
         };
 
@@ -123,10 +133,8 @@ const UserProfileEdit = (props) => {
 
         props.history.push('/profiel');
     };
+
     const storeJobsHandler = async () => {
-        // const jobsToBeAdded = jobs.map(job => {
-        //     return job.job;
-        // });
 
         const jobsData = {
             job: enteredJob,
@@ -142,10 +150,23 @@ const UserProfileEdit = (props) => {
         console.log(jobsRes.data);
     }
 
+    const storeEducationHandler = async () => {
+
+        const educationData = {
+            education: enteredEducation,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const educationRes = await axios.post('http://127.0.0.1:8000/api/education/store', educationData, config);
+        console.log(educationRes.data);
+    }
+
     const storeSkillsHandler = async () => {
-        // const skillsToBeAdded = skills.map(skill => {
-        //     return skill.skill;
-        // });
 
         const skillsData = {
             skill: enteredSkill,
@@ -178,6 +199,23 @@ const UserProfileEdit = (props) => {
         setEnteredJob('');
     };
 
+    const educationAddHandler = () => {
+        if(enteredEducation === '') {
+            return;
+        }
+
+        setEducation(prevEducation => {
+            return [
+                ...prevEducation,
+                {
+                    education: enteredEducation,
+                }
+            ];
+        });
+        storeEducationHandler();
+        setEnteredEducation('');
+    };
+
     const skillsAddHandler = () => {
         if(enteredSkill === '') {
             return;
@@ -194,11 +232,6 @@ const UserProfileEdit = (props) => {
         storeSkillsHandler();
         setEnteredSkill('');
     };
-
-
-    // const jobsEmpty = jobs.length === 0 && (
-    //     <p>Je hebt nog geen banen.</p>
-    // );
 
     let jobsList;
     if (jobs.length === 0) {
@@ -220,12 +253,16 @@ const UserProfileEdit = (props) => {
         ))
     }
 
-    // const skillsEmpty = skills.length === 0 && (
-    //     <p>Je hebt nog geen skills.</p>
-    // );
-    // const skillsList = skills.map(skill => (
-    //     <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
-    // ))
+    let educationList;
+    if (education.length === 0) {
+        educationList = <p><i>Je hebt nog geen opleidingen toegevoegd</i></p>
+    }
+    else {
+        educationList = education.map(education => (
+            <p key={education.id}>{education.education}</p>
+        ))
+    }
+
 
     return(
         <section className ="userprofileedit">
@@ -296,6 +333,20 @@ const UserProfileEdit = (props) => {
                 >+</button>
 
                 <h2>Opleidingen</h2>
+                    {educationList}
+                    <label htmlFor="education">Opleidingen:</label>
+                    <input
+                        type="text"
+                        id="education"
+                        name="education"
+                        value={enteredEducation}
+                        onChange={educationInputChangeHandler}
+                    />
+                    <button
+                        type="button"
+                        className="userprofileedit__form__button userprofileedit__form__button--add"
+                        onClick={educationAddHandler}
+                    >+</button>
 
                 <h2>Skills</h2>
                 {skillsList}

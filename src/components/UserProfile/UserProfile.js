@@ -13,8 +13,8 @@ const UserProfile = () => {
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
     const [jobs, setJobs] = useState([]);
+    const [education, setEducation] = useState([]);
     const [skills, setSkills] = useState([]);
-    const [educations, setEducations] = useState(['HAVO', 'HBO']);
     const [externalCV, setExternalCV] = useState('');
 
     useEffect(() => {
@@ -37,17 +37,17 @@ const UserProfile = () => {
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         setJobs(res.data.user.jobs);
+        setEducation(res.data.user.education);
         setSkills(res.data.user.skills);
         setExternalCV(res.data.user.external_cv);
-        console.log(jobs);
     }
 
     const jobsList = jobs.map(job =>
         <p key={job.id}>{job.job}</p>
     );
 
-    const educationsList = educations.map((education) =>
-        <p key={education}>{education}</p>
+    const educationList = education.map(education =>
+        <p key={education.id}>{education.education}</p>
     );
 
     const skillsList = skills.map(skill =>
@@ -87,7 +87,7 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__education userprofile-content__card">
                         <h2>Opleidingen</h2>
-                        {educationsList}
+                        {educationList}
                     </article>
 
                     <article className="userprofile-content__grid__skills userprofile-content__card">
