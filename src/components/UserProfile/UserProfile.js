@@ -12,7 +12,7 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobs, setJobs] = useState(['DC Dirk', 'Verkoopmedewerker Hoogvliet']);
+    const [jobs, setJobs] = useState([]);
     const [skills, setSkills] = useState([]);
     const [educations, setEducations] = useState(['HAVO', 'HBO']);
     const [externalCV, setExternalCV] = useState('');
@@ -36,21 +36,23 @@ const UserProfile = () => {
         setImage(res.data.user.picture);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
-        //setJobs(res.data.user.job);
+        setJobs(res.data.user.jobs);
         setSkills(res.data.user.skills);
         setExternalCV(res.data.user.external_cv);
         console.log(jobs);
     }
 
-    const jobsList = jobs.map((job) =>
-        <p key={job}>{job}</p>
+    const jobsList = jobs.map(job =>
+        <p key={job.id}>{job.job}</p>
     );
 
     const educationsList = educations.map((education) =>
         <p key={education}>{education}</p>
     );
 
-    const skillsList = skills.map(skill => <p className="userprofile-content__grid__skills__skill" key={skill.id}>{skill.skill}</p>);
+    const skillsList = skills.map(skill =>
+        <p className="userprofile-content__grid__skills__skill" key={skill.id}>{skill.skill}</p>
+    );
 
     return (
         <div className="userprofile">
