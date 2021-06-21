@@ -76,7 +76,7 @@ const UserProfile = () => {
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>
 
-                        {video !== null &&
+                        {video &&
                             <video width="100%" height="100%" controls>
                                 <source src={video} type="video/mp4" />
                                 Dit device ondersteunt geen video.
