@@ -3,8 +3,17 @@ import React, { useState, useEffect } from 'react';
 // scss
 import './Record.css';
 
-// packages
+// recordWebcam
 import { useRecordWebcam } from 'react-record-webcam'
+
+// react-router
+import { useParams } from 'react-router-dom';
+
+// timer
+import Timer from 'react-compound-timer'
+
+// axios
+import axios from 'axios';
 
 // icons
 import CamOff from '../../assets/svg/videocam_off.svg';
@@ -20,12 +29,13 @@ const Record = () => {
     const [activeComponent, setActiveComponent] = useState(0);
     const [components, setComponents] = useState([
         {name: "introductie", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius non donec faucibus semper vel. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit.", video: null},
-        {name: "motivatie", description: "motivatie beschrijving", video: null},
-        {name: "skills", description: "skills beschrijving", video: null},
-        {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null},
+        {name: "motivatie", description: "motivatie beschrijving", video: null, blob: null},
+        {name: "skills", description: "skills beschrijving", video: null, blob: null},
+        {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null, blob: null},
     ]);
 
     const recordWebcam = useRecordWebcam();
+    const IDENTIFIER = useParams().handle;
 
     useEffect(() => {
     }, []);
@@ -44,7 +54,7 @@ const Record = () => {
 
             let newComponents = components.map((item, i) => {
                 if (activeComponent === i) {
-                    return { ...item, video: blobURL };
+                    return { ...item, video: blobURL, blob: blob };
                 } else {
                     return item;
                 }
@@ -70,6 +80,34 @@ const Record = () => {
         setActiveComponent(index);
     };
 
+    const asyncForEach = async (array, callback) => {
+        for (let index = 0; index < array.length; index++) {
+          await callback(array[index], index, array);
+        }
+    }
+
+    const handelSubmit = () => {
+
+        asyncForEach(components, async (component, index) => {
+
+            const config = {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}` },
+                params: { code: IDENTIFIER, filename: 'video_' + index }
+            };
+
+            const data = new FormData();
+            data.append('file', component.blob);
+
+            await axios.post('http://127.0.0.1:8000/api/vacancy/store', data, config)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        })
+    }
 
     const componentList = components.map((component, index) =>
         <li className={`components__list__item ${index !== activeComponent ? "" : "components__list__item--active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
@@ -105,15 +143,25 @@ const Record = () => {
                         </button>
                     }
 
-                    {webcam ? (
+                    {webcam && !recording &&
                         <button className="webcam__btn webcam__btn--close" onClick={closeWebcam}>
                             <img className="webcam__btn__img--close" src={CamOff} alt="close webcam icon" />
                         </button>
-                    ) : (
+                    }
+
+                    {!webcam &&  
                         <button className="webcam__btn webcam__btn--open" onClick={openWebcam}>
                             <img className="webcam__btn__img--open" src={CamOn} alt="open webcam icon" />
                         </button>
-                    )}
+                    }
+                    {recording &&
+                        <Timer checkpoints={[{ time: 180000, callback: () =>  stopRecording()},]}>
+                            <p className="webcam__buttons__timer"><Timer.Minutes /> min : <Timer.Seconds /> sec</p>
+                        </Timer>
+                    }
+                    {recording &&
+                        <p className="webcam__buttons__timer--max">max: 3 min</p>
+                    }
                 </div>
 
             </div>
@@ -136,7 +184,7 @@ const Record = () => {
                     { componentList }
 
                     <li className="components__list__item--next">
-                        <button className="components__next__btn">Volgende stap</button>
+                        <button className="components__next__btn" onClick={handelSubmit}>Volgende stap</button>
                     </li>
                 </ul>
             </div>

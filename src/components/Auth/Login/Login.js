@@ -32,7 +32,7 @@ const Login = (props) => {
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
         console.log(res.data);
         localStorage.setItem("token", res.data.access_token);
-        props.history.push("/profiel");
+        props.history.push("/werkzoekende");
     }
 
     return(
@@ -73,7 +73,7 @@ const Login = (props) => {
                 {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
                 
                 <button className="login__form__button">Login</button>
-                <p>Nog geen account? <Link className="login__form__register b2" to="/registreer">Registreer</Link></p>
+                <p>Nog geen account? <Link className="login__form__register b2" to="/registreren">Registreer</Link></p>
             </form>
         </section>
     );

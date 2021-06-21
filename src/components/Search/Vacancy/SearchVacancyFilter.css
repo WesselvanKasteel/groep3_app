@@ -23,7 +23,6 @@
 
     padding: 1rem 0rem 1rem 1rem;
 
-    z-index: 12;
 }
 .filter__container__skills {
     grid-column: 1;
@@ -31,7 +30,7 @@
 
     padding: 1rem 1rem 1rem 0rem;
 
-    z-index: 10;
+    z-index: 4;
 }
 .filter__container__date {
     grid-column: 2;
@@ -39,7 +38,7 @@
 
     padding: 1rem 1rem 1rem 1rem;
 
-    z-index: 8;
+    z-index: 3;
 }
 .filter__container__employment {
     grid-column: 3;
@@ -47,7 +46,7 @@
 
     padding: 1rem 0rem 1rem 1rem;
 
-    z-index: 6;
+    z-index: 2;
 }
 
 /* tablet*/

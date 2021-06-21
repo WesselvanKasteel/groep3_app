@@ -11,7 +11,7 @@ const CreateVacancy = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [deadline, setDeadline] = useState('');
-    const [file, setFile] = useState(null);
+    const [video, setvideo] = useState(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,17 +19,16 @@ const CreateVacancy = () => {
         console.log(title);
         console.log(description);
         console.log(deadline);
-        console.log(file);
+        console.log(video);
     }
 
     const updateTitle = (value) => { setTitle(value); }
     const updateDescription= (value) => {setDescription(value); }
     const updateDeadline = (value) => { setDeadline(value); }
-    const updateFile = (value) => { setFile(value); }
 
     return (
         <section className="create_vacancy">
-
+            
             <h1 className="create_vacancy__title">Vacature aanmaken</h1>
             
             <form className="create_vacancy__input" onSubmit={handleSubmit}>
@@ -67,12 +66,9 @@ const CreateVacancy = () => {
                     required
                 />
 
-                <input className="create_vacancy__input__date" 
-                    type="file" 
-                    accept="video/mp4,video/x-m4v,video/*" 
-                    onChange={(event) => updateFile(event.target.value)}
-                    required
-                />
+                <div className="create_vacancy__input__video">
+                    {/* <video className="webcam__preview" ref={recordWebcam.webcamRef} autoPlay muted /> */}
+                </div>
 
                 <button className="create_vacancy__input__button">Vacature aanmaken</button>
             </form>
