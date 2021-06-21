@@ -27,7 +27,6 @@ const SearchVacancy = () => {
         axios.get(BASE_URL).then(res =>{
             setVacancyList(res.data);            
         })
-        console.log(vacancyList)
     }
 
     // update filterItems
@@ -35,10 +34,14 @@ const SearchVacancy = () => {
         setFilterItems(list);
         setFilterSearchTerm(searchTerm); 
 
+        console.log(filterVacancies);
         console.log(list);
         console.log(searchTerm);
     }
 
+    // setFilterVacancies(vacancyList).filter(vacancy =>{
+    //     return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !==-1;
+    // })
 
     return (
         <section className="search">
