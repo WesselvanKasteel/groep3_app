@@ -224,7 +224,7 @@
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width: 62,5em) {
     .record {
         margin-top: 7.5vh;
     }
