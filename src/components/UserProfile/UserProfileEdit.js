@@ -61,29 +61,28 @@ const UserProfileEdit = (props) => {
         setCountry(event.target.value);
     }
 
-
     const jobsInputChangeHandler = (event) => {
         setEnteredJob(event.target.value);
     }
 
-    const jobsRemoveHandler = (index) => {
-        setJobs(jobs.filter((_, i) => i !== index));
+    const jobsRemoveHandler = (id) => {
+        setJobs(jobs.filter(job => id !== job.id));
     };
 
     const educationInputChangeHandler = (event) => {
         setEnteredEducation(event.target.value);
     }
 
-    const educationRemoveHandler = (index) => {
-        setEducation(education.filter((_, i) => i !== index));
+    const educationRemoveHandler = (id) => {
+        setEducation(education.filter(education => id !== education.id));
     };
 
     const skillsInputChangeHandler = (event) => {
         setEnteredSkill(event.target.value);
     }
 
-    const skillsRemoveHandler = (index) => {
-        setSkills(skills.filter((_, i) => i !== index));
+    const skillsRemoveHandler = (id) => {
+        setSkills(skills.filter(skill => id !== skill.id));
     };
 
     const profilePictureUpdateHandler = async (event) => {
@@ -239,8 +238,8 @@ const UserProfileEdit = (props) => {
     }
     else {
         jobsList = jobs.map(job => (
-            <p key={job.id}>{job.job}</p>
-        ))
+            <p onClick={() => jobsRemoveHandler(job.id)} className="userprofile__form__skill" key={job.id}>{job.job}</p>
+        ));
     }
 
     let skillsList;
@@ -249,8 +248,8 @@ const UserProfileEdit = (props) => {
     }
     else {
         skillsList = skills.map(skill => (
-            <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
-        ))
+            <p onClick={() => skillsRemoveHandler(skill.id)} className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
+        ));
     }
 
     let educationList;
@@ -259,8 +258,8 @@ const UserProfileEdit = (props) => {
     }
     else {
         educationList = education.map(education => (
-            <p key={education.id}>{education.education}</p>
-        ))
+            <p onClick={() => educationRemoveHandler(education.id)} className="userprofile__form__skill" key={education.id}>{education.education}</p>
+        ));
     }
 
 
