@@ -13,8 +13,8 @@ const Menu = ({ active }) => {
     return (
         <section className={menu ? 'menu active' : 'menu'}>
             <Link to="/zoeken"><h2>Home</h2></Link>
-            <Link to="/inloggen"><h2>Login</h2></Link>
-            <Link to="/werkzoekende"><h2>Profiel</h2></Link>
+            <Link to="/inloggen"><h2>Inloggen</h2></Link>
+            <Link to="/profiel"><h2>Profiel</h2></Link>
             <Link to="/inloggen"><h2>Uitloggen</h2></Link>
         </section>
     )
