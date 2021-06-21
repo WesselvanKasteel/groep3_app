@@ -37,7 +37,6 @@ const Login = (props) => {
 
     return(
         <section className="login">
-            {/* <h2>Login</h2> */}
             <Link to="/" className="login__title">
                 <span className="login__title__blue-1">Vid</span>
                 <span className="login__title__blue-2">Va</span>
@@ -73,7 +72,7 @@ const Login = (props) => {
                 {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
                 
                 <button className="login__form__button">Inloggen</button>
-                <p>Nog geen account? <Link className="login__form__register b2" to="/registreer">Registreer</Link></p>
+                <p>Nog geen account? <Link className="login__form__register b2" to="/registreren">Registreer</Link></p>
             </form>
         </section>
     );
