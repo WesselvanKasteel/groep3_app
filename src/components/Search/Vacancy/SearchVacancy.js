@@ -23,9 +23,15 @@ const SearchVacancy = () => {
     }, []);
 
     const getVacancies = () =>{
+
+        // const config = {
+        //     headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
+        // };
+
         const BASE_URL ="http://localhost:8000/api/vacancies";
         axios.get(BASE_URL).then(res =>{
             setVacancyList(res.data);            
+            setFilterVacancies(res.data);        
         })
     }
 
@@ -34,14 +40,14 @@ const SearchVacancy = () => {
         setFilterItems(list);
         setFilterSearchTerm(searchTerm); 
 
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes("HTML")}))
+
+        
         console.log(filterVacancies);
         console.log(list);
         console.log(searchTerm);
     }
-
-    // setFilterVacancies(vacancyList).filter(vacancy =>{
-    //     return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !==-1;
-    // })
 
     return (
         <section className="search">
@@ -51,8 +57,8 @@ const SearchVacancy = () => {
                     <img className="search__container__title-arrow_down" src={ArrowDirection} alt="arrow" />
                 </div>
                 <SearchVacancyFilter updateFilterState={updateFilterState} />
-                {/* <SearchVacancyList vacancies={filteringVacancies} /> */}
-                <SearchVacancyList vacancies={vacancyList} />
+                <SearchVacancyList vacancies={filterVacancies} />
+                {/* <SearchVacancyList vacancies={vacancyList} /> */}
             </div>
         </section>
     )

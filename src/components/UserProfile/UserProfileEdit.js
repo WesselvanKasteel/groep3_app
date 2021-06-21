@@ -9,8 +9,9 @@ const UserProfileEdit = (props) => {
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
-    const [jobs, setJobs] = useState([{previous_jobs: ''}]);
     const [externalCV, setExternalCV] = useState('');
+    const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
+    const [skills, setSkills] = useState([]);
     //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
@@ -23,13 +24,15 @@ const UserProfileEdit = (props) => {
         };
 
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        console.log(res.data);
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
+        setSkills(res.data.user.skills);
         // setJobs(res.data.user.jobs);
         if (res.data.user.external_cv === null) {
-            setExternalCV("");
+            setExternalCV('');
         }
         else {
             setExternalCV(res.data.user.external_cv);
@@ -54,23 +57,60 @@ const UserProfileEdit = (props) => {
         setCountry(event.target.value);
     }
 
-    const handleJobsAddFields = () => {
-      const values = [...jobs];
-      values.push({ previous_jobs: '' });
-      setJobs(values);
-    };
-
-    const handleJobsRemoveFields = index => {
-        const values = [...jobs];
-        values.splice(index, 1);
-        setJobs(values);
-    };
+    // const externalCVChangeHandler = (event) => {
+    //     setExternalCV(event.target.value);
+    // }
 
     const handleJobsInputChange = (index, event) => {
-        const values = [...jobs];
-        values[index].previous_jobs = event.target.value;
-        setJobs(values);
+        const oldJobs = [...jobs];
+        oldJobs[index].previous_jobs = event.target.value;
+        setJobs(oldJobs);
+        console.log(jobs);
     };
+
+    const handleJobsAddFields = () => {
+        // const values = [...jobs];
+        // values.push({ previous_jobs: '' });
+        // setJobs(values);
+        // console.log(jobs);
+        setJobs(prevJobs => {
+            return [
+                ...prevJobs,
+                {
+                    previous_jobs: '',
+                }
+            ];
+        });
+    };
+
+    const handleJobsRemoveFields = (index, jobs) => {
+        // const values = [...jobs];
+        // values.splice(index, 1);
+        // setJobs(values);
+
+        setJobs(jobs.filter((_, i) => i !== index));
+    };
+
+    const skillsInputChangeHandler = (event, index) => {
+        const oldSkills = [...skills];
+        oldSkills[index].skill = event.target.value;
+        setSkills(oldSkills);
+    }
+
+    const skillsAddHandler = () => {
+        setSkills(prevSkills => {
+            return [
+                ...prevSkills,
+                {
+                    skills: '',
+                }
+            ]
+        });
+    }
+
+    const skillsRemoveHandler = (skills, index) => {
+        setSkills(skills.filter((_, i) => i !== index));
+    }
 
     const profilePictureUpdateHandler = async (event) => {
         event.preventDefault();
@@ -123,7 +163,7 @@ const UserProfileEdit = (props) => {
 
         const res = await axios.put('http://127.0.0.1:8000/api/user/edit', data, config);
         console.log(res.data);
-        props.history.push("/profile");
+        props.history.push('/profiel');
     };
 
     return(
@@ -137,7 +177,7 @@ const UserProfileEdit = (props) => {
                     id="profilePicture"
                     onChange={(e) => setProfilePicture(e.target.files[0])}
                 />
-                <button>Upload</button>
+                <button className="userprofileedit__form__button">Upload</button>
             </form>
             <form className="userprofileedit__form" onSubmit={profileUpdateHandler} method="POST">
                 <h2>Algemene informatie</h2>
@@ -183,28 +223,50 @@ const UserProfileEdit = (props) => {
                     <Fragment key={`${inputField}~${index}`}>
                         <label htmlFor="jobs">Baan/functie + periode:</label>
                         <input
-                          type="text"
-                          id="jobs"
-                          name="jobs"
-                          value={inputField.jobs}
-                          onChange={event => handleJobsInputChange(index, event)}
+                            type="text"
+                            id="jobs"
+                            name="jobs"
+                            value={inputField.jobs}
+                            onChange={event => handleJobsInputChange(index, event)}
                         />
                         <button
-                          className="btn btn-link"
-                          type="button"
-                          onClick={() => handleJobsRemoveFields(index, jobs)}
-                        >-</button>
-                        <button
-                          className="btn btn-link"
-                          type="button"
-                          onClick={() => handleJobsAddFields()}
+                            className="userprofileedit__form__button--add"
+                            type="button"
+                            onClick={() => handleJobsAddFields()}
                         >+</button>
+                        <button
+                            className="userprofileedit__form__button--remove"
+                            type="button"
+                            onClick={() => handleJobsRemoveFields(index, jobs)}
+                        >x</button>
                     </Fragment>
-                  ))}
+                ))}
 
                 <h2>Opleidingen</h2>
 
                 <h2>Skills</h2>
+                {skills.map((inputField, index) => (
+                    <Fragment key={`${inputField}~${index}`}>
+                        <label htmlFor="skills">Skill:</label>
+                        <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            value={inputField.skill}
+                            onChange={(event) => skillsInputChangeHandler(event, index)}
+                        />
+                        <button
+                            type="button"
+                            className="userprofileedit__form__button--add"
+                            onClick={skillsAddHandler}
+                        >+</button>
+                        <button
+                            type="button"
+                            className="userprofileedit__form__button--remove"
+                            onClick={() => skillsRemoveHandler(skills, index)}
+                        >x</button>
+                    </Fragment>
+                ))}
 
                 <h2>Extern CV</h2>
                 <label htmlFor="externalCV">Link:</label>
@@ -215,8 +277,10 @@ const UserProfileEdit = (props) => {
                     value={externalCV}
                     onChange={(event) => setExternalCV(event.target.value)}
                 />
-                <button type="submit">Opslaan</button>
-                <button><Link className="userprofileedit__form__cancel"to="/profiel">Annuleren</Link></button>
+                <button className="userprofileedit__form__button userprofileedit__form__button--save">Opslaan</button>
+                <button className="userprofileedit__form__button userprofileedit__form__button--cancel">
+                    <Link to="/profiel">Annuleren</Link>
+                </button>
             </form>
         </section>
     );

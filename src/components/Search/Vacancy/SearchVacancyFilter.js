@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import axios from 'axios';
+
 // scss
 import './SearchVacancyFilter.css';
 
@@ -9,28 +11,37 @@ import DropdownSearch from '../../CustomElements/DropdownSearch';
 import DropdownEmployment from '../../CustomElements/DropdownEmployment';
 import DropdownDate from '../../CustomElements/DropdownDate';
 import RadiusSlider from '../../CustomElements/RadiusSlider';
-
 import SearchVacancyAttributes from './SearchVacancyAttributes';
 
 // de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
 const SearchVacancyFilter = ({ updateFilterState }) => {
 
     // hardcode
-    const [searchOptions, setSearchOptions] = useState(['Html', 'Css', 'Javascript', 'Laravel']);
+    
     const [dateOptions, setDateOptions] = useState(['Vandaag', 'Afgelopen week', 'Afgelopen maand', 'Afgelopen jaar']);
     const [employmentOptions, setEmploymentOptions] = useState(['Fulltime', 'Parttime', 'Tijdelijk', 'Freelance / ZZP']);
 
     // state 
     const [activeFilter, setActiveFilter] = useState({search: false, date: false, employment: false});
-
+    const [searchOptions, setSearchOptions] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchRadius, setSearchRadius] = useState(0);
     const [filterItems, setFilterItems] = useState([]);
 
     useEffect(() => {
-        updateFilterState(filterItems)
-    }, [filterItems]);
+        updateFilterState(filterItems,searchTerm)
+    }, [filterItems,searchTerm]);
 
+    useEffect(() =>{
+        getSearchOptions();
+    }, []);
+
+    const getSearchOptions = () =>{
+        const BASE_URL = "http://localhost:8000/api/skill"
+        axios.get(BASE_URL).then(res =>{
+            setSearchOptions(res.data.map(skill => skill.skill));
+        })
+    }
     // update searchTerm from child
     const updateSearchTerm = (term) => { setSearchTerm(term); }
     
@@ -38,11 +49,12 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
     const updateFilterItems = (option, index) => { 
 
         // add clicked option to filterItems
-        const item = searchOptions.splice(index, 1)[0];
+        const item = searchOptions.splice(index, 1)[0]; 
 
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
+                filter: 'skill',
                 state: 'searchOptions',
                 index: index
             }]     
@@ -61,6 +73,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
+                filter: 'employement',
                 state: 'employmentOptions',
                 index: index
             }]     
@@ -79,6 +92,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
         setFilterItems(prevAttributes => {
             return [...prevAttributes, {
                 item: item,
+                filter: 'date',
                 state: 'dateOptions',
                 index: index
             }]       
@@ -134,7 +148,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
                 </li>
                 <li className="filter__container__skills">
                     <DropdownSearch 
-                        options={searchOptions} 
+                        options={searchOptions}
                         updateFilterItems={updateFilterItems}
 
                         activeFilter={activeFilter}
