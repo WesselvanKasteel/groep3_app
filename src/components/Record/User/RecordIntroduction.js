@@ -18,7 +18,7 @@ import CamOn from '../../../assets/svg/videocam_on.svg';
 import StopRecord from '../../../assets/svg/videocam_stop_recording.svg';
 import StartRecord from '../../../assets/svg/videocam_start_recording.svg';
 
-const RecordIntroduction = () => {
+const RecordIntroduction = (props) => {
 
     const [recording, setRecording] = useState(false);
     const [webcam, setWebcam] = useState(false);
@@ -43,9 +43,6 @@ const RecordIntroduction = () => {
             setVideo(blob);
             setPreview(blobURL);
 
-            console.log(video);
-            console.log(preview);
-
             recordWebcam.retake();
         });
     };
@@ -68,9 +65,9 @@ const RecordIntroduction = () => {
         const data = new FormData();
         data.append('file', video);
 
-        await axios.post('http://127.0.0.1:8000/api/profile', data, config)
-        .then((response) => {
-            console.log(response);
+        await axios.post('http://127.0.0.1:8000/api/user/edit/video', data, config)
+        .then(() => {
+            props.history.push('/profiel');
         })
         .catch((error) => {
             console.log(error);

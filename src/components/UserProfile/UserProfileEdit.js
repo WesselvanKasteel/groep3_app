@@ -313,9 +313,8 @@ const UserProfileEdit = (props) => {
                 />
 
                 <h2>Kennismaking video</h2>
-                <button className="userprofileedit__form__button">
-                    <Link to="/maak-kennismakingvideo">Opnemen</Link>
-                </button>
+
+                <Link className="userprofileedit__form__button" to="/maak-kennismakingvideo">Opnemen</Link>
 
                 <h2>Eerdere banen</h2>
                 {jobsList}

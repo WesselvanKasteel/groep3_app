@@ -16,6 +16,7 @@ const UserProfile = () => {
     const [education, setEducation] = useState([]);
     const [skills, setSkills] = useState([]);
     const [externalCV, setExternalCV] = useState('');
+    const [video, setVideo] = useState(null);
 
     useEffect(() => {
         getUserData();
@@ -40,6 +41,7 @@ const UserProfile = () => {
         setEducation(res.data.user.education);
         setSkills(res.data.user.skills);
         setExternalCV(res.data.user.external_cv);
+        setVideo(res.data.video.path);
     }
 
     const jobsList = jobs.map(job =>
@@ -73,11 +75,14 @@ const UserProfile = () => {
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>
-                        <video width="100%" height="100%" loop controls>
-                            <source src="vidvaso_video_1.mp4" type="video/mp4" />
-                            <source src="vidvaso_video_1.webm" type="video/ogg" />
-                            Dit device ondersteunt geen video.
-                        </video>
+
+                        {video !== null &&
+                            <video width="100%" height="100%" controls>
+                                <source src={video} type="video/mp4" />
+                                Dit device ondersteunt geen video.
+                            </video>
+                        }
+
                     </article>
 
                     <article className="userprofile-content__grid__jobs userprofile-content__card">
