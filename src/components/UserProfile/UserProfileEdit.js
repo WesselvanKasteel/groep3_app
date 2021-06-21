@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './UserProfileEdit.css';
@@ -10,10 +10,12 @@ const UserProfileEdit = (props) => {
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
     const [externalCV, setExternalCV] = useState('');
-    const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
+    const [enteredJob, setEnteredJob] = useState('');
+    const [jobs, setJobs] = useState([]);
+    const [enteredEducation, setEnteredEducation] = useState('');
+    const [education, setEducation] = useState([]);
     const [enteredSkill, setEnteredSkill] = useState('');
     const [skills, setSkills] = useState([]);
-    //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
         getUserData();
@@ -31,7 +33,8 @@ const UserProfileEdit = (props) => {
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
         setSkills(res.data.user.skills);
-        // setJobs(res.data.user.jobs);
+        setEducation(res.data.user.education);
+        setJobs(res.data.user.jobs);
         if (res.data.user.external_cv === null) {
             setExternalCV('');
         }
@@ -58,34 +61,21 @@ const UserProfileEdit = (props) => {
         setCountry(event.target.value);
     }
 
-    const handleJobsInputChange = (index, event) => {
-        const oldJobs = [...jobs];
-        oldJobs[index].previous_jobs = event.target.value;
-        setJobs(oldJobs);
-        console.log(jobs);
-    };
 
-    const handleJobsAddFields = () => {
-        // const values = [...jobs];
-        // values.push({ previous_jobs: '' });
-        // setJobs(values);
-        // console.log(jobs);
-        setJobs(prevJobs => {
-            return [
-                ...prevJobs,
-                {
-                    previous_jobs: '',
-                }
-            ];
-        });
-    };
+    const jobsInputChangeHandler = (event) => {
+        setEnteredJob(event.target.value);
+    }
 
-    const handleJobsRemoveFields = (index, jobs) => {
-        // const values = [...jobs];
-        // values.splice(index, 1);
-        // setJobs(values);
-
+    const jobsRemoveHandler = (index) => {
         setJobs(jobs.filter((_, i) => i !== index));
+    };
+
+    const educationInputChangeHandler = (event) => {
+        setEnteredEducation(event.target.value);
+    }
+
+    const educationRemoveHandler = (index) => {
+        setEducation(education.filter((_, i) => i !== index));
     };
 
     const skillsInputChangeHandler = (event) => {
@@ -129,7 +119,6 @@ const UserProfileEdit = (props) => {
             city: city,
             province: province,
             country: country,
-            previous_jobs: jobs,
             external_cv: tempCV,
         };
 
@@ -145,10 +134,39 @@ const UserProfileEdit = (props) => {
         props.history.push('/profiel');
     };
 
+    const storeJobsHandler = async () => {
+
+        const jobsData = {
+            job: enteredJob,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const jobsRes = await axios.post('http://127.0.0.1:8000/api/jobs/store', jobsData, config);
+        console.log(jobsRes.data);
+    }
+
+    const storeEducationHandler = async () => {
+
+        const educationData = {
+            education: enteredEducation,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const educationRes = await axios.post('http://127.0.0.1:8000/api/education/store', educationData, config);
+        console.log(educationRes.data);
+    }
+
     const storeSkillsHandler = async () => {
-        // const skillsToBeAdded = skills.map(skill => {
-        //     return skill.skill;
-        // });
 
         const skillsData = {
             skill: enteredSkill,
@@ -163,6 +181,40 @@ const UserProfileEdit = (props) => {
         const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
         console.log(skillsRes.data);
     }
+
+    const jobsAddHandler = () => {
+        if(enteredJob === '') {
+            return;
+        }
+
+        setJobs(prevJobs => {
+            return [
+                ...prevJobs,
+                {
+                    job: enteredJob,
+                }
+            ];
+        });
+        storeJobsHandler();
+        setEnteredJob('');
+    };
+
+    const educationAddHandler = () => {
+        if(enteredEducation === '') {
+            return;
+        }
+
+        setEducation(prevEducation => {
+            return [
+                ...prevEducation,
+                {
+                    education: enteredEducation,
+                }
+            ];
+        });
+        storeEducationHandler();
+        setEnteredEducation('');
+    };
 
     const skillsAddHandler = () => {
         if(enteredSkill === '') {
@@ -181,13 +233,36 @@ const UserProfileEdit = (props) => {
         setEnteredSkill('');
     };
 
-    const skillsEmpty = skills.length === 0 && (
-        <p>Je hebt nog geen skills.</p>
-    );
+    let jobsList;
+    if (jobs.length === 0) {
+        jobsList = <p><i>Je hebt nog geen banen toegevoegd</i></p>
+    }
+    else {
+        jobsList = jobs.map(job => (
+            <p key={job.id}>{job.job}</p>
+        ))
+    }
 
-    const skillsList = skills.map(skill => (
-        <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
-    ))
+    let skillsList;
+    if (skills.length === 0) {
+        skillsList = <p><i>Je hebt nog geen skills toegevoegd</i></p>
+    }
+    else {
+        skillsList = skills.map(skill => (
+            <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
+        ))
+    }
+
+    let educationList;
+    if (education.length === 0) {
+        educationList = <p><i>Je hebt nog geen opleidingen toegevoegd</i></p>
+    }
+    else {
+        educationList = education.map(education => (
+            <p key={education.id}>{education.education}</p>
+        ))
+    }
+
 
     return(
         <section className ="userprofileedit">
@@ -274,40 +349,50 @@ const UserProfileEdit = (props) => {
                 <article className="userprofileedit__form__article">
                     <h2>Eerdere banen</h2>
                     
-                        {jobs.map((inputField, index) => (
-                            <Fragment key={`${inputField}~${index}`}>
+                            
                                 <div className="userprofileedit__form__article__container">
                                     <input
                                         className="userprofileedit__form__article__container__input"
                                         type="text"
-                                        id="jobs"
-                                        name="jobs"
-                                        value={inputField.jobs}
-                                        onChange={event => handleJobsInputChange(index, event)}
+                                        id="job"
+                                        name="job"
+                                        value={enteredJob}
+                                        onChange={jobsInputChangeHandler}
                                         placeholder=" "
                                     />
-                                    <label className="userprofileedit__form__article__container__placeholder" htmlFor="jobs">Baan/functie + periode:</label>
+                                    <label className="userprofileedit__form__article__container__placeholder" htmlFor="job">Baan/functie + periode:</label>
                                 </div>
                                 <button
-                                    className="userprofileedit__form__article__button userprofileedit__formarticle____button--add"
                                     type="button"
-                                    onClick={() => handleJobsAddFields()}
+                                    className="userprofileedit__form__button userprofileedit__form__button--add"
+                                    onClick={jobsAddHandler}
                                 >+</button>
-                                <button
-                                    className="userprofileedit__form__article__button userprofileedit__formarticle____button--remove"
-                                    type="button"
-                                    onClick={() => handleJobsRemoveFields(index, jobs)}
-                                >x</button>
-                            </Fragment>
-                        ))}
+
                     
                 </article>
 
                 <article className="userprofileedit__form__article">
                     <h2>Opleidingen</h2>
-                    <div className="userprofileedit__form__article__container">
+                    {educationList}
+                        <div className="userprofileedit__form__article__container">
                         
-                    </div>
+                            <input
+                                type="text"
+                                id="education"
+                                name="education"
+                                value={enteredEducation}
+                                onChange={educationInputChangeHandler}
+                            />
+                        <label htmlFor="education">Opleidingen:</label>
+                        </div>
+                        <button
+                            type="button"
+                            className="userprofileedit__form__button userprofileedit__form__button--add"
+                            onClick={educationAddHandler}
+                        >+</button>
+                        
+                            
+                        
                 </article>
 
                 <article className="userprofileedit__form__article">
