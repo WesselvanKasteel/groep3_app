@@ -67,6 +67,7 @@ const UserProfileEdit = (props) => {
 
     const jobsRemoveHandler = (id) => {
         setJobs(jobs.filter(job => id !== job.id));
+        deleteJobsHandler();
     };
 
     const educationInputChangeHandler = (event) => {
@@ -147,6 +148,21 @@ const UserProfileEdit = (props) => {
 
         const jobsRes = await axios.post('http://127.0.0.1:8000/api/jobs/store', jobsData, config);
         console.log(jobsRes.data);
+    }
+
+    const deleteJobsHandler = async () => {
+        const jobsData = {
+            job: jobs,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const jobsRes = await axios.delete('http://127.0.0.1:8000/api/jobs/destroy', jobsData, config);
+        console.log(jobsRes);
     }
 
     const storeEducationHandler = async () => {
