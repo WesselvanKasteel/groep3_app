@@ -5,6 +5,8 @@ import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
 import UserProfile from './components/UserProfile/UserProfile';
 import UserProfileEdit from './components/UserProfile/UserProfileEdit';
+import CompanyProfile from './components/CompanyProfile/CompanyProfile';
+import CompanyProfileEdit from './components/CompanyProfile/CompanyProfileEdit';
 import Record from './components/Record/Record';
 import SearchVacancy from './components/Search/Vacancy/SearchVacancy';
 import Vacancy from './components/Vacancy/Vacancy';
@@ -20,7 +22,6 @@ const App = () => {
         <Router>
         <TheHeader />
             <Switch>
-                
 
                 <Route exact path="/">
                         <Redirect to="/zoeken" />
@@ -30,7 +31,9 @@ const App = () => {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/registreer" component={Register} />
                 <Route exact path="/profiel" component={UserProfile} />
+                <Route exact path="/bedrijfsprofiel" component={CompanyProfile} />
                 {/* <Route exact path="/profiel-bewerken" component={UserProfileEdit} /> */}
+                <Route exact path="/bedrijfsprofiel-bewerken" component={CompanyProfileEdit} />
                 <Route exact path="/maak-sollicitatievideo/:handle" component={Record} />
                 <Route exact path="/vacature/:handle" component={Vacancy} />
 

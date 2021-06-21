@@ -61,7 +61,6 @@ const UserProfileEdit = (props) => {
         setCountry(event.target.value);
     }
 
-
     const jobsInputChangeHandler = (event) => {
         setEnteredJob(event.target.value);
     }
@@ -314,7 +313,9 @@ const UserProfileEdit = (props) => {
                 />
 
                 <h2>Kennismaking video</h2>
-                <p>Huidige video: <i>Profiel.mp4</i></p>
+                <button className="userprofileedit__form__button">
+                    <Link to="/kennismakingvideo-maken">Opnemen</Link><
+                /button>
 
                 <h2>Eerdere banen</h2>
                 {jobsList}
