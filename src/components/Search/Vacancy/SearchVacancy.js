@@ -20,7 +20,12 @@ const SearchVacancy = () => {
 
     useEffect(() => {
         getVacancies();
+        
     }, []);
+
+    useEffect(() =>{
+        filterVacancyList();
+    }, [filterItems])
 
     const getVacancies = () =>{
 
@@ -41,12 +46,18 @@ const SearchVacancy = () => {
         setFilterSearchTerm(searchTerm); 
 
         // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
-        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes("HTML")}))
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
 
-        
+        console.log("filteritems: " + filterItems.map(item => item.item))
         console.log(filterVacancies);
         console.log(list);
         console.log(searchTerm);
+    }
+
+    const filterVacancyList = () => {
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
+        setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
+        console.log("filteritems: " + filterItems.map(item => item.item.toString()))
     }
 
     return (
