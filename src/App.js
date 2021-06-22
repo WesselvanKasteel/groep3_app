@@ -36,9 +36,10 @@ const App = () => {
                 <Route exact path="/bedrijfsprofiel-bewerken" component={CompanyProfileEdit} />  
                 <Route exact path="/maak-vacature" component={CreateVacancy} />
 
+                <Route exact path="/zoeken" component={SearchVacancy} />
+
                 <PrivateRoute path="/profiel" component={UserProfile} exact={true} role="unemployed"/>
                 <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} role="unemployed"/>
-                <PrivateRoute path="/zoeken" component={SearchVacancy} exact={true} role="unemployed"/>
                 <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} role="unemployed"/>
                 <PrivateRoute path="/maak-kennismakingvideo" component={RecordIntroduction} exact={true} role="unemployed"/>
                 <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} role="unemployed"/>
