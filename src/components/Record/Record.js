@@ -34,6 +34,8 @@ const Record = () => {
         {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null, blob: null},
     ]);
 
+    const [topicCount, setTopicCount] = useState(0);
+
     const recordWebcam = useRecordWebcam();
     const IDENTIFIER = useParams().handle;
 
@@ -54,6 +56,7 @@ const Record = () => {
 
             let newComponents = components.map((item, i) => {
                 if (activeComponent === i) {
+                    setTopicCount(topicCount + 1);
                     return { ...item, video: blobURL, blob: blob };
                 } else {
                     return item;
@@ -100,6 +103,8 @@ const Record = () => {
 
             await axios.post('http://127.0.0.1:8000/api/vacancy/store', data, config)
             .then((response) => {
+
+                // naar profiel pagina
                 console.log(response);
             })
             .catch((error) => {
@@ -123,6 +128,12 @@ const Record = () => {
             }
         </li>
     );
+
+    let componentsSubmit = <p className="components__next__description">Nog niet alle onderwerpen zijn opgenomen. Pas wanneer alle onderwerpen een opname bevatten kan u naar de volgende stap.</p>
+
+    if (topicCount === components.length ) {
+        componentsSubmit = <button className="components__next__btn" onClick={handelSubmit}>Volgende stap</button>
+    }
 
     return (
         <section className="record">
@@ -183,8 +194,8 @@ const Record = () => {
 
                     { componentList }
 
-                    <li className="components__list__item--next">
-                        <button className="components__next__btn" onClick={handelSubmit}>Volgende stap</button>
+                    <li className="components__list__item__next">
+                        { componentsSubmit }
                     </li>
                 </ul>
             </div>

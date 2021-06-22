@@ -151,6 +151,7 @@
     border: none;
     transition: filter 0.2s ease-out;
     padding: 1rem 2rem;
+    text-decoration: none;
 }
 
 .userprofileedit__form__button--add, .userprofileedit__form__button {
