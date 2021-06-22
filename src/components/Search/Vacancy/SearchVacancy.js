@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// scss
-import './SearchVacancy.css';
-
-// icons
-import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
-
-// components
 import SearchVacancyFilter from './SearchVacancyFilter';
 import SearchVacancyList from './SearchVacancyList';
+
+import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
+import './SearchVacancy.css';
+
 const SearchVacancy = () => {
 
     // States
@@ -33,10 +30,10 @@ const SearchVacancy = () => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const BASE_URL ="http://localhost:8000/api/vacancies";
-        axios.get(BASE_URL).then(res =>{
-            setVacancyList(res.data);            
-            setFilterVacancies(res.data);        
+        const BASE_URL ="http://localhost:8000/api/vacancy/vacancies";
+        axios.get(BASE_URL, config).then(res =>{
+            setVacancyList(res.data);       
+            setFilterVacancies(res.data);     
         })
     }
 

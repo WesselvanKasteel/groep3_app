@@ -1,195 +1,206 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// // scss
-// import './Record.css';
+// scss
+import './Record.css';
 
-// // recordWebcam
-// import { useRecordWebcam } from 'react-record-webcam'
+// recordWebcam
+import { useRecordWebcam } from 'react-record-webcam'
 
-// // react-router
-// import { useParams } from 'react-router-dom';
+// react-router
+import { useParams } from 'react-router-dom';
 
-// // timer
-// import Timer from 'react-compound-timer'
+// timer
+import Timer from 'react-compound-timer'
 
-// // axios
-// import axios from 'axios';
+// axios
+import axios from 'axios';
 
-// // icons
-// import CamOff from '../../assets/svg/videocam_off.svg';
-// import CamOn from '../../assets/svg/videocam_on.svg';
-// import StopRecord from '../../assets/svg/videocam_stop_recording.svg';
-// import StartRecord from '../../assets/svg/videocam_start_recording.svg';
+// icons
+import CamOff from '../../assets/svg/videocam_off.svg';
+import CamOn from '../../assets/svg/videocam_on.svg';
+import StopRecord from '../../assets/svg/videocam_stop_recording.svg';
+import StartRecord from '../../assets/svg/videocam_start_recording.svg';
 
-// const Record = () => {
+const Record = () => {
 
-//     const [recording, setRecording] = useState(false);
-//     const [webcam, setWebcam] = useState(false);
+    const [recording, setRecording] = useState(false);
+    const [webcam, setWebcam] = useState(false);
 
-//     const [activeComponent, setActiveComponent] = useState(0);
-//     const [components, setComponents] = useState([
-//         {name: "introductie", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius non donec faucibus semper vel. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit.", video: null},
-//         {name: "motivatie", description: "motivatie beschrijving", video: null, blob: null},
-//         {name: "skills", description: "skills beschrijving", video: null, blob: null},
-//         {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null, blob: null},
-//     ]);
+    const [activeComponent, setActiveComponent] = useState(0);
+    const [components, setComponents] = useState([
+        {name: "introductie", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius non donec faucibus semper vel. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit.", video: null},
+        {name: "motivatie", description: "motivatie beschrijving", video: null, blob: null},
+        {name: "skills", description: "skills beschrijving", video: null, blob: null},
+        {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null, blob: null},
+    ]);
 
-//     const recordWebcam = useRecordWebcam();
-//     const IDENTIFIER = useParams().handle;
+    const [topicCount, setTopicCount] = useState(0);
 
-//     useEffect(() => {
-//     }, []);
+    const recordWebcam = useRecordWebcam();
+    const IDENTIFIER = useParams().handle;
 
-//     const startRecording = () => {
-//         setRecording(true);
-//         recordWebcam.start();
-//     };
+    useEffect(() => {
+    }, []);
 
-//     const stopRecording = async () => {
-//         setRecording(false);
-//         recordWebcam.stop()
-//         .then(async () => {
-//             const blob = await recordWebcam.getRecording();
-//             const blobURL = URL.createObjectURL(blob);
+    const startRecording = () => {
+        setRecording(true);
+        recordWebcam.start();
+    };
 
-//             let newComponents = components.map((item, i) => {
-//                 if (activeComponent === i) {
-//                     return { ...item, video: blobURL, blob: blob };
-//                 } else {
-//                     return item;
-//                 }
-//             });
+    const stopRecording = async () => {
+        setRecording(false);
+        recordWebcam.stop()
+        .then(async () => {
+            const blob = await recordWebcam.getRecording();
+            const blobURL = URL.createObjectURL(blob);
 
-//             setComponents(newComponents);
+            let newComponents = components.map((item, i) => {
+                if (activeComponent === i) {
+                    setTopicCount(topicCount + 1);
+                    return { ...item, video: blobURL, blob: blob };
+                } else {
+                    return item;
+                }
+            });
 
-//             recordWebcam.retake();
-//         });
-//     };
+            setComponents(newComponents);
 
-//     const openWebcam = () => {
-//         recordWebcam.open();
-//         setWebcam(true);
-//     };
+            recordWebcam.retake();
+        });
+    };
 
-//     const closeWebcam = () => {
-//         recordWebcam.close();
-//         setWebcam(false);
-//     };
+    const openWebcam = () => {
+        recordWebcam.open();
+        setWebcam(true);
+    };
 
-//     const changeActiveComponent = (index) => {
-//         setActiveComponent(index);
-//     };
+    const closeWebcam = () => {
+        recordWebcam.close();
+        setWebcam(false);
+    };
 
-//     const asyncForEach = async (array, callback) => {
-//         for (let index = 0; index < array.length; index++) {
-//           await callback(array[index], index, array);
-//         }
-//     }
+    const changeActiveComponent = (index) => {
+        setActiveComponent(index);
+    };
 
-//     const handelSubmit = () => {
+    const asyncForEach = async (array, callback) => {
+        for (let index = 0; index < array.length; index++) {
+          await callback(array[index], index, array);
+        }
+    }
 
-//         asyncForEach(components, async (component, index) => {
+    const handelSubmit = () => {
 
-//             const config = {
-//                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}` },
-//                 params: { code: IDENTIFIER, filename: 'video_' + index }
-//             };
+        asyncForEach(components, async (component, index) => {
 
-//             const data = new FormData();
-//             data.append('file', component.blob);
+            const config = {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}` },
+                params: { code: IDENTIFIER, filename: 'video_' + index }
+            };
 
-//             await axios.post('http://127.0.0.1:8000/api/vacancy/store', data, config)
-//             .then((response) => {
-//                 console.log(response);
-//             })
-//             .catch((error) => {
-//                 console.log(error);
-//             });
+            const data = new FormData();
+            data.append('file', component.blob);
 
-//         })
-//     }
+            await axios.post('http://127.0.0.1:8000/api/vacancy/store', data, config)
+            .then((response) => {
 
-//     const componentList = components.map((component, index) =>
-//         <li className={`components__list__item ${index !== activeComponent ? "" : "components__list__item--active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
+                // naar profiel pagina
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
-//             <h1 className={component.video != null ? 'components__list__item__titel--recorded' : 'components__list__item__titel'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
+        })
+    }
+
+    const componentList = components.map((component, index) =>
+        <li className={`components__list__item ${index !== activeComponent ? "" : "components__list__item--active"}`} key={component.name} onClick={() => changeActiveComponent(index)}>
+
+            <h1 className={component.video != null ? 'components__list__item__titel--recorded' : 'components__list__item__titel'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
             
-//             {component.video === null &&
-//                 <p className="components__list__item__subtitle">klik hier om de {component.name} op te nemen</p>
-//             }
+            {component.video === null &&
+                <p className="components__list__item__subtitle">klik hier om de {component.name} op te nemen</p>
+            }
 
-//             {component.video != null &&
-//                 <video className="components__list__item__video" src={component.video} controls></video>
-//             }
-//         </li>
-//     );
+            {component.video != null &&
+                <video className="components__list__item__video" src={component.video} controls></video>
+            }
+        </li>
+    );
 
-//     return (
-//         <section className="record">
+    let componentsSubmit = <p className="components__next__description">Nog niet alle onderwerpen zijn opgenomen. Pas wanneer alle onderwerpen een opname bevatten kan u naar de volgende stap.</p>
 
-//             <div className="webcam">
+    if (topicCount === components.length ) {
+        componentsSubmit = <button className="components__next__btn" onClick={handelSubmit}>Volgende stap</button>
+    }
 
-//                 <video className="webcam__preview" ref={recordWebcam.webcamRef} autoPlay muted />
+    return (
+        <section className="record">
 
-//                 <div className="webcam__buttons">
-//                     {recording &&
-//                         <button className="webcam__btn webcam__btn--stop" onClick={stopRecording}>
-//                             <img className="webcam__btn__img--stop" src={StopRecord} alt="stop recording icon" />
-//                         </button>
-//                     }
-//                     {!recording && webcam &&
-//                         <button className="webcam__btn webcam__btn--start" onClick={startRecording}>
-//                             <img className="webcam__btn__img--start" src={StartRecord} alt="start recording icon" />
-//                         </button>
-//                     }
+            <div className="webcam">
 
-//                     {webcam && !recording &&
-//                         <button className="webcam__btn webcam__btn--close" onClick={closeWebcam}>
-//                             <img className="webcam__btn__img--close" src={CamOff} alt="close webcam icon" />
-//                         </button>
-//                     }
+                <video className="webcam__preview" ref={recordWebcam.webcamRef} autoPlay muted />
 
-//                     {!webcam &&  
-//                         <button className="webcam__btn webcam__btn--open" onClick={openWebcam}>
-//                             <img className="webcam__btn__img--open" src={CamOn} alt="open webcam icon" />
-//                         </button>
-//                     }
-//                     {recording &&
-//                         <Timer checkpoints={[{ time: 180000, callback: () =>  stopRecording()},]}>
-//                             <p className="webcam__buttons__timer"><Timer.Minutes /> min : <Timer.Seconds /> sec</p>
-//                         </Timer>
-//                     }
-//                     {recording &&
-//                         <p className="webcam__buttons__timer--max">max: 3 min</p>
-//                     }
-//                 </div>
+                <div className="webcam__buttons">
+                    {recording &&
+                        <button className="webcam__btn webcam__btn--stop" onClick={stopRecording}>
+                            <img className="webcam__btn__img--stop" src={StopRecord} alt="stop recording icon" />
+                        </button>
+                    }
+                    {!recording && webcam &&
+                        <button className="webcam__btn webcam__btn--start" onClick={startRecording}>
+                            <img className="webcam__btn__img--start" src={StartRecord} alt="start recording icon" />
+                        </button>
+                    }
 
-//             </div>
+                    {webcam && !recording &&
+                        <button className="webcam__btn webcam__btn--close" onClick={closeWebcam}>
+                            <img className="webcam__btn__img--close" src={CamOff} alt="close webcam icon" />
+                        </button>
+                    }
 
-//             <div className="description">
+                    {!webcam &&  
+                        <button className="webcam__btn webcam__btn--open" onClick={openWebcam}>
+                            <img className="webcam__btn__img--open" src={CamOn} alt="open webcam icon" />
+                        </button>
+                    }
+                    {recording &&
+                        <Timer checkpoints={[{ time: 180000, callback: () =>  stopRecording()},]}>
+                            <p className="webcam__buttons__timer"><Timer.Minutes /> min : <Timer.Seconds /> sec</p>
+                        </Timer>
+                    }
+                    {recording &&
+                        <p className="webcam__buttons__timer--max">max: 3 min</p>
+                    }
+                </div>
 
-//                 <h1 className="description__title">
-//                     {components[activeComponent].name.charAt(0).toUpperCase() + components[activeComponent].name.slice(1)}
-//                 </h1>
+            </div>
 
-//                 <p className="description__description">
-//                     {components[activeComponent].description.charAt(0).toUpperCase() + components[activeComponent].description.slice(1)}
-//                 </p>
+            <div className="description">
 
-//             </div>
+                <h1 className="description__title">
+                    {components[activeComponent].name.charAt(0).toUpperCase() + components[activeComponent].name.slice(1)}
+                </h1>
 
-//             <div className="components">
-//                 <ul className="components__list">
+                <p className="description__description">
+                    {components[activeComponent].description.charAt(0).toUpperCase() + components[activeComponent].description.slice(1)}
+                </p>
 
-//                     { componentList }
+            </div>
 
-//                     <li className="components__list__item--next">
-//                         <button className="components__next__btn" onClick={handelSubmit}>Volgende stap</button>
-//                     </li>
-//                 </ul>
-//             </div>
-//         </section>
-//     )
-// }
+            <div className="components">
+                <ul className="components__list">
 
-// export default Record;
+                    { componentList }
+
+                    <li className="components__list__item__next">
+                        { componentsSubmit }
+                    </li>
+                </ul>
+            </div>
+        </section>
+    )
+}
+
+export default Record;

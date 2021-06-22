@@ -12,10 +12,11 @@ const UserProfile = () => {
     const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
-    const [jobs, setJobs] = useState(['DC Dirk', 'Verkoopmedewerker Hoogvliet']);
+    const [jobs, setJobs] = useState([]);
+    const [education, setEducation] = useState([]);
     const [skills, setSkills] = useState([]);
-    const [educations, setEducations] = useState(['HAVO', 'HBO']);
     const [externalCV, setExternalCV] = useState('');
+    const [video, setVideo] = useState(null);
 
     useEffect(() => {
         getUserData();
@@ -36,21 +37,24 @@ const UserProfile = () => {
         setImage(res.data.user.picture);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
-        //setJobs(res.data.user.job);
+        setJobs(res.data.user.jobs);
+        setEducation(res.data.user.education);
         setSkills(res.data.user.skills);
         setExternalCV(res.data.user.external_cv);
-        console.log(jobs);
+        setVideo(res.data.video.path);
     }
 
-    const jobsList = jobs.map((job) =>
-        <p key={job}>{job}</p>
+    const jobsList = jobs.map(job =>
+        <p key={job.id}>{job.job}</p>
     );
 
-    const educationsList = educations.map((education) =>
-        <p key={education}>{education}</p>
+    const educationList = education.map(education =>
+        <p key={education.id}>{education.education}</p>
     );
 
-    const skillsList = skills.map(skill => <p key={skill.id}>{skill.skill}</p>);
+    const skillsList = skills.map(skill =>
+        <p className="userprofile-content__grid__skills__skill" key={skill.id}>{skill.skill}</p>
+    );
 
     return (
         <div className="userprofile">
@@ -71,11 +75,14 @@ const UserProfile = () => {
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>
-                        <video width="100%" height="100%" loop controls>
-                            <source src="vidvaso_video_1.mp4" type="video/mp4" />
-                            <source src="vidvaso_video_1.webm" type="video/ogg" />
-                            Dit device ondersteunt geen video.
-                        </video>
+
+                        {video &&
+                            <video width="100%" height="100%" controls>
+                                <source src={video} type="video/mp4" />
+                                Dit device ondersteunt geen video.
+                            </video>
+                        }
+
                     </article>
 
                     <article className="userprofile-content__grid__jobs userprofile-content__card">
@@ -85,7 +92,7 @@ const UserProfile = () => {
 
                     <article className="userprofile-content__grid__education userprofile-content__card">
                         <h2>Opleidingen</h2>
-                        {educationsList}
+                        {educationList}
                     </article>
 
                     <article className="userprofile-content__grid__skills userprofile-content__card">

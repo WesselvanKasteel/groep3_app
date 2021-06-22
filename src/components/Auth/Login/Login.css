@@ -34,7 +34,6 @@ h2 {
 
 .login__form__container__input:focus{
     border-color: #28406A;
-
 }
 
 .login__form__container__placeholder{
@@ -48,24 +47,20 @@ h2 {
 
 .login__form__container > img{
     position: absolute;
-    /* filter: invert(80%) sepia(42%) saturate(106%) hue-rotate(194deg) brightness(79%) contrast(84%); */
     filter: invert(22%) sepia(13%) saturate(2496%) hue-rotate(180deg) brightness(95%) contrast(90%);
     left: 0;
-    transform: scale(80%);
+    transform: scale(0.8);
 }
 
 .login__form__container__input:focus ~ .login__form__container__placeholder,
 .login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
-    transform: translateY(-2rem) scale(70%);
+    transform: translateY(-2rem) scale(0.7);
+    font-weight: bold;
     left: 0;
 }   
 
 .login__form__container__input:not(:placeholder-shown) ~ .login__form__container__placeholder {
     color:#28406A;
-}
-
-.login__form__container__input:not(:placeholder-shown) ~ .login__form__container > img {
-    
 }
 
 .login__form > button

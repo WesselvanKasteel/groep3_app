@@ -1,23 +1,18 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-// css
 import './PageNotFound.css';
 
-// react router
-import { Link, useHistory  } from 'react-router-dom';
-
 const PageNotFound = () => {
-
     const history = useHistory();
 
     const goBack = () => {
         history.goBack();
     }
 
-    return (
+    return(
         <section className="not_found">
-
-            <div className="not_found__card">
+            <article className="not_found__card">
                 <h1 className="not_found__title">Pagina niet gevonden.</h1>
                 <p className="not_found__subtitle">
                     Helaas kunnen we de pagina die u zoekt niet vinden. 
@@ -29,10 +24,9 @@ const PageNotFound = () => {
                     <button className="not_found__btn--back" onClick={goBack}>Terug</button>
                     <Link className="not_found__btn--home" to="/zoeken">Startpagina</Link>
                 </div>
-            </div>
-
+            </article>
         </section>
-    )
+    );
 }
 
 export default PageNotFound;

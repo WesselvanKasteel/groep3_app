@@ -1,0 +1,167 @@
+.record_introduction {
+    margin-top: 12.5vh;
+    margin-bottom: 10vh;
+
+    height: auto;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 80%;
+}
+
+.record_introduction__title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+}
+
+.record_introduction__webcam__preview {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    z-index: 0;
+    background-color: #ededf5;
+
+    border-radius: 2rem;
+}
+
+.record_introduction__webcam__buttons {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.record_introduction__webcam__btn {
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem;
+    border-radius: 1rem;
+    border: none;
+    transition: filter 0.1s ease-out;
+}
+.record_introduction__webcam__btn:hover {
+    cursor: pointer;
+    filter: brightness(1.05);
+}
+
+.record_introduction__webcam__btn--start,
+.record_introduction__webcam__btn--stop   {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 1.5rem;
+    margin-right: 2rem;
+}
+
+.record_introduction__webcam__btn--start {
+    background: linear-gradient(135deg, #EA6F6F -50%, #BA3030 150%);
+}
+
+.record_introduction__webcam__btn--stop {
+    background: linear-gradient(135deg, #EA6F6F -50%, #BA3030 150%);
+    animation: pulse 1s infinite;
+}
+
+.record_introduction__webcam__btn--close,
+.record_introduction__webcam__btn--open {
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+}
+
+.record_introduction__webcam__btn__img--start,
+.record_introduction__webcam__btn__img--stop{
+    width: 4rem;
+    height: 4rem;
+}
+
+.record_introduction__webcam__btn__img--close,
+.record_introduction__webcam__btn__img--open {
+    width: 2rem;
+    height: 2rem;
+}
+
+.record_introduction__webcam__buttons__timer {
+    width: 12rem;
+}
+.record_introduction__webcam__buttons__timer--max {
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(234, 111, 111, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(234, 111, 111, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(234, 111, 111, 0);
+	}
+}
+
+.record_introduction__description {
+    padding: 4rem 0rem;
+}
+
+.record_introduction__description__text {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #5A607F;
+}
+
+.record_introduction__preview {
+    margin-top: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.record_introduction__preview__src {
+    width: 100%;
+    height: auto;
+}
+
+.record_introduction__preview__btn {
+    margin-top: 5rem;
+
+    padding: 1.5rem 3rem;
+
+    color: #fff;
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+
+    border: none;
+    border-radius: 1rem;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.record_introduction__preview__btn:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+.record_introduction__preview__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #061D45;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 46em) {
+    .record_introduction {    
+        width: 50%;
+    }
+}

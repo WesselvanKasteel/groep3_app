@@ -1,7 +1,9 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './UserProfile.css';
+import './UserProfileEdit.css';
+import Remove from "../../assets/svg/remove.svg"
+import Add from "../../assets/svg/add.svg"
 
 const UserProfileEdit = (props) => {
     const [profilePicture, setProfilePicture] = useState('');
@@ -10,9 +12,12 @@ const UserProfileEdit = (props) => {
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
     const [externalCV, setExternalCV] = useState('');
-    const [jobs, setJobs] = useState([{ previous_jobs: '' }]);
+    const [enteredJob, setEnteredJob] = useState('');
+    const [jobs, setJobs] = useState([]);
+    const [enteredEducation, setEnteredEducation] = useState('');
+    const [education, setEducation] = useState([]);
+    const [enteredSkill, setEnteredSkill] = useState('');
     const [skills, setSkills] = useState([]);
-    //const [jobs, setJobs] = useState(['vakkenvuller', 'schoonmaker','afwasser', 'Student 2019-2020', 'Docent 2022-2028']);
 
     useEffect(() => {
         getUserData();
@@ -30,7 +35,8 @@ const UserProfileEdit = (props) => {
         setProvince(res.data.user.province);
         setCountry(res.data.user.country);
         setSkills(res.data.user.skills);
-        // setJobs(res.data.user.jobs);
+        setEducation(res.data.user.education);
+        setJobs(res.data.user.jobs);
         if (res.data.user.external_cv === null) {
             setExternalCV('');
         }
@@ -57,38 +63,28 @@ const UserProfileEdit = (props) => {
         setCountry(event.target.value);
     }
 
-    // const externalCVChangeHandler = (event) => {
-    //     setExternalCV(event.target.value);
-    // }
+    const jobsInputChangeHandler = (event) => {
+        setEnteredJob(event.target.value);
+    }
 
-    const handleJobsInputChange = (index, event) => {
-        const oldJobs = [...jobs];
-        oldJobs[index].previous_jobs = event.target.value;
-        setJobs(oldJobs);
-        console.log(jobs);
-    };
-
-    const handleJobsAddFields = () => {
-        // const values = [...jobs];
-        // values.push({ previous_jobs: '' });
-        // setJobs(values);
-        // console.log(jobs);
-        setJobs(prevJobs => {
-            return [
-                ...prevJobs,
-                {
-                    previous_jobs: '',
-                }
-            ];
-        });
-    };
-
-    const handleJobsRemoveFields = (index, jobs) => {
-        // const values = [...jobs];
-        // values.splice(index, 1);
-        // setJobs(values);
-
+    const jobsRemoveHandler = (index) => {
         setJobs(jobs.filter((_, i) => i !== index));
+    };
+
+    const educationInputChangeHandler = (event) => {
+        setEnteredEducation(event.target.value);
+    }
+
+    const educationRemoveHandler = (index) => {
+        setEducation(education.filter((_, i) => i !== index));
+    };
+
+    const skillsInputChangeHandler = (event) => {
+        setEnteredSkill(event.target.value);
+    }
+
+    const skillsRemoveHandler = (index) => {
+        setSkills(skills.filter((_, i) => i !== index));
     };
 
     const skillsInputChangeHandler = (event, index) => {
@@ -139,21 +135,14 @@ const UserProfileEdit = (props) => {
         else {
             tempCV = externalCV;
         }
-        // if(!externalCV.includes('https://')) {
-        //     setExternalCV(`https://${externalCV}`);
-        // } else {
-        //     setExternalCV(`http://${externalCV}`);
-        // };
 
-        const data = {
+        const profileData = {
             address: address,
             city: city,
             province: province,
             country: country,
-            previous_jobs: jobs,
             external_cv: tempCV,
         };
-        console.log(jobs);
 
         const config = {
             headers: {
@@ -161,126 +150,328 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const res = await axios.put('http://127.0.0.1:8000/api/user/edit', data, config);
-        console.log(res.data);
+        const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
+        console.log(profileRes.data);
+
+        profilePictureUpdateHandler(event);
+
         props.history.push('/profiel');
     };
 
+    const storeJobsHandler = async () => {
+
+        const jobsData = {
+            job: enteredJob,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const jobsRes = await axios.post('http://127.0.0.1:8000/api/jobs/store', jobsData, config);
+        console.log(jobsRes.data);
+    }
+
+    const storeEducationHandler = async () => {
+
+        const educationData = {
+            education: enteredEducation,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const educationRes = await axios.post('http://127.0.0.1:8000/api/education/store', educationData, config);
+        console.log(educationRes.data);
+    }
+
+    const storeSkillsHandler = async () => {
+
+        const skillsData = {
+            skill: enteredSkill,
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
+        console.log(skillsRes.data);
+    }
+
+    const jobsAddHandler = () => {
+        if(enteredJob === '') {
+            return;
+        }
+
+        setJobs(prevJobs => {
+            return [
+                ...prevJobs,
+                {
+                    job: enteredJob,
+                }
+            ];
+        });
+        storeJobsHandler();
+        setEnteredJob('');
+    };
+
+    const educationAddHandler = () => {
+        if(enteredEducation === '') {
+            return;
+        }
+
+        setEducation(prevEducation => {
+            return [
+                ...prevEducation,
+                {
+                    education: enteredEducation,
+                }
+            ];
+        });
+        storeEducationHandler();
+        setEnteredEducation('');
+    };
+
+    const skillsAddHandler = () => {
+        if(enteredSkill === '') {
+            return;
+        }
+
+        setSkills(prevSkills => {
+            return [
+                ...prevSkills,
+                {
+                    skill: enteredSkill,
+                }
+            ];
+        });
+        storeSkillsHandler();
+        setEnteredSkill('');
+    };
+
+    let jobsList;
+    if (jobs.length === 0) {
+        jobsList = <p><i>Je hebt nog geen banen toegevoegd</i></p>
+    }
+    else {
+        jobsList = jobs.map(job => (
+            <p key={job.id}>{job.job}</p>
+        ))
+    }
+
+    let skillsList;
+    if (skills.length === 0) {
+        skillsList = <p><i>Je hebt nog geen skills toegevoegd</i></p>
+    }
+    else {
+        skillsList = skills.map(skill => (
+            <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
+        ))
+    }
+
+    let educationList;
+    if (education.length === 0) {
+        educationList = <p><i>Je hebt nog geen opleidingen toegevoegd</i></p>
+    }
+    else {
+        educationList = education.map(education => (
+            <p key={education.id}>{education.education}</p>
+        ))
+    }
+
+
     return(
         <section className ="userprofileedit">
-            <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
-                <h2>Afbeelding</h2>
-                <label htmlFor="profilePicture">Afbeelding:</label>
-                <input
-                    type="file"
-                    name="profilePicture"
-                    id="profilePicture"
-                    onChange={(e) => setProfilePicture(e.target.files[0])}
-                />
-                <button className="userprofileedit__form__button">Upload</button>
-            </form>
-            <form className="userprofileedit__form" onSubmit={profileUpdateHandler} method="POST">
-                <h2>Algemene informatie</h2>
+            
+            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler && profileUpdateHandler} method="POST">
+                <article className="userprofileedit__form__article item1">
+                    
+                        <div className="userprofileedit__form__article__container">
+                        <h2>Profielfoto</h2>
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="file"
+                                name="profilePicture"
+                                id="profilePicture"
+                                onChange={(e) => setProfilePicture(e.target.files[0])}
+                            />
+                            {/* <label htmlFor="profilePicture">Profielfoto:</label> */}
+                            
+                        </div>
+                        {/* <button className="userprofileedit__form__article__button--upload">Upload</button> */}
+                </article>
+            {/* </form>
+            <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST"> */}
+                
+                <article className="userprofileedit__form__article item2">
+                    
+                        <div className="userprofileedit__form__article__container">
+                            <h2>Algemene informatie</h2>    
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="address"
+                                id="address"
+                                value={address}
+                                onChange={addressChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="address">Adres</label>
+                        </div>
+                        <div className="userprofileedit__form__article__container">
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="city"
+                                id="city"
+                                value={city}
+                                onChange={cityChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="city">Plaats</label>
+                        </div>
+                        <div className="userprofileedit__form__article__container">
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="province"
+                                id="province"
+                                value={province}
+                                onChange={provinceChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="province">Provincie</label>
+                        </div>
+                        <div className="userprofileedit__form__article__container">
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="country"
+                                id="country"
+                                value={country}
+                                onChange={countryChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="country">Land</label>
+                        </div>
+                </article>
 
-                <label htmlFor="address">Adres:</label>
-                <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    value={address}
-                    onChange={addressChangeHandler}
-                />
-                <label htmlFor="city">Plaats:</label>
-                <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    value={city}
-                    onChange={cityChangeHandler}
-                />
-                <label htmlFor="province">Provincie:</label>
-                <input
-                    type="text"
-                    name="province"
-                    id="province"
-                    value={province}
-                    onChange={provinceChangeHandler}
-                />
-                <label htmlFor="country">Land:</label>
-                <input
-                    type="text"
-                    name="country"
-                    id="country"
-                    value={country}
-                    onChange={countryChangeHandler}
-                />
+                <article className="userprofileedit__form__article item3">
 
-                <h2>Kennismaking video</h2>
-                <p>Huidige video: <i>Profiel.mp4</i></p>
+                    
+                        <div className="userprofileedit__form__article__container">
+                        <h2>Kennismaking video</h2>
+                            <p>Huidige video: <i>Profiel.mp4</i></p>
+                        </div>
+                </article>
 
-                <h2>Eerdere banen</h2>
-                {jobs.map((inputField, index) => (
-                    <Fragment key={`${inputField}~${index}`}>
-                        <label htmlFor="jobs">Baan/functie + periode:</label>
+                <article className="userprofileedit__form__article item4">    
+                    <div className="userprofileedit__form__article__container">
+                    <h2>Eerdere banen</h2>
+                    <p>{jobsList}</p>
                         <input
+                            className="userprofileedit__form__article__container__input"
                             type="text"
-                            id="jobs"
-                            name="jobs"
-                            value={inputField.jobs}
-                            onChange={event => handleJobsInputChange(index, event)}
+                            id="job"
+                            name="job"
+                            value={enteredJob}
+                            onChange={jobsInputChangeHandler}
+                            placeholder=" "
                         />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="job">Eerdere Banen Toevoegen</label>
                         <button
-                            className="userprofileedit__form__button--add"
-                            type="button"
-                            onClick={() => handleJobsAddFields()}
-                        >+</button>
+                        type="button"
+                        className="userprofileedit__form__article__button--add"
+                        onClick={jobsAddHandler}
+                        ><img src={Add}></img></button>
+                    </div>
+                                
+
+                    
+                </article>
+
+                <article className="userprofileedit__form__article item5">
+                    
+                    
+                        <div className="userprofileedit__form__article__container edu">
+
+                        <h2>Opleidingen</h2>
+                        <p>{educationList}</p>
+                        
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                id="education"
+                                name="education"
+                                value={enteredEducation}
+                                onChange={educationInputChangeHandler}
+                                placeholder=" "
+                            />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="education">Opleidingen toevoegen</label>
                         <button
-                            className="userprofileedit__form__button--remove"
                             type="button"
-                            onClick={() => handleJobsRemoveFields(index, jobs)}
-                        >x</button>
-                    </Fragment>
-                ))}
+                            className="userprofileedit__form__article__button--add"
+                            onClick={educationAddHandler}
+                        ><img src={Add}></img></button>
+                        </div>
+                        
+                        
+                            
+                        
+                </article>
 
-                <h2>Opleidingen</h2>
-
-                <h2>Skills</h2>
-                {skills.map((inputField, index) => (
-                    <Fragment key={`${inputField}~${index}`}>
-                        <label htmlFor="skills">Skill:</label>
+                <article className="userprofileedit__form__article item6">
+                    
+                    <div className="userprofileedit__form__article__container">
+                    <h2>Skills</h2>
+                    
+                    <p>{skillsList}</p>
                         <input
+                            className="userprofileedit__form__article__container__input"
                             type="text"
-                            id="skills"
-                            name="skills"
-                            value={inputField.skill}
-                            onChange={(event) => skillsInputChangeHandler(event, index)}
+                            id="skill"
+                            name="skill"
+                            value={enteredSkill}
+                            onChange={skillsInputChangeHandler}
+                            placeholder=" "
                         />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="skill">Skill Toevoegen</label>
                         <button
-                            type="button"
-                            className="userprofileedit__form__button--add"
-                            onClick={skillsAddHandler}
-                        >+</button>
-                        <button
-                            type="button"
-                            className="userprofileedit__form__button--remove"
-                            onClick={() => skillsRemoveHandler(skills, index)}
-                        >x</button>
-                    </Fragment>
-                ))}
+                        type="button"
+                        className="userprofileedit__form__article__button--add"
+                        onClick={skillsAddHandler}
+                    ><img src={Add}></img></button>
+                    </div>
+                    
+                </article>
 
-                <h2>Extern CV</h2>
-                <label htmlFor="externalCV">Link:</label>
-                <input
-                    type="text"
-                    name="externalCV"
-                    id="externalCV"
-                    value={externalCV}
-                    onChange={(event) => setExternalCV(event.target.value)}
-                />
-                <button className="userprofileedit__form__button userprofileedit__form__button--save">Opslaan</button>
-                <button className="userprofileedit__form__button userprofileedit__form__button--cancel">
-                    <Link to="/profiel">Annuleren</Link>
-                </button>
+                <article className="userprofileedit__form__article item7">
+                    
+                    <div className="userprofileedit__form__article__container">
+                    <h2>Extern CV</h2>
+                        <input
+                            className="userprofileedit__form__article__container__input"
+                            type="text"
+                            name="externalCV"
+                            id="externalCV"
+                            value={externalCV}
+                            onChange={(event) => setExternalCV(event.target.value)}
+                        />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="externalCV">Link</label>
+                    </div> 
+                </article>
+                <button className="userprofileedit__form__article__button userprofileedit__form__article__button--save">Opslaan</button>
+                    <button className="userprofileedit__form__article__button--cancel">
+                        <Link className="userprofileedit__form__article__button--cancel__link" to="/profiel">Annuleren</Link>
+                    </button>
             </form>
         </section>
     );
