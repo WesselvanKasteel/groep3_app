@@ -132,8 +132,6 @@ const UserProfileEdit = (props) => {
         const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
         console.log(profileRes.data);
 
-        profilePictureUpdateHandler(event);
-
         props.history.push('/profiel');
     };
 
@@ -270,7 +268,7 @@ const UserProfileEdit = (props) => {
     return(
         <section className ="userprofileedit">
             
-            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler && profileUpdateHandler} method="POST">
+            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler} method="POST">
                 <article className="userprofileedit__form__article item1">
                     
                         <div className="userprofileedit__form__article__container">
@@ -285,10 +283,10 @@ const UserProfileEdit = (props) => {
                             {/* <label htmlFor="profilePicture">Profielfoto:</label> */}
                             
                         </div>
-                        {/* <button className="userprofileedit__form__article__button--upload">Upload</button> */}
+                        <button className="userprofileedit__form__article__button--upload">Upload</button>
                 </article>
-            {/* </form>
-            <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST"> */}
+            </form>
+            <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST">
                 
                 <article className="userprofileedit__form__article item2">
                     
@@ -348,14 +346,14 @@ const UserProfileEdit = (props) => {
                     
                         <div className="userprofileedit__form__article__container">
                         <h2>Kennismaking video</h2>
-                            <p>Huidige video: <i>Profiel.mp4</i></p>
+                            <div>Huidige video: <i>Profiel.mp4</i></div>
                         </div>
                 </article>
 
                 <article className="userprofileedit__form__article item4">    
                     <div className="userprofileedit__form__article__container">
                     <h2>Eerdere banen</h2>
-                    <p>{jobsList}</p>
+                    <div>{jobsList}</div>
                         <input
                             className="userprofileedit__form__article__container__input"
                             type="text"
@@ -383,7 +381,7 @@ const UserProfileEdit = (props) => {
                         <div className="userprofileedit__form__article__container edu">
 
                         <h2>Opleidingen</h2>
-                        <p>{educationList}</p>
+                        <div>{educationList}</div>
                         
                             <input
                                 className="userprofileedit__form__article__container__input"
@@ -412,7 +410,7 @@ const UserProfileEdit = (props) => {
                     <div className="userprofileedit__form__article__container">
                     <h2>Skills</h2>
                     
-                    <p>{skillsList}</p>
+                    <div>{skillsList}</div>
                         <input
                             className="userprofileedit__form__article__container__input"
                             type="text"
@@ -443,6 +441,7 @@ const UserProfileEdit = (props) => {
                             id="externalCV"
                             value={externalCV}
                             onChange={(event) => setExternalCV(event.target.value)}
+                            placeholder=" "
                         />
                         <label className="userprofileedit__form__article__container__placeholder" htmlFor="externalCV">Link</label>
                     </div> 

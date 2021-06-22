@@ -49,6 +49,10 @@
     border-color: #28406A;
 }
 
+.userprofileedit__form__article__container__input:hover{
+    border-color: #3D8FE5;
+}
+
 .userprofileedit__form__article__container__placeholder{
     color: #65657b;
     pointer-events: none;
@@ -93,9 +97,14 @@
 .userprofileedit__form__article__button--add{
     border-radius: 1rem;
     border-style: none;
-    background-color: #1b8f21;
+    background-color: #28406A;
     padding: 2rem;
     position: relative;
+    cursor:pointer;
+}
+
+.userprofileedit__form__article__button--add:hover{
+    background-color: #1b8f21;
 }
 
 .userprofileedit__form__article__button--add > img{
@@ -115,6 +124,10 @@
     padding: 1rem;
     cursor: pointer;
     width: 50%;
+}
+
+.userprofileedit__form__article__button--upload:hover{
+    background-color: #3D8FE5;
 }
 
 .userprofileedit__form__article__button--cancel{
@@ -145,6 +158,11 @@
     cursor: pointer;
     width: 50%;
     margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.userprofileedit__form__article__button--save:hover{
+    background-color: #3D8FE5;
 }
 
 .userprofileedit__form__article__button--cancel__link{
@@ -152,7 +170,13 @@
     color: inherit;
 }
 
-.userprofileedit__form__article__container > p {
+.userprofileedit__form__article__button--cancel:hover{
+    background-color: #fa574b;
+}
+
+
+
+.userprofileedit__form__article__container > div {
     margin-bottom: 2rem;
 }
 
@@ -189,7 +213,7 @@
        
     }
 
-    .grid1{
+    .userprofileedit__form{
         display:grid;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 4rem;
@@ -199,5 +223,15 @@
         grid-row-start: 1;
         grid-column-start: 2;
         grid-row-end: 3;
+    }
+
+    .item2{
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 3;
+    }
+
+    .userprofileedit__form__article__button--save{
+        margin-bottom: 0rem;
     }
 }

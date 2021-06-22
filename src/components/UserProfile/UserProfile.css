@@ -82,7 +82,7 @@
     display: block;
 }
 
-.userprofile-content__edit__link h2 {
+.userprofile-content__edit__link > h2 {
     margin: 0;
 }
 
