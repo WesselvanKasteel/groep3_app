@@ -79,13 +79,13 @@ const UserProfileEdit = (props) => {
         setEducation(education.filter((_, i) => i !== index));
     };
 
-    const skillsInputChangeHandler = (event) => {
-        setEnteredSkill(event.target.value);
-    }
+    // const skillsInputChangeHandler = (event) => {
+    //     setEnteredSkill(event.target.value);
+    // }
 
-    const skillsRemoveHandler = (index) => {
-        setSkills(skills.filter((_, i) => i !== index));
-    };
+    // const skillsRemoveHandler = (index) => {
+    //     setSkills(skills.filter((_, i) => i !== index));
+    // };
 
     const skillsInputChangeHandler = (event, index) => {
         const oldSkills = [...skills];
@@ -240,22 +240,22 @@ const UserProfileEdit = (props) => {
         setEnteredEducation('');
     };
 
-    const skillsAddHandler = () => {
-        if(enteredSkill === '') {
-            return;
-        }
+    // const skillsAddHandler = () => {
+    //     if(enteredSkill === '') {
+    //         return;
+    //     }
 
-        setSkills(prevSkills => {
-            return [
-                ...prevSkills,
-                {
-                    skill: enteredSkill,
-                }
-            ];
-        });
-        storeSkillsHandler();
-        setEnteredSkill('');
-    };
+    //     setSkills(prevSkills => {
+    //         return [
+    //             ...prevSkills,
+    //             {
+    //                 skill: enteredSkill,
+    //             }
+    //         ];
+    //     });
+    //     storeSkillsHandler();
+    //     setEnteredSkill('');
+    // };
 
     let jobsList;
     if (jobs.length === 0) {

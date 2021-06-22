@@ -5,13 +5,14 @@ import axios from 'axios';
 // scss
 import './SearchVacancyFilter.css';
 
-// components
-import SearchBar from '../../CustomElements/SearchBar';
-import DropdownSearch from '../../CustomElements/DropdownSearch';
-import DropdownEmployment from '../../CustomElements/DropdownEmployment';
-import DropdownDate from '../../CustomElements/DropdownDate';
-import RadiusSlider from '../../CustomElements/RadiusSlider';
+//components
+import SearchBar from '../../CustomElements/Searchbar/SearchBar';
+import DropdownSearch from '../../CustomElements/Dropdown/DropdownSearch/DropdownSearch';
+import DropdownEmployment from '../../CustomElements/Dropdown/DropdownEmployment/DropdownEmployment';
+import DropdownDate from '../../CustomElements/Dropdown/DropdownDate/DropdownDate';
+import RadiusSlider from '../../CustomElements/RadiusSlider/RadiusSlider';
 import SearchVacancyAttributes from './SearchVacancyAttributes';
+
 
 // de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
 const SearchVacancyFilter = ({ updateFilterState }) => {
@@ -37,7 +38,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
     }, []);
 
     const getSearchOptions = () =>{
-        const BASE_URL = "http://localhost:8000/api/skill"
+        const BASE_URL = "http://localhost:8000/api/skill/skills"
         axios.get(BASE_URL).then(res =>{
             setSearchOptions(res.data.map(skill => skill.skill));
         })
