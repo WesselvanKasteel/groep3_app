@@ -20,8 +20,13 @@ const SearchVacancy = () => {
     }, []);
 
     const getVacancies = () =>{
-        const BASE_URL ="http://localhost:8000/api/vacancies";
-        axios.get(BASE_URL).then(res =>{
+
+        const config = {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+
+        const BASE_URL ="http://localhost:8000/api/vacancy/vacancies";
+        axios.get(BASE_URL, config).then(res =>{
             setVacancyList(res.data);            
         })
     }

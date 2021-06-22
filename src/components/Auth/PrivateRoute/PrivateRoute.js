@@ -40,13 +40,11 @@ const PrivateRoute = ({ path, component, exact, role }) => {
         setIsLoading(false);
         setIsLoggedIn(true);
         setActiveRole('unemployed');
-
-        console.log();
     }
 
     return isLoading ? null : isLoggedIn && activeRole === role ?
         <Route path={path} component={component} exact={exact}/> :
-        <Redirect to="/login" />
+        <Redirect to="/inloggen" />
 }
 
 export default PrivateRoute;

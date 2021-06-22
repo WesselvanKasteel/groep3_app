@@ -69,11 +69,12 @@
 }
 
 .webcam__btn--start {
-    background: linear-gradient(135deg, #9EEA6F -50%, #30BA6F 150%);
+    background: linear-gradient(135deg, #EA6F6F -50%, #BA3030 150%);
 }
 
 .webcam__btn--stop {
     background: linear-gradient(135deg, #EA6F6F -50%, #BA3030 150%);
+    animation: pulse 1s infinite;
 }
 
 .webcam__btn--close,
@@ -91,6 +92,31 @@
 .webcam__btn__img--open {
     width: 2rem;
     height: 2rem;
+}
+
+.webcam__buttons__timer {
+    width: 12rem;
+}
+.webcam__buttons__timer--max {
+    margin-left: 1rem;
+    font-size: 1.25rem;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(234, 111, 111, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(234, 111, 111, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(234, 111, 111, 0);
+	}
 }
 
 .description {
@@ -198,7 +224,7 @@
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width: 62,5em) {
     .record {
         margin-top: 7.5vh;
     }

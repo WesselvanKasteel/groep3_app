@@ -329,7 +329,8 @@ const UserProfileEdit = (props) => {
                 />
 
                 <h2>Kennismaking video</h2>
-                <p>Huidige video: <i>Profiel.mp4</i></p>
+
+                <Link className="userprofileedit__form__button" to="/maak-kennismakingvideo">Opnemen</Link>
 
                 <h2>Eerdere banen</h2>
                 {jobsList}

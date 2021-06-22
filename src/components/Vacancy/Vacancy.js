@@ -16,7 +16,7 @@ const Vacancy = () => {
 
     const [data, setData] = useState(null)
 
-    const BASE_URL = 'http://127.0.0.1:8000/api';
+    const BASE_URL = 'http://127.0.0.1:8000/api/vacancy';
     const IDENTIFIER = useParams().handle;
 
     useEffect(() => {
@@ -25,7 +25,12 @@ const Vacancy = () => {
 
     const fetchVacancyData = async () => {
         
-        const res = await axios.get(BASE_URL + '/vacancy', { params: { code: IDENTIFIER } });
+        const config = {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: { code: IDENTIFIER }
+        };
+
+        const res = await axios.get(BASE_URL + '/vacancy', config);
         setData(res.data.vacancy);
 
         console.log(res.data.vacancy);

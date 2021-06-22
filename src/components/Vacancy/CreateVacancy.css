@@ -1,0 +1,30 @@
+.create_vacancy {
+    margin-top: 12.5vh;
+    height: auto;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 80%;
+}
+
+.create_vacancy__title {
+
+    font-weight: 600;
+    font-size: 2rem;
+
+    margin-bottom: 2rem;
+}
+
+.create_vacancy__input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.create_vacancy__input__label {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
