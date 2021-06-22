@@ -132,6 +132,8 @@ const UserProfileEdit = (props) => {
         const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
         console.log(profileRes.data);
 
+        profilePictureUpdateHandler(event);
+
         props.history.push('/profiel');
     };
 
