@@ -17,7 +17,12 @@ const SearchVacancy = () => {
 
     useEffect(() => {
         getVacancies();
+        
     }, []);
+
+    useEffect(() =>{
+        filterVacancyList();
+    }, [filterItems])
 
     const getVacancies = () =>{
 
@@ -27,7 +32,8 @@ const SearchVacancy = () => {
 
         const BASE_URL ="http://localhost:8000/api/vacancy/vacancies";
         axios.get(BASE_URL, config).then(res =>{
-            setVacancyList(res.data);            
+            setVacancyList(res.data);       
+            setFilterVacancies(res.data);     
         })
     }
 
@@ -36,8 +42,19 @@ const SearchVacancy = () => {
         setFilterItems(list);
         setFilterSearchTerm(searchTerm); 
 
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
+
+        console.log("filteritems: " + filterItems.map(item => item.item))
+        console.log(filterVacancies);
         console.log(list);
         console.log(searchTerm);
+    }
+
+    const filterVacancyList = () => {
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
+        setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
+        console.log("filteritems: " + filterItems.map(item => item.item.toString()))
     }
 
     return (
@@ -48,7 +65,8 @@ const SearchVacancy = () => {
                     <img className="search__container__title-arrow_down" src={ArrowDirection} alt="arrow" />
                 </div>
                 <SearchVacancyFilter updateFilterState={updateFilterState} />
-                <SearchVacancyList vacancies={vacancyList} />
+                <SearchVacancyList vacancies={filterVacancies} />
+                {/* <SearchVacancyList vacancies={vacancyList} /> */}
             </div>
         </section>
     )

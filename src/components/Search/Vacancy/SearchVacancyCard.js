@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 const SearchVacancyCard = ({ data }) => {
 
     useEffect(() => {
-        console.log(data);
-    }, [data])
+  
+    }, [])
 
     const vacancyTags = data.skills.map((skill, index) =>
         <li className="vacancy-card__list__item" key={index}>{skill.skill}</li>
