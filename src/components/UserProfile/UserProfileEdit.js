@@ -67,7 +67,7 @@ const UserProfileEdit = (props) => {
 
     const jobsRemoveHandler = (id) => {
         setJobs(jobs.filter(job => id !== job.id));
-        deleteJobsHandler();
+        deleteJobsHandler(id);
     };
 
     const educationInputChangeHandler = (event) => {
@@ -150,10 +150,9 @@ const UserProfileEdit = (props) => {
         console.log(jobsRes.data);
     }
 
-    const deleteJobsHandler = async () => {
-        const jobsData = {
-            job: jobs,
-        }
+    const deleteJobsHandler = async (id) => {
+        const jobToBeDeleted = jobs.find(job => id === job.id);
+        console.log(jobToBeDeleted);
 
         const config = {
             headers: {
@@ -161,7 +160,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const jobsRes = await axios.delete('http://127.0.0.1:8000/api/jobs/destroy', jobsData, config);
+        const jobsRes = await axios.delete('http://127.0.0.1:8000/api/destroy', jobToBeDeleted, config);
         console.log(jobsRes);
     }
 
@@ -288,6 +287,7 @@ const UserProfileEdit = (props) => {
                     type="file"
                     name="profilePicture"
                     id="profilePicture"
+                    className="userprofileedit__form__file"
                     onChange={(e) => setProfilePicture(e.target.files[0])}
                 />
                 <button className="userprofileedit__form__button">Upload</button>

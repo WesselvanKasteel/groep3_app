@@ -87,7 +87,7 @@
 }
 
 .userprofile-content__edit__link h2 {
-    margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .userprofile-content__grid__video > video {
@@ -142,7 +142,12 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
+.userprofileedit__form__file {
+    cursor: pointer;
+}
+
 .userprofileedit__form__button {
+    font-family: 'Poppins', sans-serif;
     margin: 1rem 2rem 2rem 0;
     color: #fff;
     font-weight: 600;
