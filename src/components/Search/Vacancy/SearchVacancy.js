@@ -29,9 +29,9 @@ const SearchVacancy = () => {
 
     const getVacancies = () =>{
 
-        // const config = {
-        //     headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
-        // };
+        const config = {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
 
         const BASE_URL ="http://localhost:8000/api/vacancies";
         axios.get(BASE_URL).then(res =>{
