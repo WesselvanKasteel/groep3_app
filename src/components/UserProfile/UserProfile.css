@@ -1,8 +1,6 @@
 :root {
     --userprofile-grid-mobile: 5% 90% 5%;
     --userprofile-grid-desktop: 20% 60% 20%;
-    --userprofileedit-grid-mobile: 5% 90% 5%;
-    --userprofileedit-grid-desktop: 35% 30% 35%;
 }
 
 .userprofile {
@@ -50,13 +48,11 @@
 }
 
 .userprofile-content__card {
-    border: 1px solid #bbb;
     padding: 1rem;
     border-radius: 1rem;
     margin: 1rem 0;
     background-color: #fff;
-    box-shadow: 1px 5px 29px 4px #081f4710;
-    -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
+    box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.1);
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
@@ -111,65 +107,6 @@
     cursor: pointer;
 }
 
-.userprofileedit {
-    display: grid;
-    grid-template-columns: var(--userprofileedit-grid-mobile);
-    margin-top: 10vh;
-}
-
-.userprofileedit h2{
-    margin: 1rem 0;
-    color: var(--color-text);
-}
-
-.userprofileedit__form{
-    grid-column: 2;
-}
-
-.userprofileedit__form label {
-    display: block;
-}
-
-.userprofileedit__form input{
-    font-family: inherit;
-    padding: 1rem;
-    margin: 0.5rem 0 1rem 0;
-    border-radius: 1rem;
-    border: solid 1px #bbb;
-    width: 100%;
-    box-shadow: 1px 5px 29px 4px #081f4710;
-    -webkit-box-shadow: 1px 5px 29px 4px #081f4710;
-    -moz-box-shadow: 1px 5px 29px 4px #081f4710;
-}
-
-.userprofileedit__form__button {
-    margin: 1rem 2rem 2rem 0;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.25rem;
-    border-radius: 1rem;
-    border: none;
-    transition: filter 0.2s ease-out;
-    padding: 1rem 2rem;
-}
-
-.userprofileedit__form__button--add, .userprofileedit__form__button {
-    background-color: var(--color-accent);
-}
-
-.userprofileedit__form__button--remove, .userprofileedit__form__button--cancel {
-    background-color: red;
-}
-
-.userprofileedit__form button > a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.userprofileedit button:hover {
-    filter: brightness(1.20);
-    cursor: pointer;
-}
 
 @media (min-width: 62.5em) {
     .userprofile{
@@ -195,9 +132,5 @@
 
     .userprofile-content__grid__video > video {
         height: 75%;
-    }
-
-    .userprofileedit {
-        grid-template-columns: var(--userprofileedit-grid-desktop);
     }
 }

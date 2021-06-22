@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './UserProfile.css';
+import './UserProfileEdit.css';
+import Remove from "../../assets/svg/remove.svg"
+import Add from "../../assets/svg/add.svg"
 
 const UserProfileEdit = (props) => {
     const [profilePicture, setProfilePicture] = useState('');
@@ -265,118 +267,188 @@ const UserProfileEdit = (props) => {
 
     return(
         <section className ="userprofileedit">
-            <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
-                <h2>Afbeelding</h2>
-                <label htmlFor="profilePicture">Afbeelding:</label>
-                <input
-                    type="file"
-                    name="profilePicture"
-                    id="profilePicture"
-                    onChange={(e) => setProfilePicture(e.target.files[0])}
-                />
-                <button className="userprofileedit__form__button">Upload</button>
-            </form>
-            <form className="userprofileedit__form" onSubmit={profileUpdateHandler} method="POST">
-                <h2>Algemene informatie</h2>
+            
+            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler && profileUpdateHandler} method="POST">
+                <article className="userprofileedit__form__article item1">
+                    
+                        <div className="userprofileedit__form__article__container">
+                        <h2>Profielfoto</h2>
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="file"
+                                name="profilePicture"
+                                id="profilePicture"
+                                onChange={(e) => setProfilePicture(e.target.files[0])}
+                            />
+                            {/* <label htmlFor="profilePicture">Profielfoto:</label> */}
+                            
+                        </div>
+                        {/* <button className="userprofileedit__form__article__button--upload">Upload</button> */}
+                </article>
+            {/* </form>
+            <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST"> */}
+                
+                <article className="userprofileedit__form__article item2">
+                    
+                        <div className="userprofileedit__form__article__container">
+                            <h2>Algemene informatie</h2>    
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="address"
+                                id="address"
+                                value={address}
+                                onChange={addressChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="address">Adres</label>
+                        </div>
+                        <div className="userprofileedit__form__article__container">
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="city"
+                                id="city"
+                                value={city}
+                                onChange={cityChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="city">Plaats</label>
+                        </div>
+                        <div className="userprofileedit__form__article__container">
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="province"
+                                id="province"
+                                value={province}
+                                onChange={provinceChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="province">Provincie</label>
+                        </div>
+                        <div className="userprofileedit__form__article__container">
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                name="country"
+                                id="country"
+                                value={country}
+                                onChange={countryChangeHandler}
+                                placeholder=" "
+                            />
+                            <label className="userprofileedit__form__article__container__placeholder" htmlFor="country">Land</label>
+                        </div>
+                </article>
 
-                <label htmlFor="address">Adres:</label>
-                <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    value={address}
-                    onChange={addressChangeHandler}
-                />
-                <label htmlFor="city">Plaats:</label>
-                <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    value={city}
-                    onChange={cityChangeHandler}
-                />
-                <label htmlFor="province">Provincie:</label>
-                <input
-                    type="text"
-                    name="province"
-                    id="province"
-                    value={province}
-                    onChange={provinceChangeHandler}
-                />
-                <label htmlFor="country">Land:</label>
-                <input
-                    type="text"
-                    name="country"
-                    id="country"
-                    value={country}
-                    onChange={countryChangeHandler}
-                />
+                <article className="userprofileedit__form__article item3">
 
-                <h2>Kennismaking video</h2>
+                    
+                        <div className="userprofileedit__form__article__container">
+                        <h2>Kennismaking video</h2>
+                            <p>Huidige video: <i>Profiel.mp4</i></p>
+                        </div>
+                </article>
 
-                <Link className="userprofileedit__form__button" to="/maak-kennismakingvideo">Opnemen</Link>
-
-                <h2>Eerdere banen</h2>
-                {jobsList}
-                <label htmlFor="job">Banen:</label>
-                <input
-                    type="text"
-                    id="job"
-                    name="job"
-                    value={enteredJob}
-                    onChange={jobsInputChangeHandler}
-                />
-                <button
-                    type="button"
-                    className="userprofileedit__form__button userprofileedit__form__button--add"
-                    onClick={jobsAddHandler}
-                >+</button>
-
-                <h2>Opleidingen</h2>
-                    {educationList}
-                    <label htmlFor="education">Opleidingen:</label>
-                    <input
-                        type="text"
-                        id="education"
-                        name="education"
-                        value={enteredEducation}
-                        onChange={educationInputChangeHandler}
-                    />
-                    <button
+                <article className="userprofileedit__form__article item4">    
+                    <div className="userprofileedit__form__article__container">
+                    <h2>Eerdere banen</h2>
+                    <p>{jobsList}</p>
+                        <input
+                            className="userprofileedit__form__article__container__input"
+                            type="text"
+                            id="job"
+                            name="job"
+                            value={enteredJob}
+                            onChange={jobsInputChangeHandler}
+                            placeholder=" "
+                        />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="job">Eerdere Banen Toevoegen</label>
+                        <button
                         type="button"
-                        className="userprofileedit__form__button userprofileedit__form__button--add"
-                        onClick={educationAddHandler}
-                    >+</button>
+                        className="userprofileedit__form__article__button--add"
+                        onClick={jobsAddHandler}
+                        ><img src={Add}></img></button>
+                    </div>
+                                
 
-                <h2>Skills</h2>
-                {skillsList}
-                <label htmlFor="skill">Skill:</label>
-                <input
-                    type="text"
-                    id="skill"
-                    name="skill"
-                    value={enteredSkill}
-                    onChange={skillsInputChangeHandler}
-                />
-                <button
-                    type="button"
-                    className="userprofileedit__form__button userprofileedit__form__button--add"
-                    onClick={skillsAddHandler}
-                >+</button>
+                    
+                </article>
 
-                <h2>Extern CV</h2>
-                <label htmlFor="externalCV">Link:</label>
-                <input
-                    type="text"
-                    name="externalCV"
-                    id="externalCV"
-                    value={externalCV}
-                    onChange={(event) => setExternalCV(event.target.value)}
-                />
-                <button className="userprofileedit__form__button userprofileedit__form__button--save">Opslaan</button>
-                <button className="userprofileedit__form__button userprofileedit__form__button--cancel">
-                    <Link to="/profiel">Annuleren</Link>
-                </button>
+                <article className="userprofileedit__form__article item5">
+                    
+                    
+                        <div className="userprofileedit__form__article__container edu">
+
+                        <h2>Opleidingen</h2>
+                        <p>{educationList}</p>
+                        
+                            <input
+                                className="userprofileedit__form__article__container__input"
+                                type="text"
+                                id="education"
+                                name="education"
+                                value={enteredEducation}
+                                onChange={educationInputChangeHandler}
+                                placeholder=" "
+                            />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="education">Opleidingen toevoegen</label>
+                        <button
+                            type="button"
+                            className="userprofileedit__form__article__button--add"
+                            onClick={educationAddHandler}
+                        ><img src={Add}></img></button>
+                        </div>
+                        
+                        
+                            
+                        
+                </article>
+
+                <article className="userprofileedit__form__article item6">
+                    
+                    <div className="userprofileedit__form__article__container">
+                    <h2>Skills</h2>
+                    
+                    <p>{skillsList}</p>
+                        <input
+                            className="userprofileedit__form__article__container__input"
+                            type="text"
+                            id="skill"
+                            name="skill"
+                            value={enteredSkill}
+                            onChange={skillsInputChangeHandler}
+                            placeholder=" "
+                        />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="skill">Skill Toevoegen</label>
+                        <button
+                        type="button"
+                        className="userprofileedit__form__article__button--add"
+                        onClick={skillsAddHandler}
+                    ><img src={Add}></img></button>
+                    </div>
+                    
+                </article>
+
+                <article className="userprofileedit__form__article item7">
+                    
+                    <div className="userprofileedit__form__article__container">
+                    <h2>Extern CV</h2>
+                        <input
+                            className="userprofileedit__form__article__container__input"
+                            type="text"
+                            name="externalCV"
+                            id="externalCV"
+                            value={externalCV}
+                            onChange={(event) => setExternalCV(event.target.value)}
+                        />
+                        <label className="userprofileedit__form__article__container__placeholder" htmlFor="externalCV">Link</label>
+                    </div> 
+                </article>
+                <button className="userprofileedit__form__article__button userprofileedit__form__article__button--save">Opslaan</button>
+                    <button className="userprofileedit__form__article__button--cancel">
+                        <Link className="userprofileedit__form__article__button--cancel__link" to="/profiel">Annuleren</Link>
+                    </button>
             </form>
         </section>
     );

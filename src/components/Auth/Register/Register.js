@@ -60,7 +60,7 @@ const Register = (props) => {
             
             <form className="register__form" method="post" onSubmit={registerHandler}>
                 <article className="register__form__article">
-                    <h2 className="register__article__title t1">Contact Info</h2>
+                    <h2 className="register__form__article__title t1">Contact Info</h2>
                         <div className="register__form__article__container">
                             <input
                                 className="register__form__article__container__input"
@@ -135,7 +135,7 @@ const Register = (props) => {
                         </div>
                 </article>
                 <article className="register__form__article">
-                    <h2 className="register__article__title">Adres Info</h2>
+                    <h2 className="register__form__article__title">Adres Info</h2>
                         <div className="register__form__article__container">
                             <input
                                 className="register__form__article__container__input"
@@ -186,7 +186,7 @@ const Register = (props) => {
                         </div>
                 </article>
                 <article className="register__form__article">
-                    <h2 className="register__article__title">Account Info</h2>
+                    <h2 className="register__form__article__title">Account Info</h2>
                         <div className="register__form__article__container">
                             <input
                                 className="register__form__article__container__input"
