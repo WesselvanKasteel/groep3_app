@@ -12,9 +12,13 @@ import axios from 'axios';
 // icons
 import Location from '../../assets/svg/location.svg';
 
+// video
+import Video from '../../assets/videos/VidVaSo_video_1.mp4';
+
 const Vacancy = () => {
 
     const [data, setData] = useState(null)
+;
 
     const BASE_URL = 'http://127.0.0.1:8000/api/vacancy';
     const IDENTIFIER = useParams().handle;
@@ -22,6 +26,7 @@ const Vacancy = () => {
     useEffect(() => {
         fetchVacancyData();
     }, []);
+
 
     const fetchVacancyData = async () => {
         
@@ -61,7 +66,7 @@ const Vacancy = () => {
                     </article>
                     <article className="vacancy__video">
                         <h3 className="vacancy__video__title">Video</h3>
-                        <video className="vacancy__video__src" src=""></video>
+                        <video className="vacancy__video__src" src={Video} controls></video>
                     </article>
                     <article className="vacancy__skills">
                         <h3 className="vacancy__skills__title">Vaardigheden</h3>
