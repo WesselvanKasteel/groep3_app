@@ -269,7 +269,7 @@ const UserProfileEdit = (props) => {
     return(
         <section className ="userprofileedit">
             
-            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler && profilePictureUpdateHandler} method="POST">
+            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler && profileUpdateHandler} method="POST">
                 <article className="userprofileedit__form__article item1">
                     
                         <div className="userprofileedit__form__article__container">
@@ -281,10 +281,10 @@ const UserProfileEdit = (props) => {
                                 id="profilePicture"
                                 onChange={(e) => setProfilePicture(e.target.files[0])}
                             />
-                            <label htmlFor="profilePicture">Profielfoto:</label>
+                            {/* <label htmlFor="profilePicture">Profielfoto:</label> */}
                             
                         </div>
-                        <button className="userprofileedit__form__article__button--upload">Upload</button>
+                        {/* <button className="userprofileedit__form__article__button--upload">Upload</button> */}
                 </article>
             {/* </form>
             <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST"> */}

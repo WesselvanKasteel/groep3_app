@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// import './UserProfile.css';
+import './UserProfile.css';
 
 const UserProfile = () => {
     const [firstName, setFirstName] = useState('');
