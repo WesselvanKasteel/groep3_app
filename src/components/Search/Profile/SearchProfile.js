@@ -23,11 +23,15 @@ const SearchProfile = () => {
         
     }, []);
 
+    useEffect(() =>{
+        filterProfilelist();
+    }, [filterItems])
+
     const getProfiles = () =>{
         const BASE_URL ="http://localhost:8000/api/users";
         axios.get(BASE_URL).then(res =>{
             setProfileList(res.data);  
-            console.log(res.data)          
+            setFilterProfiles(res.data);      
         })
     }
 
@@ -38,6 +42,12 @@ const SearchProfile = () => {
 
         console.log(list);
         console.log(searchTerm);
+    }
+
+    const filterProfilelist = () => {
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
+        setFilterProfiles(profileList.filter(profile => {return profile.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
+        console.log("filteritems: " + filterItems.map(item => item.item.toString()))
     }
 
     
@@ -51,7 +61,7 @@ const SearchProfile = () => {
                 </div>
                 <SearchProfileFilter updateFilterState={updateFilterState} />
                 {/* <SearchProfileList vacancies={filteringVacancies} /> */}
-                <SearchProfileList profiles={profileList} />
+                <SearchProfileList profiles={filterProfiles} />
             </div>
         </section>
     )

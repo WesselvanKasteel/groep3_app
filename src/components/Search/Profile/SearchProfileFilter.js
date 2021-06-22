@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import axios from 'axios';
+
 // scss
 import './SearchProfileFilter.css';
 
@@ -16,7 +18,7 @@ import SearchProfileAttributes from './SearchProfileAttributes';
 const SearchProfileFilter = ({ updateFilterState }) => {
 
     // hardcode
-    const [searchOptions, setSearchOptions] = useState(['Html', 'Css', 'Javascript', 'Laravel']);
+    const [searchOptions, setSearchOptions] = useState([]);
     const [dateOptions, setDateOptions] = useState(['Vandaag', 'Afgelopen week', 'Afgelopen maand', 'Afgelopen jaar']);
     const [employmentOptions, setEmploymentOptions] = useState(['Fulltime', 'Parttime', 'Tijdelijk', 'Freelance / ZZP']);
 
@@ -30,6 +32,17 @@ const SearchProfileFilter = ({ updateFilterState }) => {
     useEffect(() => {
         updateFilterState(filterItems)
     }, [filterItems]);
+
+    useEffect(() =>{
+        getSearchOptions();
+    }, [])
+
+    const getSearchOptions = () =>{
+        const BASE_URL = "http://localhost:8000/api/skill"
+        axios.get(BASE_URL).then(res =>{
+            setSearchOptions(res.data.map(skill => skill.skill));
+        })
+    }
 
     // update searchTerm from child
     const updateSearchTerm = (term) => { setSearchTerm(term); }
