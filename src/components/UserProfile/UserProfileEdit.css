@@ -18,7 +18,6 @@
     color: white;
     padding: 1rem;
     border-radius: 3rem;
-
 }
 
 .userprofileedit__form__article__container > h2{
@@ -66,15 +65,13 @@
 .userprofileedit__form__article__container__input:not(:placeholder-shown) ~ .userprofileedit__form__article__container__placeholder {
     transform: translateY(-2rem) scale(0.7);
     font-weight: bold;
-}   
+}
 
 .userprofileedit__form__article__container__input:not(:placeholder-shown) ~ .userprofileedit__form__article__container__placeholder {
     color:#28406A;
-    
 }
 
-.userprofileedit__form__article__button
-{
+.userprofileedit__form__article__button{
     display: block;
     font: inherit;
     background-color: #28406A;
@@ -143,7 +140,6 @@
     width: 50%;
     margin: 0 auto;
     border-color: #a60f1e;
-    
 }
 
 .userprofileedit__form__article__button--save{
@@ -174,27 +170,19 @@
     background-color: #fa574b;
 }
 
-
-
 .userprofileedit__form__article__container > div {
     margin-bottom: 2rem;
 }
-
-
 
 .edu{
     margin-top: 2rem;
 }
 
-
-
 @media (min-width: 750px) {
     .userprofileedit{
-
         margin-top: 10rem;
-        
-        
     }
+
     .userprofileedit__form{
         display: block;
         width: 80%;
@@ -207,10 +195,9 @@
         padding: 3rem;
         border-radius: 2rem;
     }
-    
+
     .userprofileedit__form__article__container__placeholder{
         left: 3rem;
-       
     }
 
     .userprofileedit__form{
