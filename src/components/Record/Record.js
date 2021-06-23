@@ -28,10 +28,9 @@ const Record = () => {
 
     const [activeComponent, setActiveComponent] = useState(0);
     const [components, setComponents] = useState([
-        {name: "introductie", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius non donec faucibus semper vel. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit. Lectus sed quisque ultricies gravida proin at. Dolor sit amet, consectetur adipiscing elit.", video: null},
-        {name: "motivatie", description: "motivatie beschrijving", video: null, blob: null},
-        {name: "skills", description: "skills beschrijving", video: null, blob: null},
-        {name: "Waarom jij?", description: "Waarom jij? beschrijving", video: null, blob: null},
+        {name: "introductie", description: "Vertel hier wat over jezelf. Wat is je naam? Hoe oud ben je? Waar heb je gestudeert en hoe was die ervaring?", video: null},
+        {name: "motivatie", description: "Wij horen graag waarom je hebt besloten te solliciteren voor deze vacature. Wat sprak je aan.", video: null, blob: null},
+        {name: "skills", description: "Vertel hier wat over jou vaardigheden. Welke programmeertalen beheers je? Welke eigenschappen bezit je? Wat voor een karakter heb je? Etc..", video: null, blob: null},
     ]);
 
     const [topicCount, setTopicCount] = useState(0);
@@ -120,7 +119,7 @@ const Record = () => {
             <h1 className={component.video != null ? 'components__list__item__titel--recorded' : 'components__list__item__titel'}>{component.name.charAt(0).toUpperCase() + component.name.slice(1)}</h1>
             
             {component.video === null &&
-                <p className="components__list__item__subtitle">klik hier om de {component.name} op te nemen</p>
+                <p className="components__list__item__subtitle">klik hier om de het onderwerp: '{component.name}' op te nemen</p>
             }
 
             {component.video != null &&
