@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import './Menu.css';
 
-const Menu = ({ active, updateMenu }) => {
+const Menu = ({ open, updateMenu }) => {
     const [menu, setMenu] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
-        setMenu(active);
-    }, [active]);
+        setMenu(open);
+    }, [open]);
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
@@ -18,19 +18,21 @@ const Menu = ({ active, updateMenu }) => {
     }, [localStorage.getItem('token')]);
 
     return (
-        <section className={menu ? 'menu active' : 'menu'}>
+        <section className={menu ? 'menu open' : 'menu'}>
             
-            <Link className="menu__item" to="/zoeken" onClick={() => updateMenu()}>Home</Link>
+            <NavLink className="menu__item" activeClassName="menu__item--active" to="/zoeken" onClick={() => updateMenu()}>Home</NavLink>
 
             {!isLoggedIn &&
-                <Link className="menu__item" to="/inloggen" onClick={() => updateMenu()}>Inloggen</Link>
+                <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => updateMenu()}>Inloggen</NavLink>
             }
-
-            {isLoggedIn &&
-                <Link className="menu__item" to="/profiel" onClick={() => updateMenu()}>Profiel</Link>
+            {!isLoggedIn &&
+                <NavLink className="menu__item" activeClassName="menu__item--active" to="/registreren" onClick={() => updateMenu()}>Registreren</NavLink>
             }
             {isLoggedIn &&
-                <Link className="menu__item" to="/inloggen" onClick={() => updateMenu()}>Uitloggen</Link>
+                <NavLink className="menu__item" activeClassName="menu__item--active" to="/profiel" onClick={() => updateMenu()}>Profiel</NavLink>
+            }
+            {isLoggedIn &&
+                <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => updateMenu()}>Uitloggen</NavLink>
             }
         </section>
     )

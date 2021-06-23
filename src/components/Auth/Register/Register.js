@@ -203,7 +203,7 @@ const Register = (props) => {
                 
                 
                 <button>Registreer</button>
-                <p>Al een account? <Link to="/login">Log hier in.</Link></p>
+                <p>Al een account? <Link to="/inloggen">Log hier in.</Link></p>
             </form>
         </section>
     );

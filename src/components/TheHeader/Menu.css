@@ -42,8 +42,12 @@
     filter: brightness(1.2);
 }
 
-.active {
+.open {
     transform: translate(-25rem, 0);
+}
+
+.menu__item--active {
+    background: var(--color-accent);
 }
 
 .menu > a {

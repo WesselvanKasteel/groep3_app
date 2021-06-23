@@ -7,6 +7,7 @@
     display: grid;
     grid-template-columns: var(--userprofile-grid-mobile);
     margin-top: 10vh;
+    margin-bottom: 5vh;
 }
 
 .userprofile p {
@@ -21,13 +22,16 @@
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .userprofile-content__info__img {
     grid-column: 1;
     width: 10rem;
     height: 10rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    background-color: #e9e9f5;
 }
 
 .userprofile-content__info__textdiv {
@@ -48,7 +52,7 @@
 }
 
 .userprofile-content__card {
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 1rem;
     margin: 1rem 0;
     background-color: #fff;
@@ -63,29 +67,30 @@
 
 .userprofile-content__edit {
     border: none;
-    background-color: #4CA5FC;
-    cursor: pointer;
+    color: #fff;
+    background-color: #28406A;
     width: 100%;
     border-radius: 1rem;
     margin: 1rem 0;
     padding: 1rem;
-}
-
-.userprofile-content__edit h2 {
-    text-align: center;
-    color: white;
-}
-
-.userprofile-content__edit__link {
     text-decoration: none;
     border: none;
     display: block;
+    padding: 1.5rem 0rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    text-align: center;
+
+    font-weight: 600;
+    transition: background-color 0.1s ease-out;
 }
 
-.userprofile-content__edit__link > h2 {
-    margin: 0;
+.userprofile-content__edit:hover {
+    background-color: #4CA5FC;
 }
-
+.userprofile-content__grid {
+    margin-top: 2rem;
+}
 .userprofile-content__grid__video > video {
     border-radius: 1rem;
 }
@@ -95,7 +100,7 @@
     display: inline-block;
     background-color: #28406A;
     color: white;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     margin: 0 1rem 1rem 0;
     border-radius: 1rem;
     transition: all 0.2s;
@@ -106,7 +111,6 @@
     text-decoration: line-through;
     cursor: pointer;
 }
-
 
 @media (min-width: 62.5em) {
     .userprofile{

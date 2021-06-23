@@ -79,29 +79,8 @@ const UserProfileEdit = (props) => {
         setEducation(education.filter((_, i) => i !== index));
     };
 
-    // const skillsInputChangeHandler = (event) => {
-    //     setEnteredSkill(event.target.value);
-    // }
-
-    // const skillsRemoveHandler = (index) => {
-    //     setSkills(skills.filter((_, i) => i !== index));
-    // };
-
-    const skillsInputChangeHandler = (event, index) => {
-        const oldSkills = [...skills];
-        oldSkills[index].skill = event.target.value;
-        setSkills(oldSkills);
-    }
-
-    const skillsAddHandler = () => {
-        setSkills(prevSkills => {
-            return [
-                ...prevSkills,
-                {
-                    skills: '',
-                }
-            ]
-        });
+    const skillsInputChangeHandler = (event) => {
+        setEnteredSkill(event.target.value);
     }
 
     const skillsRemoveHandler = (skills, index) => {
@@ -122,6 +101,8 @@ const UserProfileEdit = (props) => {
         };
 
         const res = await axios.post('http://127.0.0.1:8000/api/user/edit/picture', formData, config);
+
+        props.history.push('/profiel');
         console.log(res.data);
     };
 
@@ -238,22 +219,22 @@ const UserProfileEdit = (props) => {
         setEnteredEducation('');
     };
 
-    // const skillsAddHandler = () => {
-    //     if(enteredSkill === '') {
-    //         return;
-    //     }
+    const skillsAddHandler = () => {
+        if(enteredSkill === '') {
+            return;
+        }
 
-    //     setSkills(prevSkills => {
-    //         return [
-    //             ...prevSkills,
-    //             {
-    //                 skill: enteredSkill,
-    //             }
-    //         ];
-    //     });
-    //     storeSkillsHandler();
-    //     setEnteredSkill('');
-    // };
+        setSkills(prevSkills => {
+            return [
+                ...prevSkills,
+                {
+                    skill: enteredSkill,
+                }
+            ];
+        });
+        storeSkillsHandler();
+        setEnteredSkill('');
+    };
 
     let jobsList;
     if (jobs.length === 0) {
@@ -364,11 +345,11 @@ const UserProfileEdit = (props) => {
 
                 <article className="userprofileedit__form__article item3">
 
-                    
                         <div className="userprofileedit__form__article__container">
-                        <h2>Kennismaking video</h2>
-                            <div>Huidige video: <i>Profiel.mp4</i></div>
+                            <h2>Kennismaking video</h2>
+                            <Link className="userprofileedit__form__article__container__link" to="/maak-kennismakingvideo">Kennismakingvideo opnemen</Link>
                         </div>
+                        
                 </article>
 
                 <article className="userprofileedit__form__article item4">    
@@ -399,7 +380,7 @@ const UserProfileEdit = (props) => {
                 <article className="userprofileedit__form__article item5">
                     
                     
-                        <div className="userprofileedit__form__article__container edu">
+                        <div className="userprofileedit__form__article__container">
 
                         <h2>Opleidingen</h2>
                         <div>{educationList}</div>
