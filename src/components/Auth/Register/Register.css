@@ -30,10 +30,15 @@
     padding-left: 0rem;
     padding-bottom: 0.5rem;
     font-size: 1.5rem;
+    background-color: #F9F9FF;
 }
 
 .register__form__article__container__input:focus{
     border-color: #28406A;
+}
+
+.register__form__article__container__input:hover{
+    border-color: #3D8FE5;
 }
 
 .register__form__article__container__placeholder{
@@ -69,6 +74,11 @@
     cursor: pointer;
     width: 80%;
     margin: 0 auto;
+}
+
+.register__form > button:hover
+{
+    background-color: #3D8FE5;
 }
 
 .register__form > p {
