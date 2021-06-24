@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 import TheHeader from './components/TheHeader/TheHeader';
 import Login from './components/Auth/Login/Login';
@@ -17,8 +18,6 @@ import RecordIntroduction from './components/Record/User/RecordIntroduction';
 // privateRoute route
 import PrivateRoute from './components/Auth/PrivateRoute/PrivateRoute';
 
-import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
-
 const App = () => {
     return (
         <Router>
@@ -26,7 +25,7 @@ const App = () => {
             <Switch>
 
                 <Route exact path="/">
-                        <Redirect to="/zoeken" />
+                    <Redirect to="/zoeken" />
                 </Route>
 
                 <Route exact path="/inloggen" component={Login} />
@@ -38,11 +37,11 @@ const App = () => {
 
                 <Route exact path="/zoeken" component={SearchVacancy} />
 
-                <PrivateRoute path="/profiel" component={UserProfile} exact={true} role="unemployed"/>
-                <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} role="unemployed"/>
-                <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} role="unemployed"/>
-                <PrivateRoute path="/maak-kennismakingvideo" component={RecordIntroduction} exact={true} role="unemployed"/>
-                <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} role="unemployed"/>
+                <PrivateRoute path="/profiel" component={UserProfile} exact={true} role="unemployed" />
+                <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} role="unemployed" />
+                <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} role="unemployed" />
+                <PrivateRoute path="/maak-kennismakingvideo" component={RecordIntroduction} exact={true} role="unemployed" />
+                <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} role="unemployed" />
                 
                 <Route default component={PageNotFound} />
             </Switch>
