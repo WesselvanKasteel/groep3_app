@@ -158,7 +158,7 @@
 }
 
 .components__list__item, 
-.components__list__item--next {
+.components__list__item__next {
     width: 30rem;
     height: 20rem;
     background-color: #fff;
@@ -203,6 +203,7 @@
     font-weight: 500;
     color: #767c96;
     font-weight: 400;
+    text-align: center;
 }
 
 .components__list__item__video {
@@ -216,6 +217,14 @@
     font-size: 1.5rem;
     font-weight: 600;
 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+
+    color: #fff;
+    background: linear-gradient(135deg, #4CA5FC -50%, #2D78CC 150%);
+
+    border: none;
+
     transition: filter 0.1s ease-out;
 }
 .components__next__btn:hover {
@@ -223,8 +232,15 @@
     filter: brightness(1.15);
 }
 
+.components__next__description {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #767c96;
+    text-align: center;
+}
 
-@media (min-width: 62,5em) {
+
+@media (min-width: 46em) {
     .record {
         margin-top: 7.5vh;
     }

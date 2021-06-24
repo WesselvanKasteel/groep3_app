@@ -1,0 +1,250 @@
+.userprofileedit{
+    display: block;
+    width: 90%;
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    margin-top: 9rem;
+}
+
+.userprofileedit > h1{
+    display:inline-block;
+    position:absolute;
+    top: 7rem;
+    right: 60rem;
+    font-size: 1.4rem;
+    background-color: #4CA5FC;
+    color: white;
+    padding: 1rem;
+    border-radius: 3rem;
+
+}
+
+.userprofileedit__form__article__container > h2{
+    color: #28406A;
+    margin-bottom: 2rem;
+}
+
+.userprofileedit__form__article__container__link {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: #28406A;
+    border-radius: 2rem;
+    display: inline-block;
+    font-weight: 600;
+    transition: background-color 0.1s ease-out;
+}
+.userprofileedit__form__article__container__link:hover {
+    background-color: #3D8FE5;
+}
+
+.userprofileedit__form__article{
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.userprofileedit__form__article__container__input{
+    outline: 0;
+    border-width: 0 0 2px;
+    background-color: #F9F9FF;
+    border-color: #A3A6BA;
+    width: 100%;
+    font-family: inherit;
+    color: inherit;
+    padding-left: 0rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.userprofileedit__form__article__container__input:focus{
+    border-color: #28406A;
+}
+
+.userprofileedit__form__article__container__input:hover{
+    border-color: #3D8FE5;
+}
+
+.userprofileedit__form__article__container__placeholder{
+    color: #65657b;
+    pointer-events: none;
+    position:absolute;
+    transform-origin: 0 50%;
+    transition:200ms, color 200ms;
+    left: 0;
+}
+
+.userprofileedit__form__article__container__input:focus ~ .userprofileedit__form__article__container__placeholder,
+.userprofileedit__form__article__container__input:not(:placeholder-shown) ~ .userprofileedit__form__article__container__placeholder {
+    transform: translateY(-2rem) scale(0.7);
+    font-weight: bold;
+}   
+
+.userprofileedit__form__article__container__input:not(:placeholder-shown) ~ .userprofileedit__form__article__container__placeholder {
+    color:#28406A;
+    
+}
+
+.userprofileedit__form__article__button
+{
+    display: block;
+    font: inherit;
+    background-color: #28406A;
+    color: #fff;
+    border: 0.1rem solid var(--color-accent);
+    border-radius: 2rem;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.userprofileedit__form > p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.userprofileedit__form__article__button--add{
+    border-radius: 1rem;
+    border-style: none;
+    background-color: #28406A;
+    padding: 2rem;
+    position: relative;
+    cursor:pointer;
+    transition: background-color 0.1s ease-out;   
+}
+
+.userprofileedit__form__article__button--add:hover{
+    background-color: #3da542;
+}
+
+.userprofileedit__form__article__button--add > img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.userprofileedit__form__article__button--upload {
+    display: block;
+    font: inherit;
+    background-color: #28406A;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    width: 50%;
+    transition: background-color 0.1s ease-out;
+}
+
+.userprofileedit__form__article__button--upload:hover{
+    background-color: #4CA5FC;
+}
+
+.userprofileedit__form__article__button--cancel{
+    display: block;
+    font: inherit;
+    text-decoration: none;
+    background-color: #b31b2a;
+    color: #fff;
+    border: 0.1rem solid var(--color-accent);
+    border-radius: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+    border-color: #a60f1e;
+    font-weight: 600;
+    transition: background-color 0.1s ease-out;   
+}
+
+.userprofileedit__form__article__button--save{
+    display: block;
+    font: inherit;
+    text-decoration: none;
+    background-color: #28406A;
+    color: #fff;
+    border: 0.1rem solid var(--color-accent);
+    border-radius: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    transition: background-color 0.1s ease-out;
+}
+
+.userprofileedit__form__article__button--save:hover {
+    background-color: #3D8FE5;
+}
+
+.userprofileedit__form__article__button--cancel__link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.userprofileedit__form__article__button--cancel:hover {
+    background-color: #fa574b;
+}
+
+
+
+.userprofileedit__form__article__container > div {
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 750px) {
+    .userprofileedit{
+
+        margin-top: 10rem;
+        
+        
+    }
+    .userprofileedit__form{
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .userprofileedit__form__article{
+        background-color: #fff;
+        box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.1);
+        padding: 3rem;
+        border-radius: 2rem;
+    }
+    
+    .userprofileedit__form__article__container__placeholder{
+        left: 3rem;
+       
+    }
+
+    .userprofileedit__form{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 4rem;
+    }
+
+    .item3{
+        grid-row-start: 1;
+        grid-column-start: 2;
+        grid-row-end: 3;
+    }
+
+    .item2{
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 3;
+    }
+
+    .userprofileedit__form__article__button--save{
+        margin-bottom: 0rem;
+    }
+}

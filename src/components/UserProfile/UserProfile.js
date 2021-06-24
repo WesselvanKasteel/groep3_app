@@ -61,7 +61,7 @@ const UserProfile = () => {
             <section className="userprofile-content">
                 <section className="userprofile-content__info">
                     {image !== "" &&
-                        <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profile" />
+                        <img src={`data:image/jpg;base64,${image}`} className="userprofile-content__info__img" alt="Profiel foto" />
                     }
                     <div className="userprofile-content__info__textdiv">
                         <p className="userprofile-content__info__textdiv1">{firstName + " "} {prefix !== "" && prefix}{" " + lastName}</p>
@@ -69,9 +69,7 @@ const UserProfile = () => {
                             {city + ", " + province}</p>
                     </div>
                 </section>
-                <button className="userprofile-content__edit">
-                    <Link className="userprofile-content__edit__link" to="/profiel-bewerken"><h2>Profiel bewerken</h2></Link>
-                </button>
+                    <Link className="userprofile-content__edit" to="/profiel-bewerken">Profiel bewerken</Link>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>
