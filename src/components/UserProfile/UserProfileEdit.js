@@ -67,25 +67,26 @@ const UserProfileEdit = (props) => {
         setEnteredJob(event.target.value);
     }
 
-    const jobsRemoveHandler = (index) => {
-        setJobs(jobs.filter((_, i) => i !== index));
+    const jobsRemoveHandler = (id) => {
+        setJobs(jobs.filter(job => id !== job.id));
+        deleteJobsHandler(id);
     };
 
     const educationInputChangeHandler = (event) => {
         setEnteredEducation(event.target.value);
     }
 
-    const educationRemoveHandler = (index) => {
-        setEducation(education.filter((_, i) => i !== index));
+    const educationRemoveHandler = (id) => {
+        setEducation(education.filter(education => id !== education.id));
     };
 
     const skillsInputChangeHandler = (event) => {
         setEnteredSkill(event.target.value);
     }
 
-    const skillsRemoveHandler = (skills, index) => {
-        setSkills(skills.filter((_, i) => i !== index));
-    }
+    const skillsRemoveHandler = (id) => {
+        setSkills(skills.filter(skill => id !== skill.id));
+    };
 
     const profilePictureUpdateHandler = async (event) => {
         event.preventDefault();
@@ -151,6 +152,20 @@ const UserProfileEdit = (props) => {
 
         const jobsRes = await axios.post('http://127.0.0.1:8000/api/jobs/store', jobsData, config);
         console.log(jobsRes.data);
+    }
+
+    const deleteJobsHandler = async (id) => {
+        const jobToBeDeleted = jobs.find(job => id === job.id);
+        console.log(jobToBeDeleted);
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+
+        const jobsRes = await axios.delete('http://127.0.0.1:8000/api/destroy', jobToBeDeleted, config);
+        console.log(jobsRes);
     }
 
     const storeEducationHandler = async () => {
@@ -242,8 +257,8 @@ const UserProfileEdit = (props) => {
     }
     else {
         jobsList = jobs.map(job => (
-            <p key={job.id}>{job.job}</p>
-        ))
+            <p onClick={() => jobsRemoveHandler(job.id)} className="userprofile__form__skill" key={job.id}>{job.job}</p>
+        ));
     }
 
     let skillsList;
@@ -252,8 +267,8 @@ const UserProfileEdit = (props) => {
     }
     else {
         skillsList = skills.map(skill => (
-            <p className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
-        ))
+            <p onClick={() => skillsRemoveHandler(skill.id)} className="userprofile__form__skill" key={skill.id}>{skill.skill}</p>
+        ));
     }
 
     let educationList;
@@ -262,31 +277,24 @@ const UserProfileEdit = (props) => {
     }
     else {
         educationList = education.map(education => (
-            <p key={education.id}>{education.education}</p>
-        ))
+            <p onClick={() => educationRemoveHandler(education.id)} className="userprofile__form__skill" key={education.id}>{education.education}</p>
+        ));
     }
 
 
     return(
         <section className ="userprofileedit">
-            
-            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler} method="POST">
-                <article className="userprofileedit__form__article item1">
-                    
-                        <div className="userprofileedit__form__article__container">
-                        <h2>Profielfoto</h2>
-                            <input
-                                className="userprofileedit__form__article__container__input"
-                                type="file"
-                                name="profilePicture"
-                                id="profilePicture"
-                                onChange={(e) => setProfilePicture(e.target.files[0])}
-                            />
-                            {/* <label htmlFor="profilePicture">Profielfoto:</label> */}
-                            
-                        </div>
-                        <button className="userprofileedit__form__article__button--upload">Upload</button>
-                </article>
+            <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
+                <h2>Afbeelding</h2>
+                <label htmlFor="profilePicture">Afbeelding:</label>
+                <input
+                    type="file"
+                    name="profilePicture"
+                    id="profilePicture"
+                    className="userprofileedit__form__file"
+                    onChange={(e) => setProfilePicture(e.target.files[0])}
+                />
+                <button className="userprofileedit__form__button">Upload</button>
             </form>
             <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST">
                 
