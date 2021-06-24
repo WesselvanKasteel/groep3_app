@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { LOGIN, LOGOUT } from '../../../store/action-types';
+import { useDispatch } from 'react-redux';
+import { SET_AUTH, LOGIN, LOGOUT, SET_ROLE } from '../../../store/action-types';
 import { Link } from 'react-router-dom';
 
 import './Login.css';
@@ -30,6 +30,23 @@ const Login = (props) => {
         setPassword(event.target.value);
     }
 
+    const setRoleHandler = async () => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+        const res = await axios.get('http://127.0.0.1:8000/api/auth/check-user-role', config);
+        dispatch({
+            type: SET_ROLE,
+            payload: res.data.role,
+        });
+        dispatch({
+            type: SET_AUTH,
+            payload: res.data.auth,
+        });
+    }
+
     const loginHandler = async (event) => {
         event.preventDefault();
         dispatch({
@@ -42,8 +59,8 @@ const Login = (props) => {
         }
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
-        console.log(res.data);
         localStorage.setItem('token', res.data.access_token);
+        setRoleHandler();
         props.history.push('/profiel');
     }
 
