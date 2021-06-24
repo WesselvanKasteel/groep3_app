@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import Menu from './Menu';
 
 import './TheHeader.css';
 
 const Header = () => {
+    const dispatch = useDispatch();
+    const counter = useSelector(state => state.counter);
+    
+    const incrementHandler = () => {
+        dispatch({
+            type: 'INCREMENT',
+        });
+    }
+
     const [menu, setMenu] = useState(false);
 
     const updateMenu = () => {
@@ -19,6 +30,8 @@ const Header = () => {
                 <span className="header__title__blue-2">Va</span>
                 <span className="header__title__blue-3">So</span>
             </Link>
+            <p>{counter}</p>
+            <button onClick={incrementHandler}>INCREMENT</button>
             <nav className="header__nav">
                 <label className={menu ? 'header__nav__label label-active' : 'header__nav__label'} htmlFor="menu-button">Menu</label>
                 <button className="header__nav__btn" id="menu-button" onClick={() => setMenu(prevMenu => !prevMenu)}>
