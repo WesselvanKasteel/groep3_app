@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 import TheHeader from './components/TheHeader/TheHeader';
 import Login from './components/Auth/Login/Login';
@@ -16,8 +17,6 @@ import RecordIntroduction from './components/Record/User/RecordIntroduction';
 
 // privateRoute route
 import PrivateRoute from './components/Auth/PrivateRoute/PrivateRoute';
-
-import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
     return (
