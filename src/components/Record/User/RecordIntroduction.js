@@ -117,7 +117,7 @@ const RecordIntroduction = (props) => {
             </div>
 
             <div className="record_introduction__description">
-                <p className="record_introduction__description__text"> Biep bap boop</p>
+                <p className="record_introduction__description__text">Neem je kennismakingsvideo op door eerst toestemming te geven tot je camera en daarna via de opname knop de opname starten.</p>
             </div>
 
             <div className="record_introduction__preview">

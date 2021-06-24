@@ -79,29 +79,8 @@ const UserProfileEdit = (props) => {
         setEducation(education.filter((_, i) => i !== index));
     };
 
-    // const skillsInputChangeHandler = (event) => {
-    //     setEnteredSkill(event.target.value);
-    // }
-
-    // const skillsRemoveHandler = (index) => {
-    //     setSkills(skills.filter((_, i) => i !== index));
-    // };
-
-    const skillsInputChangeHandler = (event, index) => {
-        const oldSkills = [...skills];
-        oldSkills[index].skill = event.target.value;
-        setSkills(oldSkills);
-    }
-
-    const skillsAddHandler = () => {
-        setSkills(prevSkills => {
-            return [
-                ...prevSkills,
-                {
-                    skills: '',
-                }
-            ]
-        });
+    const skillsInputChangeHandler = (event) => {
+        setEnteredSkill(event.target.value);
     }
 
     const skillsRemoveHandler = (skills, index) => {
@@ -122,6 +101,8 @@ const UserProfileEdit = (props) => {
         };
 
         const res = await axios.post('http://127.0.0.1:8000/api/user/edit/picture', formData, config);
+
+        props.history.push('/profiel');
         console.log(res.data);
     };
 
@@ -152,8 +133,6 @@ const UserProfileEdit = (props) => {
 
         const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
         console.log(profileRes.data);
-
-        profilePictureUpdateHandler(event);
 
         props.history.push('/profiel');
     };
@@ -240,22 +219,22 @@ const UserProfileEdit = (props) => {
         setEnteredEducation('');
     };
 
-    // const skillsAddHandler = () => {
-    //     if(enteredSkill === '') {
-    //         return;
-    //     }
+    const skillsAddHandler = () => {
+        if(enteredSkill === '') {
+            return;
+        }
 
-    //     setSkills(prevSkills => {
-    //         return [
-    //             ...prevSkills,
-    //             {
-    //                 skill: enteredSkill,
-    //             }
-    //         ];
-    //     });
-    //     storeSkillsHandler();
-    //     setEnteredSkill('');
-    // };
+        setSkills(prevSkills => {
+            return [
+                ...prevSkills,
+                {
+                    skill: enteredSkill,
+                }
+            ];
+        });
+        storeSkillsHandler();
+        setEnteredSkill('');
+    };
 
     let jobsList;
     if (jobs.length === 0) {
@@ -291,7 +270,7 @@ const UserProfileEdit = (props) => {
     return(
         <section className ="userprofileedit">
             
-            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler && profileUpdateHandler} method="POST">
+            <form className="userprofileedit__form grid1" onSubmit={profilePictureUpdateHandler} method="POST">
                 <article className="userprofileedit__form__article item1">
                     
                         <div className="userprofileedit__form__article__container">
@@ -306,10 +285,10 @@ const UserProfileEdit = (props) => {
                             {/* <label htmlFor="profilePicture">Profielfoto:</label> */}
                             
                         </div>
-                        {/* <button className="userprofileedit__form__article__button--upload">Upload</button> */}
+                        <button className="userprofileedit__form__article__button--upload">Upload</button>
                 </article>
-            {/* </form>
-            <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST"> */}
+            </form>
+            <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST">
                 
                 <article className="userprofileedit__form__article item2">
                     
@@ -366,17 +345,17 @@ const UserProfileEdit = (props) => {
 
                 <article className="userprofileedit__form__article item3">
 
-                    
                         <div className="userprofileedit__form__article__container">
-                        <h2>Kennismaking video</h2>
-                            <p>Huidige video: <i>Profiel.mp4</i></p>
+                            <h2>Kennismaking video</h2>
+                            <Link className="userprofileedit__form__article__container__link" to="/maak-kennismakingvideo">Kennismakingvideo opnemen</Link>
                         </div>
+                        
                 </article>
 
                 <article className="userprofileedit__form__article item4">    
                     <div className="userprofileedit__form__article__container">
                     <h2>Eerdere banen</h2>
-                    <p>{jobsList}</p>
+                    <div>{jobsList}</div>
                         <input
                             className="userprofileedit__form__article__container__input"
                             type="text"
@@ -401,10 +380,10 @@ const UserProfileEdit = (props) => {
                 <article className="userprofileedit__form__article item5">
                     
                     
-                        <div className="userprofileedit__form__article__container edu">
+                        <div className="userprofileedit__form__article__container">
 
                         <h2>Opleidingen</h2>
-                        <p>{educationList}</p>
+                        <div>{educationList}</div>
                         
                             <input
                                 className="userprofileedit__form__article__container__input"
@@ -433,7 +412,7 @@ const UserProfileEdit = (props) => {
                     <div className="userprofileedit__form__article__container">
                     <h2>Skills</h2>
                     
-                    <p>{skillsList}</p>
+                    <div>{skillsList}</div>
                         <input
                             className="userprofileedit__form__article__container__input"
                             type="text"
@@ -464,6 +443,7 @@ const UserProfileEdit = (props) => {
                             id="externalCV"
                             value={externalCV}
                             onChange={(event) => setExternalCV(event.target.value)}
+                            placeholder=" "
                         />
                         <label className="userprofileedit__form__article__container__placeholder" htmlFor="externalCV">Link</label>
                     </div> 
