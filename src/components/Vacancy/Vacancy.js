@@ -75,9 +75,9 @@ const Vacancy = () => {
                         </ul>
                     </article>
                     <article className="vacancy__apply">
-                        <h3 className="vacancy__apply__title">Soliciteer</h3>
-                        <p className="vacancy__apply__info">Start het soliciteer proces door op onderstaande knop te drukken.</p>
-                        <Link to={'/maak-sollicitatievideo/' + IDENTIFIER} className="vacancy__apply__btn">Soliciteer nu</Link>
+                        <h3 className="vacancy__apply__title">Solliciteer</h3>
+                        <p className="vacancy__apply__info">Start het solliciteer proces door op onderstaande knop te drukken.</p>
+                        <Link to={'/maak-sollicitatievideo/' + IDENTIFIER} className="vacancy__apply__btn">Solliciteer nu</Link>
                     </article>
                 </div>
             }
