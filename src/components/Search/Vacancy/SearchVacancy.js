@@ -22,7 +22,7 @@ const SearchVacancy = () => {
 
     useEffect(() =>{
         filterVacancyList();
-    }, [filterItems])
+    }, [filterItems, filterSearchTerm])
 
     const getVacancies = () =>{
 
@@ -33,7 +33,8 @@ const SearchVacancy = () => {
         const BASE_URL ="http://localhost:8000/api/vacancy/vacancies";
         axios.get(BASE_URL, config).then(res =>{
             setVacancyList(res.data);       
-            setFilterVacancies(res.data);     
+            setFilterVacancies(res.data); 
+            console.log(res.data)    
         })
     }
 
@@ -44,7 +45,7 @@ const SearchVacancy = () => {
 
         // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
         // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
-
+        console.log("vacancy-user: " + vacancyList.map(user => user.company_name))
         console.log("filteritems: " + filterItems.map(item => item.item))
         console.log(filterVacancies);
         console.log(list);
@@ -52,9 +53,23 @@ const SearchVacancy = () => {
     }
 
     const filterVacancyList = () => {
-        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
-        setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
-        console.log("filteritems: " + filterItems.map(item => item.item.toString()))
+        const filterskills = filterItems.map(item => item.item.toString());
+        const vacancyskills = JSON.stringify(vacancyList.map(vacancy => vacancy.skills.map(skill => skill.skill)))
+        const test = filterskills.some(skill => vacancyskills.includes(skill))
+        
+        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.users.map(user => user.company_name).indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
+        if (filterItems.length === 0){
+            setFilterVacancies(vacancyList)
+        } 
+        else {
+            // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item))}))
+            setFilterVacancies(vacancyList.filter(vacancy => {return vacancy === filterskills.some(skill => JSON.stringify(vacancy.skills.map(skill => skill.skill).includes(skill)))}))
+        }
+        
+        console.log(filterVacancies)
+        console.log(filterskills)
+        console.log(vacancyskills)
+        console.log(test)
     }
 
     return (
