@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
+import axios from 'axios';
 
 import TheHeader from './components/TheHeader/TheHeader';
 import Login from './components/Auth/Login/Login';
@@ -23,26 +24,20 @@ const App = () => {
         <Router>
         <TheHeader />
             <Switch>
-
                 <Route exact path="/">
                     <Redirect to="/zoeken" />
                 </Route>
-
                 <Route exact path="/inloggen" component={Login} />
                 <Route exact path="/registreren" component={Register} />
-
                 <Route exact path="/bedrijfsprofiel" component={CompanyProfile} />
                 <Route exact path="/bedrijfsprofiel-bewerken" component={CompanyProfileEdit} />  
                 <Route exact path="/maak-vacature" component={CreateVacancy} />
-
                 <Route exact path="/zoeken" component={SearchVacancy} />
-
-                <PrivateRoute path="/profiel" component={UserProfile} exact={true} role="unemployed" />
-                <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} role="unemployed" />
-                <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} role="unemployed" />
-                <PrivateRoute path="/maak-kennismakingvideo" component={RecordIntroduction} exact={true} role="unemployed" />
-                <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} role="unemployed" />
-                
+                <PrivateRoute path="/profiel" component={UserProfile} exact={true} />
+                <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} />
+                <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} />
+                <PrivateRoute path="/maak-kennismakingvideo" component={RecordIntroduction} exact={true} />
+                <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} />
                 <Route default component={PageNotFound} />
             </Switch>
         </Router>
