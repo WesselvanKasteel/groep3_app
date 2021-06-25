@@ -39,7 +39,7 @@ const SearchVacancy = () => {
         //     setFilterVacancies(res.data);   
         // })
 
-        await axios({ method: 'GET', url: '/api/vacancy/vacancies', 
+        await axios({ method: 'GET', url: '/app/api/vacancy/vacancies', 
             headers: {
                 'Access-Control-Allow-Origin': '*', 
                 'Access-Control-Allow-Methods': 'POST',
