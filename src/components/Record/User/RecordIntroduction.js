@@ -65,7 +65,7 @@ const RecordIntroduction = (props) => {
         const data = new FormData();
         data.append('file', video);
 
-        await axios.post('http://127.0.0.1:8000/api/user/edit/video', data, config)
+        await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit/video', data, config)
         .then(() => {
             props.history.push('/profiel');
         })

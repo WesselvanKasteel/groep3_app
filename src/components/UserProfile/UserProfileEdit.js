@@ -28,7 +28,7 @@ const UserProfileEdit = (props) => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/user', config);
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
@@ -98,7 +98,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const res = await axios.post('http://127.0.0.1:8000/api/user/edit/picture', formData, config);
+        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit/picture', formData, config);
 
         props.history.push('/profiel');
     };
@@ -128,7 +128,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
+        const profileRes = await axios.put('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit', profileData, config);
 
         props.history.push('/profiel');
     };
@@ -145,7 +145,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const jobsRes = await axios.post('http://127.0.0.1:8000/api/jobs/store', jobsData, config);
+        const jobsRes = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/jobs/store', jobsData, config);
     }
 
     const deleteJobsHandler = async (id) => {
@@ -157,7 +157,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const jobsRes = await axios.delete('http://127.0.0.1:8000/api/destroy', jobToBeDeleted, config);
+        const jobsRes = await axios.delete('https://vidvaso-p46oi.ondigitalocean.app/app/api/destroy', jobToBeDeleted, config);
     }
 
     const storeEducationHandler = async () => {
@@ -172,7 +172,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const educationRes = await axios.post('http://127.0.0.1:8000/api/education/store', educationData, config);
+        const educationRes = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/education/store', educationData, config);
     }
 
     const storeSkillsHandler = async () => {
@@ -187,7 +187,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
+        const skillsRes = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/skills/store', skillsData, config);
     }
 
     const jobsAddHandler = () => {

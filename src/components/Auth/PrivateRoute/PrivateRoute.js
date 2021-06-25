@@ -22,7 +22,7 @@ const PrivateRoute = ({ path, component, exact, requiredRole }) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get('http://127.0.0.1:8000/api/auth/check-user-role', config);
+        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,

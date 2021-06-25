@@ -27,7 +27,7 @@ const UserProfile = () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/user', config);
 
         setFirstName(res.data.user.first_name);
         setPrefix(res.data.user.prefix);

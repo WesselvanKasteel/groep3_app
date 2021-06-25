@@ -100,7 +100,7 @@ const Record = () => {
             const data = new FormData();
             data.append('file', component.blob);
 
-            await axios.post('http://127.0.0.1:8000/api/vacancy/store', data, config)
+            await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/vacancy/store', data, config)
             .then((response) => {
                 // hier redirecten
             })

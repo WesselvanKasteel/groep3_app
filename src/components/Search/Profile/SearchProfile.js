@@ -28,7 +28,7 @@ const SearchProfile = () => {
     }, [filterItems])
 
     const getProfiles = () =>{
-        const BASE_URL ="http://localhost:8000/api/users";
+        const BASE_URL ="https://vidvaso-p46oi.ondigitalocean.app/app/api/users";
         axios.get(BASE_URL).then(res =>{
             setProfileList(res.data);  
             setFilterProfiles(res.data);      

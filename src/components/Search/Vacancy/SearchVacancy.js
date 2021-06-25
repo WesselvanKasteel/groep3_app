@@ -32,7 +32,7 @@ const SearchVacancy = () => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const BASE_URL ="http://localhost:8000/api/vacancy/vacancies";
+        const BASE_URL ="https://vidvaso-p46oi.ondigitalocean.app/app/api/vacancy/vacancies";
         axios.get(BASE_URL, config).then(res =>{
             setVacancyList(res.data);       
             setFilterVacancies(res.data);   

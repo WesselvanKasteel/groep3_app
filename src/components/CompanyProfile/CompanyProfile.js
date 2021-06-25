@@ -24,7 +24,7 @@ const CompanyProfile = () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('http://127.0.0.1:8000/api/user', config);
+        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/user', config);
 
         setAddress(res.data.user.address);
         setCity(res.data.user.city);

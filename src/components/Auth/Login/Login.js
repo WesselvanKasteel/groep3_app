@@ -42,7 +42,7 @@ const Login = (props) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get(window.location.host + 'app/api/auth/check-user-role', config);
+        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,
@@ -64,7 +64,7 @@ const Login = (props) => {
             password: password,
         }
 
-        const res = await axios.post(window.location.host + '/app/api/auth/login', loginData);
+        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/login', loginData);
 
         localStorage.setItem('token', res.data.access_token);
         

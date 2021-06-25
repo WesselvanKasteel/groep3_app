@@ -25,7 +25,7 @@ const Menu = ({ open, updateMenu }) => {
         dispatch({
             type: LOGOUT
         });
-        const res = await axios.post('http://127.0.0.1:8000/api/auth/logout', null, config);
+        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/logout', null, config);
     }
 
     return (

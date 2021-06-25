@@ -20,7 +20,7 @@ const Vacancy = () => {
     const [data, setData] = useState(null)
 ;
 
-    const BASE_URL = 'http://127.0.0.1:8000/api/vacancy';
+    const BASE_URL = 'https://vidvaso-p46oi.ondigitalocean.app/app/api/vacancy';
     const IDENTIFIER = useParams().handle;
 
     useEffect(() => {
