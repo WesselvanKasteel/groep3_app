@@ -8,9 +8,6 @@ import SearchVacancyCard from './SearchVacancyCard';
 
 const SearchVacancyList = ({ vacancies }) => {
 
-    useEffect(() => {
-    }, [])
-
     const vacancyList = vacancies.map((vacancy, index) =>
         <SearchVacancyCard data={vacancy} key={vacancy.code} />
     );

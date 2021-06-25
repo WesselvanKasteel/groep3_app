@@ -66,8 +66,6 @@ const Login = (props) => {
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
 
-        console.log(res.data.access_token);
-
         localStorage.setItem('token', res.data.access_token);
         
 

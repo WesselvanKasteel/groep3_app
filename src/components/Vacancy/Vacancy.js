@@ -37,8 +37,6 @@ const Vacancy = () => {
 
         const res = await axios.get(BASE_URL + '/vacancy', config);
         setData(res.data.vacancy);
-
-        console.log(res.data.vacancy);
     }
 
     let skills;

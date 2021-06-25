@@ -5,7 +5,7 @@ import './SearchBar.css';
 
 const SearchBar = ({ updateSearchTerm }) => {
 
-    const [placeholder, setPlaceholder] = useState('Bedrijfsnaam, vacature, zoekterm');
+    const [placeholder, setPlaceholder] = useState('Functie');
     const [searchTerm, setSearchterm] = useState('');
 
     useEffect(() => {

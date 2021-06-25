@@ -102,12 +102,10 @@ const Record = () => {
 
             await axios.post('http://127.0.0.1:8000/api/vacancy/store', data, config)
             .then((response) => {
-
-                // naar profiel pagina
-                console.log(response);
+                // hier redirecten
             })
             .catch((error) => {
-                console.log(error);
+                alert(error);
             });
 
         })

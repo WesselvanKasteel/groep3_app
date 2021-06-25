@@ -60,40 +60,6 @@ const PrivateRoute = ({ path, component, exact, requiredRole }) => {
         ? <Route path={path} component={component} exact={exact} />
         : <Redirect to="/inloggen" />
 
-
-    // const config = {
-    //     method: 'get',
-    //     url: 'http://127.0.0.1:8000/api/auth/check',
-    //     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
-    // }
-    
-    // const fetchUserAuth = async () => {
-    //     const res = await axios.get(config);
-    //     console.log(res);
-    //     axios(config)
-    //     .then(response => {   
-    //         if (response.data.auth) {
-    //             setIsLoading(false);
-    //             setIsLoggedIn(true);
-    //         }
-    //     }, (error) => {
-    //         console.log(error);
-
-    //         setIsLoading(false);
-    //         setIsLoggedIn(false);
-    //         setActiveRole(response.data.role);
-    //     });
-
-    //     setIsLoading(false);
-    //     setIsLoggedIn(true);
-    //     setActiveRole('unemployed');
-    // }
-
-    // return isLoading 
-    //     ? null 
-    //     : isLoggedIn && activeRole === userRole 
-    //     ? <Route path={path} component={component} exact={exact}/> 
-    //     : <Redirect to="/inloggen" />    
 }
 
 export default PrivateRoute;

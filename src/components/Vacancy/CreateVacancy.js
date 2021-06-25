@@ -15,11 +15,6 @@ const CreateVacancy = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log(title);
-        console.log(description);
-        console.log(deadline);
-        console.log(video);
     }
 
     const updateTitle = (value) => { setTitle(value); }

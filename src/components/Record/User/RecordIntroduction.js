@@ -70,7 +70,7 @@ const RecordIntroduction = (props) => {
             props.history.push('/profiel');
         })
         .catch((error) => {
-            console.log(error);
+            alert(error);
         });
     }
 

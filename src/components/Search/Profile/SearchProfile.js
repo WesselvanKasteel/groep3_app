@@ -39,15 +39,11 @@ const SearchProfile = () => {
     const updateFilterState = (list, searchTerm) => { 
         setFilterItems(list);
         setFilterSearchTerm(searchTerm); 
-
-        console.log(list);
-        console.log(searchTerm);
     }
 
     const filterProfilelist = () => {
         // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
         setFilterProfiles(profileList.filter(profile => {return profile.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
-        console.log("filteritems: " + filterItems.map(item => item.item.toString()))
     }
 
     

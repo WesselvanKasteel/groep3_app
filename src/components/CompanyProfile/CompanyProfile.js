@@ -25,7 +25,6 @@ const CompanyProfile = () => {
         };
 
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
-        console.log(res.data);
 
         setAddress(res.data.user.address);
         setCity(res.data.user.city);

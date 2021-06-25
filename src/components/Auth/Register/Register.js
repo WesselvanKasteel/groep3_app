@@ -34,7 +34,6 @@ const Register = (props) => {
             date_of_birth: dateOfBirth,
         }
         const res = await axios.post('http://127.0.0.1:8000/api/auth/register', registerData);
-        console.log(res.data);
 
         if(res.status === 200) {
             loginAfterRegisteringHandler();
@@ -48,7 +47,6 @@ const Register = (props) => {
         };
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
-        console.log(res.data);
 
         localStorage.setItem("token", res.data.access_token);
         props.history.push('/profiel');

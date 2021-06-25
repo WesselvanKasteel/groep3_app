@@ -8,10 +8,6 @@ import SearchProfileCard from './SearchProfileCard';
 
 const SearchProfileList = ({ profiles }) => {
 
-    useEffect(() => {
-        // console.log(vacancies);
-    }, [profiles])
-
     const profileList = profiles.map((profile, index) =>
         <SearchProfileCard data={profile} key={profile.first_name} />
     );

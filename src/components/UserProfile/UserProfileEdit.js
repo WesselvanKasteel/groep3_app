@@ -284,7 +284,7 @@ const UserProfileEdit = (props) => {
                         className="userprofileedit__form__image__file"
                         onChange={(e) => setProfilePicture(e.target.files[0])}
                     />
-                    <button className="userprofileedit__form__image__button">Upload</button>
+                    <button className="userprofileedit__form__image__button" type="submit">Upload</button>
                 </div>
             </form>
             <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST">

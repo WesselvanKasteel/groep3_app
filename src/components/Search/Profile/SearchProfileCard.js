@@ -8,10 +8,6 @@ import NikeLogo from '../../../assets/images/nike.png';
 
 const SearchProfileCard = ({ data }) => {
 
-    useEffect(() => {
-        // console.log(data);
-    }, [data])
-
     const profileTags = data.skills.map((skill, index) =>
         <li className="profile-card__list__item" key={index}>{skill.skill}</li>
     );

@@ -26,7 +26,6 @@ const Menu = ({ open, updateMenu }) => {
             type: LOGOUT
         });
         const res = await axios.post('http://127.0.0.1:8000/api/auth/logout', null, config);
-        console.log(res.data);
     }
 
     return (

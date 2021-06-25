@@ -21,7 +21,6 @@ const CompanyProfileEdit = (props) => {
         };
 
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
-        console.log(res.data);
 
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
@@ -44,12 +43,10 @@ const CompanyProfileEdit = (props) => {
         };
 
         const res = await axios.post('http://127.0.0.1:8000/api/user/edit/picture', formData, config);
-        console.log(res.data);
     };
 
     const profileUpdateHandler = async (event) => {
         event.preventDefault();
-        console.log(phoneNumber);
 
         const profileData = {
             address: address,
@@ -66,7 +63,6 @@ const CompanyProfileEdit = (props) => {
         };
 
         const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
-        console.log(profileRes.data);
 
         props.history.push('/bedrijfsprofiel');
     };

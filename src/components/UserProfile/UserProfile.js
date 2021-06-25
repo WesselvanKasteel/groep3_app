@@ -28,7 +28,6 @@ const UserProfile = () => {
         };
 
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
-        console.log(res.data);
 
         setFirstName(res.data.user.first_name);
         setPrefix(res.data.user.prefix);
