@@ -36,9 +36,14 @@ const App = () => {
 
                 <PrivateRoute path="/profiel" component={UserProfile} exact={true} requiredRole="unemployed"/>
                 <PrivateRoute path="/profiel-bewerken" component={UserProfileEdit} exact={true} requiredRole="unemployed"/>
-                <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} requiredRole="unemployed"/>
+
                 <PrivateRoute path="/maak-kennismakingvideo" component={RecordIntroduction} exact={true} requiredRole="unemployed"/>
-                <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} requiredRole="unemployed"/>
+
+                <Route exact path="/vacature/:handle" component={Vacancy} />
+                <Route exact path="/maak-sollicitatievideo/:handle" component={Record} />
+
+                {/* <PrivateRoute path="/maak-sollicitatievideo/:handle" component={Record} exact={true} requiredRole="unemployed"/> */}
+                {/* <PrivateRoute path="/vacature/:handle" component={Vacancy} exact={true} requiredRole="unemployed"/> */}
                 <Route default component={PageNotFound} />
             </Switch>
         </Router>
