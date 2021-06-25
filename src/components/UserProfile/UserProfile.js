@@ -69,7 +69,7 @@ const UserProfile = () => {
                             {city + ", " + province}</p>
                     </div>
                 </section>
-                    <Link className="userprofile-content__edit" to="/profiel-bewerken">Profiel bewerken</Link>
+                <Link className="userprofile-content__edit" to="/profiel-bewerken">Profiel bewerken</Link>
                 <section className="userprofile-content__grid">
                     <article className="userprofile-content__grid__video userprofile-content__card">
                         <h2>Kennismaking video </h2>

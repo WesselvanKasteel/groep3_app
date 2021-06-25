@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { SET_AUTH, LOGIN, LOGOUT, SET_ROLE } from '../../../store/action-types';
 import { Link } from 'react-router-dom';
+
 import './Login.css';
+
 import Lock from '../../../assets/svg/lock.svg';
 import Mail from '../../../assets/svg/email.svg';
 
 const Login = (props) => {
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        localStorage.removeItem("token");
-    }, []);
+        localStorage.removeItem('token');
+        dispatch({
+            type: LOGOUT,
+        })
+    }, [dispatch]);
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -21,8 +30,28 @@ const Login = (props) => {
         setPassword(event.target.value);
     }
 
+    const setRoleHandler = async () => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+        const res = await axios.get('http://127.0.0.1:8000/api/auth/check-user-role', config);
+        dispatch({
+            type: SET_ROLE,
+            payload: res.data.role,
+        });
+        dispatch({
+            type: SET_AUTH,
+            payload: res.data.auth,
+        });
+    }
+
     const loginHandler = async (event) => {
         event.preventDefault();
+        dispatch({
+            type: LOGIN,
+        });
 
         const loginData = {
             email: email,
@@ -30,9 +59,9 @@ const Login = (props) => {
         }
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
-        console.log(res.data);
-        localStorage.setItem("token", res.data.access_token);
-        props.history.push("/profiel");
+        localStorage.setItem('token', res.data.access_token);
+        setRoleHandler();
+        props.history.push('/profiel');
     }
 
     return(
@@ -44,7 +73,7 @@ const Login = (props) => {
             </Link>
             <form method="post" className="login__form" onSubmit={loginHandler}>
                 <div className="login__form__container c1">
-                    <img className="login__form__container__icon" src={Mail}></img>
+                    <img className="login__form__container__icon" src={Mail} />
                     <input
                         className="login__form__container__input"
                         type="email"
@@ -57,7 +86,7 @@ const Login = (props) => {
                     <label className="login__form__container__placeholder" htmlFor="email">E-mail</label>
                 </div>
                 <div className="login__form__container">
-                    <img className="login__form__container__icon" src={Lock}></img>
+                    <img className="login__form__container__icon" src={Lock} />
                     <input
                         className="login__form__container__input"
                         type="password"
@@ -70,7 +99,6 @@ const Login = (props) => {
                     <label className="login__form__container__placeholder" htmlFor="password">Wachtwoord</label>
                 </div>
                 {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
-                
                 <button className="login__form__button">Inloggen</button>
                 <p>Nog geen account? <Link className="login__form__register b2" to="/registreren">Registreer</Link></p>
             </form>

@@ -1,41 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useState, useEffect, Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGOUT } from '../../store/action-types';
+
+import axios from 'axios';
 
 import './Menu.css';
 
 const Menu = ({ open, updateMenu }) => {
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.auth.isAuth);
+
     const [menu, setMenu] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
         setMenu(open);
     }, [open]);
 
-    useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
-            setIsLoggedIn(true);
-        }
-    }, [localStorage.getItem('token')]);
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
+
+    const logoutHandler = async () => {
+        dispatch({
+            type: LOGOUT
+        });
+        const res = await axios.post('http://127.0.0.1:8000/api/auth/logout', null, config);
+        console.log(res.data);
+    }
 
     return (
         <section className={menu ? 'menu open' : 'menu'}>
-            
             <NavLink className="menu__item" activeClassName="menu__item--active" to="/zoeken" onClick={() => updateMenu()}>Home</NavLink>
-
-            {!isLoggedIn &&
-                <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => updateMenu()}>Inloggen</NavLink>
-            }
-            {!isLoggedIn &&
-                <NavLink className="menu__item" activeClassName="menu__item--active" to="/registreren" onClick={() => updateMenu()}>Registreren</NavLink>
-            }
-            {isLoggedIn &&
-                <NavLink className="menu__item" activeClassName="menu__item--active" to="/profiel" onClick={() => updateMenu()}>Profiel</NavLink>
-            }
-            {isLoggedIn &&
-                <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => updateMenu()}>Uitloggen</NavLink>
-            }
+            {!isAuth && (
+                <Fragment>
+                    <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => updateMenu()}>Inloggen</NavLink>
+                    <NavLink className="menu__item" activeClassName="menu__item--active" to="/registreren" onClick={() => updateMenu()}>Registreren</NavLink>
+                </Fragment>
+            )}
+            {isAuth && (
+                <Fragment>
+                    <NavLink className="menu__item" activeClassName="menu__item--active" to="/profiel" onClick={() => updateMenu()}>Profiel</NavLink>
+                    <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => logoutHandler}>Uitloggen</NavLink>
+                </Fragment>
+            )}
         </section>
-    )
+    );
 }
 
 export default Menu;

@@ -28,7 +28,7 @@ const Record = () => {
 
     const [activeComponent, setActiveComponent] = useState(0);
     const [components, setComponents] = useState([
-        {name: "introductie", description: "Vertel hier wat over jezelf. Wat is je naam? Hoe oud ben je? Waar heb je gestudeert en hoe was die ervaring?", video: null},
+        {name: "introductie", description: "Vertel hier wat over jezelf. Wat is je naam? Hoe oud ben je? Waar heb je gestudeerd en hoe was die ervaring?", video: null},
         {name: "motivatie", description: "Wij horen graag waarom je hebt besloten te solliciteren voor deze vacature. Wat sprak je aan.", video: null, blob: null},
         {name: "skills", description: "Vertel hier wat over jou vaardigheden. Welke programmeertalen beheers je? Welke eigenschappen bezit je? Wat voor een karakter heb je? Etc..", video: null, blob: null},
     ]);

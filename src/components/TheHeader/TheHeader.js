@@ -27,7 +27,7 @@ const Header = () => {
                     <span className={menu ? 'header__nav__btn__bar-3 active-3' : 'header__nav__btn__bar-3'}></span>
                 </button>
             </nav>
-            <Menu open={menu} updateMenu={updateMenu}/>
+            <Menu open={menu} updateMenu={updateMenu} />
         </header>
     )
 }

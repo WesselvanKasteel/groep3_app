@@ -80,7 +80,10 @@
     font-family: 'Poppins', sans-serif;
     font-size: 2.2rem;
     text-align: center;
+}
 
+.userprofile-content__edit__link > h2 {
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     transition: background-color 0.1s ease-out;
 }
@@ -172,7 +175,12 @@
     -moz-box-shadow: 1px 5px 29px 4px #081f4710;
 }
 
+.userprofileedit__form__file {
+    cursor: pointer;
+}
+
 .userprofileedit__form__button {
+    font-family: 'Poppins', sans-serif;
     margin: 1rem 2rem 2rem 0;
     color: #fff;
     font-weight: 600;
