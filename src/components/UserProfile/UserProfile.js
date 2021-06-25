@@ -6,8 +6,6 @@ import './UserProfile.css';
 
 const UserProfile = () => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
-
     const [firstName, setFirstName] = useState('');
     const [prefix, setPrefix] = useState('');
     const [lastName, setLastName] = useState('');
@@ -30,7 +28,7 @@ const UserProfile = () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get(BASE_URL + '/api/user', config);
+        const res = await axios.get('/app/api/user', config);
 
         setFirstName(res.data.user.first_name);
         setPrefix(res.data.user.prefix);

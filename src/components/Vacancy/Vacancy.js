@@ -17,8 +17,6 @@ import Video from '../../assets/videos/VidVaSo_video_1.mp4';
 
 const Vacancy = () => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
-
     const [data, setData] = useState(null);
 
     const IDENTIFIER = useParams().handle;
@@ -35,7 +33,7 @@ const Vacancy = () => {
             params: { code: IDENTIFIER }
         };
 
-        const res = await axios.get(BASE_URL + '/api/vacancy/vacancy', config);
+        const res = await axios.get('/app/api/vacancy/vacancy', config);
         setData(res.data.vacancy);
     }
 

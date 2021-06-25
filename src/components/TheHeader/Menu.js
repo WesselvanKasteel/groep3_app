@@ -9,8 +9,6 @@ import './Menu.css';
 
 const Menu = ({ open, updateMenu }) => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
-
     const dispatch = useDispatch();
     const isAuth = useSelector(state => state.auth.isAuth);
 
@@ -28,7 +26,7 @@ const Menu = ({ open, updateMenu }) => {
         dispatch({
             type: LOGOUT
         });
-        const res = await axios.post(BASE_URL + '/api/auth/logout', null, config);
+        const res = await axios.post('/app/api/auth/logout', null, config);
     }
 
     return (
