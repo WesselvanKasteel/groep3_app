@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import { SET_AUTH, LOGIN, LOGOUT, SET_ROLE } from '../../../store/action-types';
 import { Link } from 'react-router-dom';
 
+// test
+import { useHistory } from "react-router-dom";
+
 import './Login.css';
 
 import Lock from '../../../assets/svg/lock.svg';
@@ -12,15 +15,18 @@ import Mail from '../../../assets/svg/email.svg';
 const Login = (props) => {
     const dispatch = useDispatch();
 
+    // test
+    let history = useHistory();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    useEffect(() => {
-        localStorage.removeItem('token');
-        dispatch({
-            type: LOGOUT,
-        })
-    }, [dispatch]);
+    // useEffect(() => {
+    //     localStorage.removeItem('token');
+    //     dispatch({
+    //         type: LOGOUT,
+    //     })
+    // }, []);
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -59,9 +65,13 @@ const Login = (props) => {
         }
 
         const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
+
+        console.log(res.data.access_token);
+
         localStorage.setItem('token', res.data.access_token);
-        setRoleHandler();
-        props.history.push('/profiel');
+        
+
+        setRoleHandler().then(() => props.history.push('/profiel'));
     }
 
     return(

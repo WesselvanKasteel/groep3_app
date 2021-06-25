@@ -41,7 +41,7 @@ const Menu = ({ open, updateMenu }) => {
             {isAuth && (
                 <Fragment>
                     <NavLink className="menu__item" activeClassName="menu__item--active" to="/profiel" onClick={() => updateMenu()}>Profiel</NavLink>
-                    <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => logoutHandler}>Uitloggen</NavLink>
+                    <NavLink className="menu__item" activeClassName="menu__item--active" to="/inloggen" onClick={() => {logoutHandler(); updateMenu();}}>Uitloggen</NavLink>
                 </Fragment>
             )}
         </section>
