@@ -12,16 +12,20 @@ const SearchVacancy = () => {
     // States
     const [vacancyList, setVacancyList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
+    const [filterItemsList, setFilterItemsList] = useState([]);
     const [filterSearchTerm, setFilterSearchTerm] = useState('');
+    const [filterSearchTermList, setFilterSearchTermList] = useState([]);
     const [filterVacancies, setFilterVacancies] = useState([]);
 
     useEffect(() => {
         getVacancies();
-        
+        filterVacancySearchTerm();
+        filterVacancyItems();
     }, []);
 
     useEffect(() =>{
-        filterVacancyList();
+        filterVacancySearchTerm();
+        filterVacancyItems();
     }, [filterItems, filterSearchTerm])
 
     const getVacancies = () =>{
@@ -52,25 +56,43 @@ const SearchVacancy = () => {
         console.log(searchTerm);
     }
 
-    const filterVacancyList = () => {
+    const filterVacancySearchTerm = () =>{
+
+        if(!filterSearchTerm){
+            setFilterSearchTermList(vacancyList);
+        }
+        else{
+            setFilterSearchTermList(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 })) 
+           
+        }
+        console.log(filterSearchTerm);
+    }
+
+
+    const filterVacancyItems = () => {
         const filterskills = filterItems.map(item => item.item.toString());
         const vacancyskills = JSON.stringify(vacancyList.map(vacancy => vacancy.skills.map(skill => skill.skill)))
         const test = filterskills.some(skill => vacancyskills.includes(skill))
         
         // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.users.map(user => user.company_name).indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
         if (filterItems.length === 0){
-            setFilterVacancies(vacancyList)
+            setFilterVacancies(filterSearchTermList)
         } 
         else {
-            setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item))}))
+            setFilterVacancies(filterSearchTermList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
             // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy === filterskills.some(skill => JSON.stringify(vacancy.skills.map(skill => skill.skill).includes(skill)))}))
         }
         
-        console.log(filterVacancies)
-        console.log(filterskills)
-        console.log(vacancyskills)
-        console.log(test)
+        // console.log(filterVacancies)
+        // console.log(filterskills)
+        // console.log(vacancyskills)
+        // console.log(test)
     }
+
+    const filterVacancyDate = () =>{
+        // setFilterSearchTermList(vacancyList.sort((a,b) => a.created_at > b.created_at ? 1: -1))
+    }
+     
 
     return (
         <section className="search">
