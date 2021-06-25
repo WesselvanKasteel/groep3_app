@@ -2,6 +2,7 @@
   "name": "groep3_app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://vidvaso-p46oi.ondigitalocean.app/app",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.12.0",
