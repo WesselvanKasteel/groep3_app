@@ -9,7 +9,7 @@ import './SearchVacancy.css';
 
 const SearchVacancy = () => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
+    const BASE_URL = 'http://127.0.0.1:8080';
 
     // States
     const [vacancyList, setVacancyList] = useState([]);
