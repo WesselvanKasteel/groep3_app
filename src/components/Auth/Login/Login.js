@@ -14,8 +14,6 @@ import Mail from '../../../assets/svg/email.svg';
 
 const Login = (props) => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
-
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
@@ -35,7 +33,7 @@ const Login = (props) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get(BASE_URL + '/api/auth/check-user-role', config);
+        const res = await axios.get('/app/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,
@@ -70,7 +68,7 @@ const Login = (props) => {
 
         // const res = await axios.post(BASE_URL + '/api/auth/login', config);
 
-        const res = await axios({ method: 'POST', url: BASE_URL + '/api/auth/login', 
+        const res = await axios({ method: 'POST', url: '/app/api/auth/login', 
             headers: {
                 'Access-Control-Allow-Origin': '*', 
                 'Access-Control-Allow-Methods': 'POST',

@@ -6,8 +6,6 @@ import axios from 'axios';
 
 const PrivateRoute = ({ path, component, exact, requiredRole }) => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
-
     const dispatch = useDispatch();
     const role = useSelector(state => state.role.role);
     const isAuth = useSelector(state => state.auth.isAuth);
@@ -22,7 +20,7 @@ const PrivateRoute = ({ path, component, exact, requiredRole }) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get(BASE_URL + '/api/auth/check-user-role', config);
+        const res = await axios.get('/app/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,

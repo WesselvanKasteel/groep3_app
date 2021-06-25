@@ -13,7 +13,6 @@ import SearchProfileList from './SearchProfileList';
 
 const SearchProfile = () => {
 
-
     // States
     const [profileList, setProfileList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
@@ -22,7 +21,6 @@ const SearchProfile = () => {
 
     useEffect(() => {
         getProfiles();
-        
     }, []);
 
     useEffect(() =>{
@@ -45,8 +43,6 @@ const SearchProfile = () => {
     const filterProfilelist = () => {
         setFilterProfiles(profileList.filter(profile => {return profile.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
     }
-
-    
 
     return (
         <section className="search">
