@@ -17,6 +17,8 @@ import SearchProfileAttributes from './SearchProfileAttributes';
 // de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
 const SearchProfileFilter = ({ updateFilterState }) => {
 
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     // hardcode
     const [searchOptions, setSearchOptions] = useState([]);
     const [dateOptions, setDateOptions] = useState(['Vandaag', 'Afgelopen week', 'Afgelopen maand', 'Afgelopen jaar']);
@@ -38,8 +40,7 @@ const SearchProfileFilter = ({ updateFilterState }) => {
     }, [])
 
     const getSearchOptions = () =>{
-        const BASE_URL = "http://localhost:8000/api/skill"
-        axios.get(BASE_URL).then(res =>{
+        axios.get(BASE_URL + '/api/skill').then(res =>{
             setSearchOptions(res.data.map(skill => skill.skill));
         })
     }

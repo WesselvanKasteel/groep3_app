@@ -5,6 +5,9 @@ import axios from 'axios';
 import './CompanyProfile.css';
 
 const CompanyProfile = () => {
+
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [companyName, setCompanyName] = useState('');
@@ -24,7 +27,7 @@ const CompanyProfile = () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/user', config);
+        const res = await axios.get(BASE_URL + '/api/user', config);
 
         setAddress(res.data.user.address);
         setCity(res.data.user.city);

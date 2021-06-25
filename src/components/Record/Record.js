@@ -23,6 +23,8 @@ import StartRecord from '../../assets/svg/videocam_start_recording.svg';
 
 const Record = () => {
 
+    const BASE_URL = 'http://127.0.0.1:8000';
+    
     const [recording, setRecording] = useState(false);
     const [webcam, setWebcam] = useState(false);
 
@@ -100,7 +102,7 @@ const Record = () => {
             const data = new FormData();
             data.append('file', component.blob);
 
-            await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/vacancy/store', data, config)
+            await axios.post(BASE_URL + '/api/vacancy/store', data, config)
             .then((response) => {
                 // hier redirecten
             })

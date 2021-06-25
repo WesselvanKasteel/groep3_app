@@ -10,7 +10,10 @@ import ArrowDirection from '../../../assets/svg/arrow_direction.svg';
 // components
 import SearchProfileFilter from './SearchProfileFilter';
 import SearchProfileList from './SearchProfileList';
+
 const SearchProfile = () => {
+
+    const BASE_URL = 'http://127.0.0.1:8000';
 
     // States
     const [profileList, setProfileList] = useState([]);
@@ -28,8 +31,7 @@ const SearchProfile = () => {
     }, [filterItems])
 
     const getProfiles = () =>{
-        const BASE_URL ="https://vidvaso-p46oi.ondigitalocean.app/app/api/users";
-        axios.get(BASE_URL).then(res =>{
+        axios.get(BASE_URL + '/api/users').then(res =>{
             setProfileList(res.data);  
             setFilterProfiles(res.data);      
         })
@@ -42,7 +44,6 @@ const SearchProfile = () => {
     }
 
     const filterProfilelist = () => {
-        // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 }))
         setFilterProfiles(profileList.filter(profile => {return profile.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
     }
 
@@ -56,7 +57,6 @@ const SearchProfile = () => {
                     <img className="search__container__title-arrow_down" src={ArrowDirection} alt="arrow" />
                 </div>
                 <SearchProfileFilter updateFilterState={updateFilterState} />
-                {/* <SearchProfileList vacancies={filteringVacancies} /> */}
                 <SearchProfileList profiles={filterProfiles} />
             </div>
         </section>

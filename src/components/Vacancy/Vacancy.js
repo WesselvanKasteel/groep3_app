@@ -17,10 +17,10 @@ import Video from '../../assets/videos/VidVaSo_video_1.mp4';
 
 const Vacancy = () => {
 
-    const [data, setData] = useState(null)
-;
+    const BASE_URL = 'http://127.0.0.1:8000';
 
-    const BASE_URL = 'https://vidvaso-p46oi.ondigitalocean.app/app/api/vacancy';
+    const [data, setData] = useState(null);
+
     const IDENTIFIER = useParams().handle;
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const Vacancy = () => {
             params: { code: IDENTIFIER }
         };
 
-        const res = await axios.get(BASE_URL + '/vacancy', config);
+        const res = await axios.get(BASE_URL + '/api/vacancy/vacancy', config);
         setData(res.data.vacancy);
     }
 

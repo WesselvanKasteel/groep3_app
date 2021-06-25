@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import './CompanyProfile.css';
 
 const CompanyProfileEdit = (props) => {
+
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     const [profilePicture, setProfilePicture] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -20,7 +23,7 @@ const CompanyProfileEdit = (props) => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/user', config);
+        const res = await axios.get(BASE_URL + '/api/user', config);
 
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
@@ -42,7 +45,7 @@ const CompanyProfileEdit = (props) => {
             },
         };
 
-        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit/picture', formData, config);
+        const res = await axios.post(BASE_URL + '/api/user/edit/picture', formData, config);
     };
 
     const profileUpdateHandler = async (event) => {
@@ -62,7 +65,7 @@ const CompanyProfileEdit = (props) => {
             },
         };
 
-        const profileRes = await axios.put('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit', profileData, config);
+        const profileRes = await axios.put(BASE_URL + '/api/user/edit', profileData, config);
 
         props.history.push('/bedrijfsprofiel');
     };

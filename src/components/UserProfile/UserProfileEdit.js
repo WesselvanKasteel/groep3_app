@@ -6,6 +6,9 @@ import Remove from "../../assets/svg/remove.svg"
 import Add from "../../assets/svg/add.svg"
 
 const UserProfileEdit = (props) => {
+
+    const BASE_URL = 'http://127.0.0.1:8000';
+    
     const [profilePicture, setProfilePicture] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -24,11 +27,13 @@ const UserProfileEdit = (props) => {
     }, []);
 
     const getUserData = async () => {
+
+
         const config = {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
 
-        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/user', config);
+        const res = await axios.get(BASE_URL + '/api/user', config);
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
@@ -98,7 +103,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit/picture', formData, config);
+        const res = await axios.post(BASE_URL + '/api/user/edit/picture', formData, config);
 
         props.history.push('/profiel');
     };
@@ -128,7 +133,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const profileRes = await axios.put('https://vidvaso-p46oi.ondigitalocean.app/app/api/user/edit', profileData, config);
+        const profileRes = await axios.put(BASE_URL + '/api/user/edit', profileData, config);
 
         props.history.push('/profiel');
     };
@@ -145,7 +150,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const jobsRes = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/jobs/store', jobsData, config);
+        const jobsRes = await axios.post(BASE_URL + '/api/jobs/store', jobsData, config);
     }
 
     const deleteJobsHandler = async (id) => {
@@ -157,7 +162,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const jobsRes = await axios.delete('https://vidvaso-p46oi.ondigitalocean.app/app/api/destroy', jobToBeDeleted, config);
+        const jobsRes = await axios.delete(BASE_URL + '/api/destroy', jobToBeDeleted, config);
     }
 
     const storeEducationHandler = async () => {
@@ -172,7 +177,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const educationRes = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/education/store', educationData, config);
+        const educationRes = await axios.post(BASE_URL + '/api/education/store', educationData, config);
     }
 
     const storeSkillsHandler = async () => {
@@ -187,7 +192,7 @@ const UserProfileEdit = (props) => {
             },
         };
 
-        const skillsRes = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/skills/store', skillsData, config);
+        const skillsRes = await axios.post(BASE_URL + '/api/skills/store', skillsData, config);
     }
 
     const jobsAddHandler = () => {

@@ -13,20 +13,13 @@ import Lock from '../../../assets/svg/lock.svg';
 import Mail from '../../../assets/svg/email.svg';
 
 const Login = (props) => {
-    const dispatch = useDispatch();
 
-    // test
-    let history = useHistory();
+    const BASE_URL = 'http://127.0.0.1:8000';
+
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    // useEffect(() => {
-    //     localStorage.removeItem('token');
-    //     dispatch({
-    //         type: LOGOUT,
-    //     })
-    // }, []);
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -42,7 +35,7 @@ const Login = (props) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/check-user-role', config);
+        const res = await axios.get(BASE_URL + '/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,
@@ -59,16 +52,37 @@ const Login = (props) => {
             type: LOGIN,
         });
 
-        const loginData = {
-            email: email,
-            password: password,
-        }
+        // const loginData = {
+        //     email: email,
+        //     password: password,
+        // }
 
-        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/login', loginData);
+        // const config = {
+        //     headers: {
+        //         'Access-Control-Allow-Origin' : '*', 
+        //         'Access-Control-Allow-Methods' : 'POST'
+        //     },
+        //     data: {
+        //         email: email,
+        //         password: password,
+        //     }
+        // }
+
+        // const res = await axios.post(BASE_URL + '/api/auth/login', config);
+
+        const res = await axios({ method: 'POST', url: BASE_URL + '/api/auth/login', 
+            headers: {
+                'Access-Control-Allow-Origin': '*', 
+                'Access-Control-Allow-Methods': 'POST',
+            }, 
+            data: {
+                email: email,
+                password: password,
+            }
+        });
 
         localStorage.setItem('token', res.data.access_token);
         
-
         setRoleHandler().then(() => props.history.push('/profiel'));
     }
 

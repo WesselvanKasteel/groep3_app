@@ -9,6 +9,8 @@ import './SearchVacancy.css';
 
 const SearchVacancy = () => {
 
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     // States
     const [vacancyList, setVacancyList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
@@ -26,17 +28,27 @@ const SearchVacancy = () => {
         filterVacancyItems();
     }, [filterItems, filterSearchTerm])
 
-    const getVacancies = () =>{
+    const getVacancies = async () =>{
 
-        const config = {
-            headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
-        };
+        // const config = {
+        //     headers: {Authorization: `Bearer ${localStorage.getItem('token')}` }
+        // };
 
-        const BASE_URL ="https://vidvaso-p46oi.ondigitalocean.app/app/api/vacancy/vacancies";
-        axios.get(BASE_URL, config).then(res =>{
+        // axios.get(BASE_URL + '/api/vacancy/vacancies', config).then(res =>{
+        //     setVacancyList(res.data);       
+        //     setFilterVacancies(res.data);   
+        // })
+
+        await axios({ method: 'GET', url: BASE_URL + '/api/vacancy/vacancies', 
+            headers: {
+                'Access-Control-Allow-Origin': '*', 
+                'Access-Control-Allow-Methods': 'POST',
+            }, 
+        })
+        .then(res => {
             setVacancyList(res.data);       
             setFilterVacancies(res.data);   
-        })
+        });
     }
 
     // update filterItems

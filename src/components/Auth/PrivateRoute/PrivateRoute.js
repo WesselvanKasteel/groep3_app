@@ -5,12 +5,12 @@ import { CHECK_AUTH, CHECK_ROLE, SET_AUTH, SET_ROLE } from '../../../store/actio
 import axios from 'axios';
 
 const PrivateRoute = ({ path, component, exact, requiredRole }) => {
+
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     const dispatch = useDispatch();
     const role = useSelector(state => state.role.role);
     const isAuth = useSelector(state => state.auth.isAuth);
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // const [activeRole, setActiveRole] = useState('');
 
     useEffect(() => {
         setRoleHandler();
@@ -22,7 +22,7 @@ const PrivateRoute = ({ path, component, exact, requiredRole }) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/check-user-role', config);
+        const res = await axios.get(BASE_URL + '/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,

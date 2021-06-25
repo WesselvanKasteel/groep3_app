@@ -17,8 +17,9 @@ import SearchVacancyAttributes from './SearchVacancyAttributes';
 // de volgende props toevoegen: searchOptions, dateOptions, employmentOptions
 const SearchVacancyFilter = ({ updateFilterState }) => {
 
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     // hardcode
-    
     const [dateOptions, setDateOptions] = useState(['Vandaag', 'Afgelopen week', 'Afgelopen maand', 'Afgelopen jaar']);
     const [employmentOptions, setEmploymentOptions] = useState(['Fulltime', 'Parttime', 'Tijdelijk', 'Freelance / ZZP']);
 
@@ -38,8 +39,7 @@ const SearchVacancyFilter = ({ updateFilterState }) => {
     }, []);
 
     const getSearchOptions = () =>{
-        const BASE_URL = "http://localhost:8000/api/skill/skills"
-        axios.get(BASE_URL).then(res =>{
+        axios.get(BASE_URL + '/api/skill/skills').then(res =>{
             setSearchOptions(res.data.map(skill => skill.skill));
         })
     }

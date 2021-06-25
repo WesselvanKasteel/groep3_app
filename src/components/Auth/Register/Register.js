@@ -5,6 +5,9 @@ import axios from 'axios';
 import './Register.css';
 
 const Register = (props) => {
+
+    const BASE_URL = 'http://127.0.0.1:8000';
+
     const [firstName, setFirstName] = useState('');
     const [prefix, setPrefix] = useState('');
     const [lastName, setLastName] = useState('');
@@ -33,7 +36,7 @@ const Register = (props) => {
             password: password,
             date_of_birth: dateOfBirth,
         }
-        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/register', registerData);
+        const res = await axios.post(BASE_URL + '/api/auth/register', registerData);
 
         if(res.status === 200) {
             loginAfterRegisteringHandler();
@@ -46,7 +49,7 @@ const Register = (props) => {
             password: password,
         };
 
-        const res = await axios.post('https://vidvaso-p46oi.ondigitalocean.app/app/api/auth/login', loginData);
+        const res = await axios.post(BASE_URL + '/api/auth/login', loginData);
 
         localStorage.setItem("token", res.data.access_token);
         props.history.push('/profiel');
