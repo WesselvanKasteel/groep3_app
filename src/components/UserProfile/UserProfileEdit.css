@@ -46,6 +46,45 @@
     margin-bottom: 3rem;
 }
 
+
+.userprofileedit__form__image {
+    background-color: #fff;
+    padding: 3rem;
+    box-shadow: 0px 5px 25px rgba(6, 29, 69, 0.1);
+    border-radius: 2rem;
+    margin-bottom: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.userprofileedit__form__image__title {
+    margin-bottom: 2rem;
+}
+.userprofileedit__form__image__file {
+    margin-bottom: 2rem;
+}
+.userprofileedit__form__image__button {
+    width: 20rem;
+
+    font-family: inherit;
+    padding: 1.5rem 2rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: #28406A;
+    border-radius: 2rem;
+    border: none;
+    display: inline-block;
+    font-weight: 600;
+    transition: background-color 0.1s ease-out;
+}
+.userprofileedit__form__image__button:hover {
+    background-color: #3D8FE5;
+    cursor: pointer;
+}
+ 
+
+
 .userprofileedit__form__article__container__input{
     outline: 0;
     border-width: 0 0 2px;

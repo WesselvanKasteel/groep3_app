@@ -29,7 +29,6 @@ const UserProfileEdit = (props) => {
         };
 
         const res = await axios.get('http://127.0.0.1:8000/api/user', config);
-        console.log(res.data);
         setAddress(res.data.user.address);
         setCity(res.data.user.city);
         setProvince(res.data.user.province);
@@ -43,8 +42,6 @@ const UserProfileEdit = (props) => {
         else {
             setExternalCV(res.data.user.external_cv);
         }
-
-        console.log(res.data);
     }
 
     const addressChangeHandler = (event) => {
@@ -104,7 +101,6 @@ const UserProfileEdit = (props) => {
         const res = await axios.post('http://127.0.0.1:8000/api/user/edit/picture', formData, config);
 
         props.history.push('/profiel');
-        console.log(res.data);
     };
 
     const profileUpdateHandler = async (event) => {
@@ -133,7 +129,6 @@ const UserProfileEdit = (props) => {
         };
 
         const profileRes = await axios.put('http://127.0.0.1:8000/api/user/edit', profileData, config);
-        console.log(profileRes.data);
 
         props.history.push('/profiel');
     };
@@ -151,12 +146,10 @@ const UserProfileEdit = (props) => {
         };
 
         const jobsRes = await axios.post('http://127.0.0.1:8000/api/jobs/store', jobsData, config);
-        console.log(jobsRes.data);
     }
 
     const deleteJobsHandler = async (id) => {
         const jobToBeDeleted = jobs.find(job => id === job.id);
-        console.log(jobToBeDeleted);
 
         const config = {
             headers: {
@@ -165,7 +158,6 @@ const UserProfileEdit = (props) => {
         };
 
         const jobsRes = await axios.delete('http://127.0.0.1:8000/api/destroy', jobToBeDeleted, config);
-        console.log(jobsRes);
     }
 
     const storeEducationHandler = async () => {
@@ -181,7 +173,6 @@ const UserProfileEdit = (props) => {
         };
 
         const educationRes = await axios.post('http://127.0.0.1:8000/api/education/store', educationData, config);
-        console.log(educationRes.data);
     }
 
     const storeSkillsHandler = async () => {
@@ -197,7 +188,6 @@ const UserProfileEdit = (props) => {
         };
 
         const skillsRes = await axios.post('http://127.0.0.1:8000/api/skills/store', skillsData, config);
-        console.log(skillsRes.data);
     }
 
     const jobsAddHandler = () => {
@@ -285,16 +275,17 @@ const UserProfileEdit = (props) => {
     return(
         <section className ="userprofileedit">
             <form className="userprofileedit__form" onSubmit={profilePictureUpdateHandler} method="POST">
-                <h2>Afbeelding</h2>
-                <label htmlFor="profilePicture">Afbeelding:</label>
-                <input
-                    type="file"
-                    name="profilePicture"
-                    id="profilePicture"
-                    className="userprofileedit__form__file"
-                    onChange={(e) => setProfilePicture(e.target.files[0])}
-                />
-                <button className="userprofileedit__form__button">Upload</button>
+                <div className="userprofileedit__form__image">
+                    <label htmlFor="profilePicture" className="userprofileedit__form__image__title">Afbeelding:</label>
+                    <input
+                        type="file"
+                        name="profilePicture"
+                        id="profilePicture"
+                        className="userprofileedit__form__image__file"
+                        onChange={(e) => setProfilePicture(e.target.files[0])}
+                    />
+                    <button className="userprofileedit__form__image__button">Upload</button>
+                </div>
             </form>
             <form className="userprofileedit__form grid2" onSubmit={profileUpdateHandler} method="POST">
                 
