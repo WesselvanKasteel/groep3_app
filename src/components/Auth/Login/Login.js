@@ -42,7 +42,7 @@ const Login = (props) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        const res = await axios.get('http://127.0.0.1:8000/api/auth/check-user-role', config);
+        const res = await axios.get(window.location.host + 'app/api/auth/check-user-role', config);
         dispatch({
             type: SET_ROLE,
             payload: res.data.role,
@@ -64,7 +64,7 @@ const Login = (props) => {
             password: password,
         }
 
-        const res = await axios.post('http://127.0.0.1:8000/api/auth/login', loginData);
+        const res = await axios.post(window.location.host + '/app/api/auth/login', loginData);
 
         localStorage.setItem('token', res.data.access_token);
         
@@ -106,7 +106,6 @@ const Login = (props) => {
                     />
                     <label className="login__form__container__placeholder" htmlFor="password">Wachtwoord</label>
                 </div>
-                {/* <a className="login__form__forgot" href="#">Wachtwoord vergeten?</a> */}
                 <button className="login__form__button">Inloggen</button>
                 <p>Nog geen account? <Link className="login__form__register b2" to="/registreren">Registreer</Link></p>
             </form>
