@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 
-// scss
+// css
 import './SearchVacancyCard.css';
-
-// images (hardcode)
-import NikeLogo from '../../../assets/images/nike.png';
 
 // react-router
 import { Link } from 'react-router-dom';

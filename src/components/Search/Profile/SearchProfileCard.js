@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 
-// scss
+// css
 import './SearchProfileCard.css';
 
-// images (hardcode)
-import NikeLogo from '../../../assets/images/nike.png';
 
 const SearchProfileCard = ({ data }) => {
 

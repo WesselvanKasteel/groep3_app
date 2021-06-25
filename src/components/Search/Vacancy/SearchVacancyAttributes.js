@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-// scss
+// css
 import './SearchVacancyAttributes.css';
 
 const SearchVacancyAttributes = ({ attributes, updateFilter }) => {

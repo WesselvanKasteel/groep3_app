@@ -9,8 +9,6 @@ import './SearchVacancy.css';
 
 const SearchVacancy = () => {
 
-    const BASE_URL = 'http://127.0.0.1:8080';
-
     // States
     const [vacancyList, setVacancyList] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
@@ -39,7 +37,7 @@ const SearchVacancy = () => {
         //     setFilterVacancies(res.data);   
         // })
 
-        await axios({ method: 'GET', url: '/api/vacancy/vacancies', 
+        await axios({ method: 'GET', url: '/app/api/vacancy/vacancies', 
             headers: {
                 'Access-Control-Allow-Origin': '*', 
                 'Access-Control-Allow-Methods': 'POST',

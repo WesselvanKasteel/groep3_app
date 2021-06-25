@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// scss
+// css
 import './SearchProfile.css';
 
 // icons
@@ -13,7 +13,6 @@ import SearchProfileList from './SearchProfileList';
 
 const SearchProfile = () => {
 
-    const BASE_URL = 'http://127.0.0.1:8000';
 
     // States
     const [profileList, setProfileList] = useState([]);
@@ -31,7 +30,7 @@ const SearchProfile = () => {
     }, [filterItems])
 
     const getProfiles = () =>{
-        axios.get(BASE_URL + '/api/users').then(res =>{
+        axios.get('/app/api/users').then(res =>{
             setProfileList(res.data);  
             setFilterProfiles(res.data);      
         })

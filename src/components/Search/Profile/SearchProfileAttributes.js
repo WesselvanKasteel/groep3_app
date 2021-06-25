@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-// scss
+// css
 import './SearchProfileAttributes.css';
 
 const SearchProfileAttributes = ({ attributes, updateFilter }) => {
