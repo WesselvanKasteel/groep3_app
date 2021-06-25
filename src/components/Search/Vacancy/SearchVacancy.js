@@ -19,8 +19,6 @@ const SearchVacancy = () => {
 
     useEffect(() => {
         getVacancies();
-        filterVacancySearchTerm();
-        filterVacancyItems();
     }, []);
 
     useEffect(() =>{
@@ -45,7 +43,6 @@ const SearchVacancy = () => {
     const updateFilterState = (list, searchTerm) => { 
         setFilterItems(list);
         setFilterSearchTerm(searchTerm); 
-
     }
 
     const filterVacancySearchTerm = () =>{
@@ -55,7 +52,6 @@ const SearchVacancy = () => {
         }
         else{
             setFilterSearchTermList(vacancyList.filter(vacancy => {return vacancy.title.toLowerCase().indexOf(filterSearchTerm.toLowerCase()) !== -1 })) 
-           
         }
     }
 
@@ -67,14 +63,8 @@ const SearchVacancy = () => {
         } 
         else {
             setFilterVacancies(filterSearchTermList.filter(vacancy => {return vacancy.skills.map(skill => skill.skill).includes(filterItems.map(item => item.item).toString())}))
-            // setFilterVacancies(vacancyList.filter(vacancy => {return vacancy === filterskills.some(skill => JSON.stringify(vacancy.skills.map(skill => skill.skill).includes(skill)))}))
         }
-
     }
-
-    // const filterVacancyDate = () =>{
-    //     setFilterSearchTermList(vacancyList.sort((a,b) => a.created_at > b.created_at ? 1: -1))
-    // }
      
 
     return (
